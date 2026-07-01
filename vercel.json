@@ -1,0 +1,17 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/clients", "destination": "/clients.html" },
+    { "source": "/partners", "destination": "/partners.html" },
+    { "source": "/futures", "destination": "/futures.html" },
+    { "source": "/news", "destination": "/news.html" },
+    { "source": "/insights", "destination": "/insights.html" },
+    { "source": "/faqs", "destination": "/faqs.html" },
+    { "source": "/national-bank-panda-bonds", "destination": "/national-bank-panda-bonds.html" },
+    { "source": "/panda-bonds-surge", "destination": "/panda-bonds-surge.html" }
+  ]
+}
