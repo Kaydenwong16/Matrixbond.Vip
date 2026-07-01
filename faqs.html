@@ -291,6 +291,17 @@ body { -webkit-font-smoothing: antialiased; }
 .mobile-menu .site-logo{-webkit-flex:1 1 auto!important;flex:1 1 auto!important;min-width:0!important;}
 .mobile-menu .menu-bar .vg-lang-btn{-webkit-flex-shrink:0!important;flex-shrink:0!important;margin-left:0!important;padding:4px 10px!important;font-size:.75rem!important;border-radius:16px!important;}
 </style>
+<style id="vg-contact-mobile">
+.contact-info-mobile { display: none; }
+@media (max-width: 767px) {
+  .contact-info-desktop { display: none !important; }
+  .contact-info-mobile { display: block; }
+}
+</style>
+<style id="vg-mail-icon">
+.vg-mail-icon-link { display: inline-flex !important; align-items: center !important; margin-left: 10px !important; vertical-align: middle !important; flex-shrink: 0 !important; line-height: 1 !important; }
+.vg-mail-icon { height: 28px !important; width: auto !important; display: block !important; }
+</style>
 <style id="vg-nav-2line">
 @media (min-width: 1025px) {
   .menu-item-6135 > a > .vg-nav-2line, .menu-item-6145 > a > .vg-nav-2line {
@@ -350,7 +361,7 @@ body { -webkit-font-smoothing: antialiased; }
 </ul></div>                    </div>
                 </nav>
                                     <div class="menu-element">
-                        <button class="vg-lang-btn" type="button">🇨🇳 中文</button>
+                        <button class="vg-lang-btn" type="button">🇨🇳 中文</button><a href="https://qiye.aliyun.com/?lang=en" target="_blank" rel="noopener" class="vg-mail-icon-link" id="vg-desktop-mail-link"><img src="Mail%20icon%20%E6%8A%A0%E5%9B%BE.png" alt="Email" class="vg-mail-icon"></a>
                                             </div>
                             </div>
         </div>
@@ -397,12 +408,15 @@ body { -webkit-font-smoothing: antialiased; }
 			
 			
 							<div class="info">
-					<h3 class="title" data-i18n="nav.contact-info">Contact Info</h3>					<div class="info-box">
+					<h3 class="title contact-info-desktop" data-i18n="nav.contact-info">Contact Info</h3>					<div class="info-box contact-info-desktop">
 						<i class="bi bi-geo-alt"></i>
 						2610 Apec Plaza, 49 Hoi Yuen Road, Kwun Tong, KL, HK					</div>
-					<div class="info-box">
+					<div class="info-box contact-info-desktop">
 						<i class="bi bi-envelope"></i>
 						<a href="mailto:info@matrixbond.asia">info@matrixbond.asia						</a>
+					</div>
+					<div class="contact-info-mobile">
+						<a href="https://qiye.aliyun.com/?lang=en" id="vg-mobile-mail-link" target="_blank" rel="noopener"><img src="Mail%20icon%20%E6%8A%A0%E5%9B%BE.png" alt="Email" style="width:40px;height:auto;"></a>
 					</div>
 				</div>
 			
