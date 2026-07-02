@@ -1,4 +1,5 @@
 .DS_Store
 .claude/
 Pak3.vastgold.bond/
-API/
+.secrets/
+node_modules/

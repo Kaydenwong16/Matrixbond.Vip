@@ -1,0 +1,8 @@
+{
+  "name": "matrixbond-asia",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "resend": "^6.16.0"
+  }
+}
