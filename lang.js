@@ -253,6 +253,7 @@
     'news.html':     '新闻 — Matrix Bond 管理公司控股',
     'partners.html': '我们的合作伙伴 — Matrix Bond 管理公司控股',
     'futures.html':  'Matrix Bond 期货 — Matrix Bond 管理公司控股',
+    'options.html':  'Matrix Bond 期权 — Matrix Bond 管理公司控股',
     'insights.html': '洞察 — Matrix Bond 管理公司控股',
     'archives.html':                  '归档 — Matrix Bond 管理公司控股',
     'faqs.html':                      '常见问题 — Matrix Bond 管理公司控股',

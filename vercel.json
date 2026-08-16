@@ -8,6 +8,7 @@
     { "source": "/clients", "destination": "/clients.html" },
     { "source": "/partners", "destination": "/partners.html" },
     { "source": "/futures", "destination": "/futures.html" },
+    { "source": "/options", "destination": "/options.html" },
     { "source": "/news", "destination": "/news.html" },
     { "source": "/insights", "destination": "/insights.html" },
     { "source": "/faqs", "destination": "/faqs.html" },
