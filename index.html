@@ -241,6 +241,38 @@ body { -webkit-font-smoothing: antialiased; }
 .slider-section.style1 .hero-slider .slider-item {
   min-height: 525px !important;
 }
+/* ── Dynamic hero: slow Ken-Burns zoom on the background photo ──
+   The image lives on a ::before layer (inherits the inline
+   background-image) so the zoom never moves the text/buttons on
+   top of it. Original inline background stays as a static fallback. */
+.slider-section.style1 .hero-slider .slider-item {
+  position: relative;
+  overflow: hidden;
+}
+.slider-section.style1 .hero-slider .slider-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  animation: vg-hero-kenburns 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.slider-section.style1 .hero-slider .slider-item > .container {
+  position: relative;
+  z-index: 1;
+}
+@keyframes vg-hero-kenburns {
+  0%   { transform: scale(1); }
+  100% { transform: scale(1.12); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slider-section.style1 .hero-slider .slider-item::before {
+    animation: none;
+  }
+}
 @media (max-width: 767px) {
   .slider-section.style1 .hero-slider .slider-item {
     min-height: 336px !important;
