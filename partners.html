@@ -181,9 +181,9 @@ window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/15
 
 /* ── Nav left; lang button anchored far right ── */
 #sticky-header .manu-wrapper { -webkit-justify-content: flex-start !important; justify-content: flex-start !important; }
-#sticky-header .main-navigation { margin-left: 52px !important; }
-html[lang="zh-CN"] #sticky-header .main-navigation { margin-left: 96px !important; }
-html[lang="zh-CN"] #sticky-header .main-navigation .menu-ul { padding-left: 28px !important; }
+#sticky-header .main-navigation { margin-left: 28px !important; }
+html[lang="zh-CN"] #sticky-header .main-navigation { margin-left: 44px !important; }
+html[lang="zh-CN"] #sticky-header .main-navigation .menu-ul { padding-left: 14px !important; }
 #sticky-header .menu-element { margin-left: auto !important; -webkit-flex-shrink: 0 !important; flex-shrink: 0 !important; }
 #sticky-header .main-navigation .menu-ul {
   display: -webkit-flex !important; display: flex !important;
@@ -193,6 +193,15 @@ html[lang="zh-CN"] #sticky-header .main-navigation .menu-ul { padding-left: 28px
 }
 #sticky-header .main-navigation .menu-ul > li {
   -webkit-flex-shrink: 0 !important; flex-shrink: 0 !important; white-space: nowrap;
+}
+/* ── Narrower tabs so the full row fits on desktop without overflow ── */
+#sticky-header .main-navigation .menu-ul li > a {
+  padding: 38px 8px !important;
+  font-size: 13.5px !important;
+}
+#sticky-header .main-navigation .menu-ul li > a i.bi-chevron-down {
+  margin-left: 2px !important;
+  font-size: 0.6em !important;
 }
 
 /* ── Dropdowns ── */
@@ -261,7 +270,7 @@ body { -webkit-font-smoothing: antialiased; }
 /* Brand name span */
 .vg-brand-name {
   font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
-  font-size: 1.4rem;
+  font-size: 1.15rem;
   font-weight: 900;
   color: #0a1f5c;
   letter-spacing: 0.06em;
@@ -270,7 +279,11 @@ body { -webkit-font-smoothing: antialiased; }
   white-space: nowrap;
 }
 /* English brand name one size smaller — Chinese stays at full size */
-[lang="en-US"] .vg-brand-name { font-size: 1.2rem; }
+[lang="en-US"] .vg-brand-name { font-size: 1rem; }
+/* Keep the brand text clear of the pinned lang button / hamburger */
+.mobile-menu .site-logo { overflow: hidden; padding-right: 108px; }
+.mobile-menu .site-logo .custom-logo-link { min-width: 0; overflow: hidden; }
+.mobile-menu .vg-brand-name { overflow: hidden; }
 /* Remove any ::after text to avoid duplication */
 .mobile-menu .site-logo .custom-logo-link::after { content: none !important; }
 /* ── Sticky mobile header ── */
@@ -287,14 +300,14 @@ body { -webkit-font-smoothing: antialiased; }
 }
 </style>
 <style id="vg-lang-btn-styles">
-.vg-lang-btn{display:-webkit-inline-flex!important;display:inline-flex!important;-webkit-align-items:center!important;align-items:center!important;gap:5px!important;padding:5px 13px!important;font-size:.82rem!important;font-weight:700!important;color:#0a1f5c!important;background:#fff!important;border:1.5px solid #0a1f5c!important;border-radius:20px!important;cursor:pointer!important;vertical-align:middle!important;margin-left:14px!important;white-space:nowrap!important;box-shadow:0 1px 4px rgba(10,31,92,.1)!important;line-height:1!important;-webkit-flex-shrink:0!important;flex-shrink:0!important;}
+.vg-lang-btn{display:-webkit-inline-flex!important;display:inline-flex!important;-webkit-align-items:center!important;align-items:center!important;gap:5px!important;padding:5px 13px!important;font-size:.82rem!important;font-weight:700!important;color:#0a1f5c!important;background:#fff!important;border:1.5px solid #0a1f5c!important;border-radius:20px!important;cursor:pointer!important;vertical-align:middle!important;margin-left:8px!important;white-space:nowrap!important;box-shadow:0 1px 4px rgba(10,31,92,.1)!important;line-height:1!important;-webkit-flex-shrink:0!important;flex-shrink:0!important;}
 .vg-lang-btn:hover{background:#0a1f5c!important;color:#fff!important;}
 .vg-flag{font-size:1.1em;line-height:1;}
 .vg-lang-text{font-size:.8rem;font-weight:700;}
 #sticky-header .menu-element{display:-webkit-flex!important;display:flex!important;-webkit-align-items:center!important;align-items:center!important;}
-.mobile-menu .menu-bar{display:-webkit-flex!important;display:flex!important;-webkit-align-items:center!important;align-items:center!important;-webkit-justify-content:space-between!important;justify-content:space-between!important;gap:6px!important;overflow:visible!important;}
+.mobile-menu .menu-bar{display:-webkit-flex!important;display:flex!important;-webkit-align-items:center!important;align-items:center!important;-webkit-justify-content:space-between!important;justify-content:space-between!important;gap:6px!important;position:relative!important;overflow:hidden!important;}
 .mobile-menu .site-logo{-webkit-flex:1 1 auto!important;flex:1 1 auto!important;min-width:0!important;}
-.mobile-menu .menu-bar .vg-lang-btn{-webkit-flex-shrink:0!important;flex-shrink:0!important;margin-left:0!important;padding:4px 10px!important;font-size:.75rem!important;border-radius:16px!important;}
+.mobile-menu .menu-bar .vg-lang-btn{position:absolute!important;top:50%!important;right:44px!important;-webkit-transform:translateY(-50%)!important;transform:translateY(-50%)!important;-webkit-flex-shrink:0!important;flex-shrink:0!important;margin:0!important;padding:4px 10px!important;font-size:.75rem!important;border-radius:16px!important;z-index:2!important;}
 </style>
 <style id="vg-contact-mobile">
 .contact-info-mobile { display: none; }
@@ -304,7 +317,7 @@ body { -webkit-font-smoothing: antialiased; }
 }
 </style>
 <style id="vg-mail-icon">
-.vg-mail-icon-link { display: inline-flex !important; align-items: center !important; margin-left: 10px !important; vertical-align: middle !important; flex-shrink: 0 !important; line-height: 1 !important; }
+.vg-mail-icon-link { display: inline-flex !important; align-items: center !important; margin-left: 6px !important; vertical-align: middle !important; flex-shrink: 0 !important; line-height: 1 !important; }
 .vg-mail-icon { height: 28px !important; width: auto !important; display: block !important; }
 </style>
 <style id="vg-partners-grid">
@@ -336,7 +349,7 @@ body { -webkit-font-smoothing: antialiased; }
 @media (min-width: 1025px) {
   .menu-item-6135 > a > .vg-nav-2line, .menu-item-6145 > a > .vg-nav-2line {
     display: inline-block;
-    max-width: 88px;
+    max-width: 76px;
     line-height: 1.2;
     white-space: normal;
     text-align: center;
@@ -376,8 +389,8 @@ body { -webkit-font-smoothing: antialiased; }
 </li>
 <li id="menu-item-6140" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-6140"><a href="futures.html"><span data-i18n="nav.products">Products</span><i class="bi bi-chevron-down" style="font-size:0.7em;margin-left:4px;vertical-align:middle;"></i></a>
 <ul class="sub-menu">
-	<li id="menu-item-6138" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6138"><a href="futures.html" data-i18n="nav.mb-options">Matrix Bond Management Options</a></li>
-	<li id="menu-item-6139" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6139"><a href="futures.html" data-i18n="nav.mb-futures">Matrix Bond Management Futures</a></li>
+	<li id="menu-item-6138" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6138"><a href="futures.html" data-i18n="nav.mb-options">MBM Options</a></li>
+	<li id="menu-item-6139" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6139"><a href="futures.html" data-i18n="nav.mb-futures">MBM Futures</a></li>
 </ul>
 </li>
 <li id="menu-item-6145" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-6145"><a href="news.html"><span class="vg-nav-2line" data-i18n="nav.news-insights">News &amp; Insights</span><i class="bi bi-chevron-down" style="font-size:0.7em;margin-left:4px;vertical-align:middle;"></i></a>
@@ -422,8 +435,8 @@ body { -webkit-font-smoothing: antialiased; }
 </li>
 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-6140"><a href="futures.html"><span data-i18n="nav.products">Products</span><i class="bi bi-chevron-down" style="font-size:0.7em;margin-left:4px;vertical-align:middle;"></i></a>
 <ul class="sub-menu">
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6138"><a href="futures.html" data-i18n="nav.mb-options">Matrix Bond Management Options</a></li>
-	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6139"><a href="futures.html" data-i18n="nav.mb-futures">Matrix Bond Management Futures</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6138"><a href="futures.html" data-i18n="nav.mb-options">MBM Options</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6139"><a href="futures.html" data-i18n="nav.mb-futures">MBM Futures</a></li>
 </ul>
 </li>
 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-6145"><a href="news.html"><span class="vg-nav-2line" data-i18n="nav.news-insights">News &amp; Insights</span><i class="bi bi-chevron-down" style="font-size:0.7em;margin-left:4px;vertical-align:middle;"></i></a>
@@ -443,7 +456,7 @@ body { -webkit-font-smoothing: antialiased; }
 						2610 Apec Plaza, 49 Hoi Yuen Road, Kwun Tong, KL, HK					</div>
 					<div class="info-box contact-info-desktop">
 						<i class="bi bi-envelope"></i>
-						<a href="mailto:info@matrixbond.asia">info@matrixbond.asia						</a>
+						<a href="mailto:info@matrixbond.vip">info@matrixbond.vip						</a>
 					</div>
 					<div class="contact-info-mobile">
 						<a href="https://qiye.aliyun.com/?lang=en" id="vg-mobile-mail-link" target="_blank" rel="noopener"><img src="Mail%20icon%20%E6%8A%A0%E5%9B%BE.png" alt="Email" style="width:40px;height:auto;"></a>
