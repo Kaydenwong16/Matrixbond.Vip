@@ -245,6 +245,19 @@ body { -webkit-font-smoothing: antialiased; }
   .slider-section.style1 .hero-slider .slider-item {
     min-height: 336px !important;
   }
+  /* Eyebrow subtitle uses 4px letter-spacing tuned for an 85px desktop
+     title — far too wide for a mobile viewport, so it was overflowing/
+     wrapping until only the last word ("Options") stayed in view.
+     Shrink it enough to fit "Panda Bond Futures and Options" on one
+     line, and let it wrap normally (never clip) as a fallback. */
+  .slider-section.style1 .hero-slider .slider-item .subtitle {
+    font-size: 12px !important;
+    letter-spacing: 1px !important;
+    white-space: normal !important;
+  }
+  .slider-section.style1 .hero-slider .slider-item .text-wrapper {
+    overflow: visible !important;
+  }
 }
 </style>
 <style id="vg-brand-grid-mobile">
