@@ -392,14 +392,24 @@ body { -webkit-font-smoothing: antialiased; }
 }
 </style>
 <style id="vg-contact-address-styles">
-.icon-box.style2 .wrapper { align-items: flex-start !important; }
-.icon-box.style2 .icon { margin-top: 4px !important; }
-.icon-box.style2 .content {
+/* Each office address gets its own icon, sitting inline with its
+   own text instead of one icon floating above the whole stack. */
+.vg-address-list {
   display: flex !important;
   flex-direction: column !important;
-  gap: 8px !important;
+  gap: 14px !important;
 }
-.icon-box.style2 .content p {
+.vg-address-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+}
+.vg-address-item i {
+  flex-shrink: 0 !important;
+  margin-top: 3px !important;
+  color: var(--main-color, #c9a84c) !important;
+}
+.vg-address-item p {
   margin: 0 !important;
   line-height: 1.6 !important;
   text-align: left !important;
@@ -581,12 +591,18 @@ body { -webkit-font-smoothing: antialiased; }
 			
 			
 							<div class="info">
-					<h3 class="title contact-info-desktop" data-i18n="nav.contact-info">Contact Info</h3>					<div class="info-box contact-info-desktop">
-						<i class="bi bi-geo-alt"></i>
-						<div>
-							<p data-i18n="contact.address.vancouver">422 Richards Street, Unit 170,<br>Vancouver, BC, Canada V6B 2Z4</p>
-							<p data-i18n="contact.address.singapore">5 Upper Aljunied Link, #06-02,<br>Quartz Industrial Building, Singapore 367903</p>
-							<p data-i18n="contact.address.hongkong">2610 Apec Plaza, 49 Hoi Yuen Road,<br>Kwun Tong, Kowloon, Hong Kong</p>
+					<h3 class="title contact-info-desktop" data-i18n="nav.contact-info">Contact Info</h3>					<div class="info-box contact-info-desktop vg-address-list">
+						<div class="vg-address-item">
+							<i class="bi bi-geo-alt"></i>
+							<p data-i18n="contact.address.vancouver">422 Richards Street,<br>Vancouver, BC, Canada V6B 2Z4</p>
+						</div>
+						<div class="vg-address-item">
+							<i class="bi bi-geo-alt"></i>
+							<p data-i18n="contact.address.singapore">5 Upper Aljunied Link,<br>Quartz Industrial Building, Singapore 367903</p>
+						</div>
+						<div class="vg-address-item">
+							<i class="bi bi-geo-alt"></i>
+							<p data-i18n="contact.address.hongkong">Apec Plaza, 49 Hoi Yuen Road,<br>Kwun Tong, Kowloon, Hong Kong</p>
 						</div>
 					</div>
 					<div class="info-box contact-info-desktop">
@@ -632,15 +648,19 @@ body { -webkit-font-smoothing: antialiased; }
 
 									<h4 class="title" data-i18n="contact.office-title">Office Address</h4>
 								
-				<div class="wrapper">
-										<div class="icon">
-						<i aria-hidden="true" class="bi bi-geo-alt"></i>					</div>
-					
-					<div class="content">
-													<p data-i18n="contact.address.vancouver">422 Richards Street, Unit 170,<br>Vancouver, BC, Canada V6B 2Z4</p>
-																	<p data-i18n="contact.address.singapore">5 Upper Aljunied Link, #06-02,<br>Quartz Industrial Building, Singapore 367903</p>
-																	<p data-i18n="contact.address.hongkong">2610 Apec Plaza, 49 Hoi Yuen Road,<br>Kwun Tong, Kowloon, Hong Kong</p>
-											</div>
+				<div class="wrapper vg-address-list">
+					<div class="vg-address-item">
+						<i aria-hidden="true" class="bi bi-geo-alt"></i>
+						<p data-i18n="contact.address.vancouver">422 Richards Street,<br>Vancouver, BC, Canada V6B 2Z4</p>
+					</div>
+					<div class="vg-address-item">
+						<i aria-hidden="true" class="bi bi-geo-alt"></i>
+						<p data-i18n="contact.address.singapore">5 Upper Aljunied Link,<br>Quartz Industrial Building, Singapore 367903</p>
+					</div>
+					<div class="vg-address-item">
+						<i aria-hidden="true" class="bi bi-geo-alt"></i>
+						<p data-i18n="contact.address.hongkong">Apec Plaza, 49 Hoi Yuen Road,<br>Kwun Tong, Kowloon, Hong Kong</p>
+					</div>
 				</div>
 			</div>
 			
