@@ -314,7 +314,11 @@ body { -webkit-font-smoothing: antialiased; }
 .vg-mail-icon { height: 28px !important; width: auto !important; display: block !important; }
 </style>
 <style id="vg-news-zh-title">
-[lang="zh-CN"] .breadcrumb-area .title h1 { white-space: nowrap; }
+/* Desktop only: this page's Chinese title is a full 18-character
+   headline, so forcing nowrap on mobile overflowed the viewport. */
+@media (min-width: 768px) {
+  [lang="zh-CN"] .breadcrumb-area .title h1 { white-space: nowrap; }
+}
 </style>
 <style id="vg-nav-2line">
 @media (min-width: 1025px) {
