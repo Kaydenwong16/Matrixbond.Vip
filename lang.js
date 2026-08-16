@@ -144,6 +144,38 @@
       '<h4><strong>准备开始了吗？</strong></h4>' +
       '<p>Matrix Bond 管理公司的熊猫债券期货和期权提供参与市场的无缝方式。准备好交易或需要协助？立即联系我们的团队，踏上您的投资之旅。</p>',
 
+    /* ── Options page ────────────────────────────────────────── */
+    'options.page-title': 'Matrix Bond 期权',
+    'options.breadcrumb': 'Matrix Bond 期权',
+    'options.subtitle':   'Matrix Bond 管理公司',
+    'options.title':      'Matrix Bond 期权',
+    'options.overview':
+      '<h4><strong>概述</strong></h4>' +
+      '<p>Matrix Bond 期权提供美式可行权合约，使投资者能够以精准和可控的方式对冲风险、投机获利或分散投资组合。</p>',
+    'options.highlights':
+      '<h4><strong>合约要点</strong></h4>' +
+      '<ul><li><strong>合约单位</strong>：一份期货合约，面值100,000美元</li>' +
+      '<li><strong>价格报价</strong>：以点数和点数的分数表示，基于100点</li>' +
+      '<li><strong>最小价格波动</strong>：<ul>' +
+      '<li>1点的1/64（0.015625）= 15.625美元</li></ul></li>' +
+      '<li><strong>行使价间距</strong>：以0.5点为增量挂牌</li>' +
+      '<li><strong>交易时间</strong>：<ul>' +
+      '<li><strong>香港交易所平台</strong>：周日至周五，晚上9:00至下午4:00（香港时间）</li></ul></li>' +
+      '<li><strong>挂牌合约</strong>：每周合约，连续3周挂牌</li>' +
+      '<li><strong>行权方式</strong>：美式；到期前任何工作日均可行权。</li>' +
+      '<li><strong>交易终止</strong>：期权于合约周的星期五到期。</li></ul>',
+    'options.settlement':
+      '<h4><strong>结算与交割</strong></h4>' +
+      '<ul><li><strong>结算方式</strong>：可交割</li>' +
+      '<li><strong>自动行权</strong>：价内期权将自动行权，除非持有人另有指示。</li></ul>' +
+      '<h4><strong>附加特点</strong></h4>' +
+      '<ul><li><strong>投资组合多元化</strong>：通过精准的期权策略提升收益并降低风险。</li>' +
+      '<li><strong>执行灵活性</strong>：提供广泛的行使价选择，实现最大适应性。</li>' +
+      '<li><strong>市场精准度</strong>：适合寻求在波动市场中把握机会的投资者。</li></ul>',
+    'options.cta':
+      '<h4><strong>准备开始了吗？</strong></h4>' +
+      '<p>Matrix Bond 的熊猫债券期权和期货提供参与市场的无缝方式。准备好交易或需要协助？立即联系我们的团队，踏上您的投资之旅。</p>',
+
     /* ── Clients page ────────────────────────────────────────── */
     'clients.page-title': '我们的客户',
     'clients.breadcrumb': '我们的客户',
