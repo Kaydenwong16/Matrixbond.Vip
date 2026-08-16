@@ -87,12 +87,14 @@
     'contact.office-title': '办公地址',
     'contact.address.vancouver': '422 Richards Street, Unit 170,<br>Vancouver, BC, Canada V6B 2Z4',
     'contact.address.singapore': '5 Upper Aljunied Link, #06-02,<br>Quartz Industrial Building, Singapore 367903',
+    'contact.address.hongkong': '香港九龙观塘开源道49号<br>创佳中心2610室',
     'contact.email-title':  '电子邮件地址',
     'contact.email-text':   '发送邮件至：<br>info@matrixbond.vip',
     'contact.info-title':   '联系信息',
     'contact.global-title': '全球布局',
     'contact.map.vancouver': '温哥华',
     'contact.map.singapore': '新加坡',
+    'contact.map.hongkong':  '香港',
 
     /* ── FAQs page ───────────────────────────────────────────── */
     'faqs.page-title': '常见问题',
