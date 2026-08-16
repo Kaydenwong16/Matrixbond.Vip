@@ -30,7 +30,7 @@
 
     /* ── Index page ──────────────────────────────────────────── */
     'index.hero.subtitle': '熊猫债券期货与期权',
-    'index.hero.title':    '更智慧地<span class="title-accent">投资中国债券市场</span>',
+    'index.hero.title':    '更智慧地<span class="title-accent">投资<br class="vg-mobile-br">中国债券市场</span>',
     'index.hero.desc':     '熊猫债券衍生品及全球金融策略的先驱',
     'index.hero.btn1':     '了解更多',
     'index.hero.btn2':     '我们的客户',
