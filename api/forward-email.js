@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const FORWARD_TO = 'vastgoldent@gmail.com';
-const FORWARD_FROM = 'info@matrixbond.asia';
+const FORWARD_FROM = 'info@matrixbond.vip';
 
 export async function POST(request) {
   const payload = await request.text();

@@ -2,7 +2,19 @@
   'use strict';
 
   var STORAGE_KEY = 'vg_lang';
-  var currentLang = localStorage.getItem(STORAGE_KEY) || 'en';
+
+  // localStorage throws (rather than just failing) on some browsers when a
+  // page is opened via file:// (e.g. Safari treats each local file as an
+  // opaque/restricted origin). Guard every access so a storage error can't
+  // take down the whole translation script.
+  function safeGetItem(key) {
+    try { return localStorage.getItem(key); } catch (e) { return null; }
+  }
+  function safeSetItem(key, val) {
+    try { localStorage.setItem(key, val); } catch (e) { /* storage unavailable, ignore */ }
+  }
+
+  var currentLang = safeGetItem(STORAGE_KEY) || 'en';
 
   var zh = {
     /* ── Brand name ─────────────────────────────────────────────── */
@@ -228,6 +240,8 @@
     /* ── Blog detail pages (shared) ────────────────────────────── */
     'blog.read-more':       '了解更多',
     'blog.details-title':   '博客详情',
+    'panda-surge.details-title': '熊猫债券激增详情',
+    'nbc-panda.details-title': '加拿大国家银行发行熊猫债券',
     'blog.related-tags':    '相关标签：',
     'blog.share-now':       '立即分享：',
     'blog.prev-post':       '上一篇',
@@ -244,9 +258,10 @@
     'archives.breadcrumb': '归档',
     'archives.subtitle':   '所有文章',
     'archives.coming-soon': '即将推出 - 归档的文章将在此显示。',
-    'archive.p1': '巴基斯坦 1',
-    'archive.p2': '巴基斯坦 2',
-    'archive.p3': '巴基斯坦 3',
+    'archive.pakistan': '巴基斯坦',
+    'archive.p1-date': '2026年5月25日',
+    'archive.p2-date': '2026年5月26日',
+    'archive.indonesia': '印尼',
 
     /* ── Panda Bonds Surge article ─────────────────────────────── */
     'article.panda-surge.views':   '298 次浏览',
@@ -257,7 +272,7 @@
       '<p><a></a><strong>是什么推动了发行量的激增？</strong></p>' +
       '<p><strong>两大关键驱动因素之一是中美利率差。 </strong> 自2023年初以来美国利率的上升，使得实体在考虑交叉货币互换成本后，发行熊猫债券仍比直接进入美元市场更为便宜。</p>' +
       '<p><strong>另一驱动因素是募集资金用途的明确化。 </strong> 2022年，中国政府出台政策，明确熊猫债券募集资金可以汇回境外。因此，外资跨国公司更加积极地进入熊猫债券市场，以筹集在华扩张所需资金。 </p>' +
-      '<figure class="wp-block-image size-full is-resized"><img fetchpriority="high" decoding="async" width="624" height="438" src="https://matrixbond.ca/wp-content/uploads/2024/12/Picture1.png" alt="" class="wp-image-6102" style="width:840px;height:auto" srcset="https://matrixbond.ca/wp-content/uploads/2024/12/Picture1.png 624w, https://matrixbond.ca/wp-content/uploads/2024/12/Picture1-300x211.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>' +
+      '<figure class="wp-block-image size-full is-resized"><img fetchpriority="high" decoding="async" width="624" height="438" src="wp-content/uploads/2024/12/Picture1.png" alt="" class="wp-image-6102" style="width:840px;height:auto" srcset="wp-content/uploads/2024/12/Picture1.png 624w, wp-content/uploads/2024/12/Picture1-300x211.png 300w" sizes="(max-width: 624px) 100vw, 624px" /></figure>' +
       '<p><strong>为何此事重要？ </strong></p>' +
       '<p><strong>熊猫债券市场有望成为非中国实体的重要融资渠道。 </strong> 目前，从熊猫债券市场筹集的资金规模相对较小。去年，熊猫债券融资仅占中国国内债券融资的0.8%（不含中央政府和地方政府债券）。发行人多样性的提升也增加了中国国内债券市场的深度和广度。 </p>' +
       '<p><strong>深化债券市场、鼓励以人民币作为结算货币的政府政策，可能进一步推动熊猫债券市场的发展。 </strong> 寻求分散货币敞口的外国投资者也受到人民币债券与全球债券低相关性的吸引。外国投资者仅持有极小比例的人民币计价债券。 </p>' +
@@ -349,7 +364,7 @@
       el.href = lang === 'zh' ? el.getAttribute('data-href-zh') : el.getAttribute('data-href-en');
     });
 
-    localStorage.setItem(STORAGE_KEY, lang);
+    safeSetItem(STORAGE_KEY, lang);
     currentLang = lang;
   }
 

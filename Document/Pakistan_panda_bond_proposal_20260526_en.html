@@ -218,6 +218,20 @@ body.vg-locked > *:not(#vg-security-gate) { visibility: hidden !important; point
   transition: background 0.2s, transform 0.1s;
 }
 #vg-security-gate button:hover { background: #f0d860; transform: scale(1.02); }
+#vg-security-gate button.gate-cancel {
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+#vg-security-gate button.gate-cancel:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.45);
+  color: #fff;
+  transform: none;
+}
 #vg-security-gate .gate-error {
   color: #ff6b6b; font-size: 13px;
   margin-top: 14px; min-height: 18px;
@@ -237,12 +251,13 @@ body.vg-locked > *:not(#vg-security-gate) { visibility: hidden !important; point
     <div class="gate-label">Security Code</div>
     <input type="password" id="vg-gate-input" maxlength="6" placeholder="······" autocomplete="off" inputmode="numeric">
     <button onclick="vgGateSubmit()">Enter</button>
+    <button class="gate-cancel" type="button" onclick="window.location.href='../archives.html'">Cancel</button>
     <div class="gate-error" id="vg-gate-error"></div>
   </div>
 </div>
 <script>
 (function () {
-  var CORRECT = '202005';
+  var CORRECT = '202605';
   document.body.classList.add('vg-locked');
   document.getElementById('vg-gate-input').addEventListener('keydown', function (e) {
     if (e.key === 'Enter') vgGateSubmit();
@@ -270,6 +285,25 @@ body.vg-locked > *:not(#vg-security-gate) { visibility: hidden !important; point
 })();
 </script>
 <!-- ========== END SECURITY GATE ========== -->
+
+<!-- Watermark -->
+<style>
+.watermark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url('../Matrix Logo MBM rem bckgd.png');
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 180px auto;
+  opacity: 0.06;
+}
+</style>
+<div class="watermark"></div>
 
 <!-- ======================== COVER PAGE ======================== -->
 <div class="cover">
