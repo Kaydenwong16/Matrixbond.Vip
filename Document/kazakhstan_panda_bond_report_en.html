@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kazakhstan Panda Bond: Creditworthiness and Re-Issuance Outlook</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<style>
+  :root{
+    --primary:#1a3a5c; --accent:#c8963e; --bg:#f7f8fa; --card:#ffffff;
+    --text:#24303c; --muted:#6b7a88; --line:#e3e8ee; --red:#c0392b; --green:#1e8449;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.75;font-size:15px;}
+  .wrap{max-width:1080px;margin:0 auto;padding:28px 20px 60px;}
+  header{background:linear-gradient(135deg,#16324f 0%,#1a3a5c 60%,#27527d 100%);color:#fff;border-radius:14px;padding:34px 38px 28px;margin-bottom:26px;}
+  header .tag{display:inline-block;font-size:12px;letter-spacing:2px;background:rgba(255,255,255,.14);padding:3px 12px;border-radius:20px;margin-bottom:12px;}
+  header h1{font-size:27px;font-weight:700;letter-spacing:.5px;line-height:1.4;}
+  header .sub{margin-top:10px;font-size:13px;color:rgba(255,255,255,.75);}
+  h2{font-size:20px;color:var(--primary);margin:38px 0 6px;padding-left:12px;border-left:5px solid var(--accent);letter-spacing:.3px;}
+  h3{font-size:16px;color:var(--primary);margin:22px 0 8px;}
+  .section-intro{color:var(--muted);font-size:13px;margin-bottom:14px;}
+  .card{background:var(--card);border-radius:12px;padding:22px 26px;margin-top:14px;box-shadow:0 1px 4px rgba(30,50,80,.06);}
+  .tldr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:6px;}
+  .kpi{background:var(--card);border-radius:12px;padding:18px 16px;box-shadow:0 1px 4px rgba(30,50,80,.06);border-top:3px solid var(--accent);}
+  .kpi .num{font-size:24px;font-weight:700;color:var(--primary);}
+  .kpi .lab{font-size:12px;color:var(--muted);margin-top:4px;}
+  .verdict{background:linear-gradient(90deg,#fdf6ec,#fffdf8);border:1px solid #ecd9b5;border-radius:12px;padding:18px 24px;margin-top:14px;}
+  .verdict b{color:#8a5a13;}
+  table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13.5px;background:#fff;}
+  th{background:#eef2f7;color:var(--primary);padding:9px 12px;text-align:left;font-weight:600;border:1px solid var(--line);}
+  td{padding:8px 12px;border:1px solid var(--line);vertical-align:top;}
+  tr:nth-child(even) td{background:#fafbfc;}
+  .src{font-size:12px;color:#9aa7b2;margin-top:6px;}
+  .timeline{position:relative;margin:18px 0 8px;padding-left:26px;}
+  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(#c8963e,#e3e8ee);}
+  .tl-item{position:relative;padding:0 0 20px 14px;}
+  .tl-item::before{content:"";position:absolute;left:-24px;top:7px;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 0 0 2px var(--accent);}
+  .tl-item .date{font-size:12.5px;font-weight:700;color:var(--accent);}
+  .tl-item .tt{font-weight:600;font-size:14.5px;margin:2px 0;}
+  .tl-item .dd{font-size:13px;color:#4a5a68;}
+  .tl-item.plan::before{background:#fff;box-shadow:0 0 0 2px #b0894a;}
+  .chart-box{width:100%;height:380px;}
+  .chart-box.short{height:340px;}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;}
+  .pill{background:#eef3f8;color:var(--primary);border-radius:8px;padding:8px 14px;font-size:13px;flex:1;min-width:200px;border-left:4px solid var(--primary);}
+  .pill b{display:block;font-size:13.5px;}
+  .pill span{font-size:12.5px;color:var(--muted);}
+  .path-card{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-top:12px;background:#fff;}
+  .path-card h4{font-size:15px;color:var(--primary);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .path-card h4 .badge{font-size:11px;background:var(--primary);color:#fff;border-radius:5px;padding:2px 8px;font-weight:400;white-space:nowrap;}
+  .path-card ul{margin:6px 0 0 18px;font-size:13.5px;}
+  .path-card li{margin-bottom:6px;}
+  .risk-item{background:#fdf5f4;border-left:4px solid #c0392b;border-radius:8px;padding:12px 16px;margin-top:10px;font-size:13.5px;}
+  .risk-item b{color:#96281b;}
+  .note{background:#f2f6fa;border-radius:8px;padding:12px 16px;font-size:13px;color:#4a5a68;margin-top:12px;}
+  .disclaim{margin-top:34px;padding:16px 20px;border:1px dashed #c9d4de;border-radius:10px;font-size:12.5px;color:#7d8a96;}
+  .foot{margin-top:26px;font-size:12px;color:#9aa7b2;text-align:center;}
+  @media (max-width:860px){.tldr-grid{grid-template-columns:1fr 1fr;}.grid2{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- ========== SECURITY GATE ========== -->
+<style>
+body.vg-locked > *:not(#vg-security-gate) { visibility: hidden !important; pointer-events: none !important; }
+#vg-security-gate {
+  position: fixed; inset: 0; z-index: 999999;
+  background: linear-gradient(160deg, #16324f 0%, #1a3a5c 60%, #27527d 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+#vg-security-gate .gate-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(200,150,62,0.35);
+  border-radius: 18px;
+  padding: 52px 44px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  backdrop-filter: blur(12px);
+}
+#vg-security-gate .gate-logo { font-size: 46px; margin-bottom: 10px; }
+#vg-security-gate .gate-title {
+  color: #c8963e; font-size: 21px; font-weight: 800;
+  letter-spacing: 2px; margin-bottom: 8px;
+}
+#vg-security-gate .gate-subtitle {
+  color: rgba(255,255,255,0.5); font-size: 13px;
+  line-height: 1.7; margin-bottom: 36px;
+}
+#vg-security-gate .gate-label {
+  color: rgba(255,255,255,0.65); font-size: 12px;
+  text-align: left; margin-bottom: 10px; letter-spacing: 0.5px;
+}
+#vg-security-gate input {
+  width: 100%; padding: 16px 18px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(200,150,62,0.4);
+  background: rgba(255,255,255,0.07);
+  color: #fff; font-size: 26px;
+  letter-spacing: 10px; text-align: center;
+  outline: none; margin-bottom: 18px;
+  transition: border-color 0.2s;
+}
+#vg-security-gate input:focus { border-color: #c8963e; }
+#vg-security-gate input.vg-gate-shake {
+  border-color: #e74c3c !important;
+  animation: gate-shake 0.35s ease;
+}
+#vg-security-gate button {
+  width: 100%; padding: 15px;
+  border-radius: 10px; background: #c8963e;
+  color: #16324f; font-size: 16px; font-weight: 800;
+  border: none; cursor: pointer; letter-spacing: 1px;
+  transition: background 0.2s, transform 0.1s;
+}
+#vg-security-gate button:hover { background: #e0b164; transform: scale(1.02); }
+#vg-security-gate button.gate-cancel {
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+#vg-security-gate button.gate-cancel:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.45);
+  color: #fff;
+  transform: none;
+}
+#vg-security-gate .gate-error {
+  color: #ff6b6b; font-size: 13px;
+  margin-top: 14px; min-height: 18px;
+}
+@keyframes gate-shake {
+  0%,100% { transform: translateX(0); }
+  25%      { transform: translateX(-10px); }
+  75%      { transform: translateX(10px); }
+}
+</style>
+
+<div id="vg-security-gate">
+  <div class="gate-box">
+    <div class="gate-logo">🔒</div>
+    <div class="gate-title">Matrix Bond Management</div>
+    <div class="gate-subtitle">Confidential Document — Please Enter Security Code</div>
+    <div class="gate-label">Security Code</div>
+    <input type="password" id="vg-gate-input" maxlength="6" placeholder="······" autocomplete="off" inputmode="numeric">
+    <button onclick="vgGateSubmit()">Enter</button>
+    <button class="gate-cancel" type="button" onclick="window.location.href='../archives.html'">Cancel</button>
+    <div class="gate-error" id="vg-gate-error"></div>
+  </div>
+</div>
+<script>
+(function () {
+  var CORRECT = '202605';
+  document.body.classList.add('vg-locked');
+  document.getElementById('vg-gate-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') vgGateSubmit();
+  });
+  window.vgGateSubmit = function () {
+    var input = document.getElementById('vg-gate-input');
+    var errEl = document.getElementById('vg-gate-error');
+    if (input.value.trim() === CORRECT) {
+      unlock();
+    } else {
+      input.classList.remove('vg-gate-shake');
+      void input.offsetWidth;
+      input.classList.add('vg-gate-shake');
+      input.value = '';
+      var lang = localStorage.getItem('vg_lang') || 'en';
+      errEl.textContent = lang === 'en' ? 'Incorrect code. Please try again.' : '安全码错误，请重试。';
+      setTimeout(function () { input.classList.remove('vg-gate-shake'); }, 400);
+    }
+  };
+  function unlock() {
+    var gate = document.getElementById('vg-security-gate');
+    if (gate) gate.remove();
+    document.body.classList.remove('vg-locked');
+  }
+})();
+</script>
+<!-- ========== END SECURITY GATE ========== -->
+
+<!-- Watermark -->
+<style>
+.watermark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url('../Matrix Logo MBM rem bckgd.png');
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 180px auto;
+  opacity: 0.06;
+}
+</style>
+<div class="watermark"></div>
+
+<div class="wrap">
+
+<header>
+  <span class="tag">Sovereign Credit Research · Panda Bond Special</span>
+  <h1>Kazakhstan Panda Bond: Creditworthiness and Re-Issuance Outlook</h1>
+  <div class="sub">Coverage: Issuance landscape &amp; re-issuance outlook · Sovereign creditworthiness assessment · National resource endowment · Participation pathways for financial institutions and professional service firms<br>
+  Report date: August 25, 2026 (Beijing time) | Sources: Xinhua Finance, CICC, Bank of China, Lianhe Credit Rating, Kazatomprom, MOFCOM Country Guide (2025 edition), etc. Key data points are annotated with source and as-of date</div>
+</header>
+
+<!-- ============ TL;DR ============ -->
+<h2>Key Takeaways (TL;DR)</h2>
+<div class="tldr-grid">
+  <div class="kpi"><div class="num">RMB 3.4bn / 1.90%</div><div class="lab">First sovereign panda bond (2026-05-26, 3-year, book order &gt;2x)</div></div>
+  <div class="kpi"><div class="num">≤RMB 6.6bn · dual tenor</div><div class="lab">Second issuance, latest terms: 3Y initial RMB 5bn + 5Y initial RMB 1.6bn; bookbuilding as early as Sept 3; pre-marketing began mid-August (Bloomberg, 2026-08-13)</div></div>
+  <div class="kpi"><div class="num">AAA / BBB</div><div class="lab">Domestic AAA from Lianhe Ratings (stable); S&amp;P upgraded to BBB (stable) on 2026-08-21</div></div>
+  <div class="kpi"><div class="num">&gt;260bp</div><div class="lab">Onshore RMB cost advantage vs. USD sovereign funding (1.90% vs. 4.5%+)</div></div>
+</div>
+
+<div class="verdict">
+  <b>Overall assessment:</b> The creditworthiness of the Kazakhstan panda bond rests on three pillars — (1) solid sovereign fundamentals (government debt at ~20% of GDP, well below the 32% statutory ceiling; international reserves of ~US$67.6bn and a net external creditor position); (2) a domestic rating (Lianhe AAA) and market pricing (1.90%, near AA-grade issuer levels) that sit well above the international BBB rating, reflecting a "relationship premium" granted by onshore investors on the strength of sovereign backing and the China–Kazakhstan strategic partnership; (3) resource endowment (uranium, chromium, copper, oil &amp; gas) providing the material basis for long-term repayment. <b>The September second issuance is highly probable to land and has already entered the execution track</b> (latest terms: up to RMB 6.6bn in a 3-year + 5-year dual-tranche structure, bookbuilding as early as September 3, with underwriters sounding out investors from mid-August) — this would be the largest single Kazakhstan-linked panda bond to date, and the new 5-year tenor confirms the curve-building intent. The caveats: it would be a <i>new tranche</i> rather than a standardized tap of the first bond, and the channel's cost advantage and issuance cadence could compress if USD/EUR funding costs fall, oil weakens, or the CPC pipeline is disrupted. For our side (financial institution + professional service firm), <b>pre-marketing is underway, bookbuilding may come as early as September 3, and the engagement window is only about two weeks</b> — see the pathway map in Chapter 5.</div>
+
+<!-- ============ Chapter 1 ============ -->
+<h2>1. Issuance Landscape: From Quasi-Sovereign to Sovereign — Four Kazakhstan Deals in One Year</h2>
+<p class="section-intro">Between September 2025 and May 2026, four Kazakhstan-linked issuers completed panda bonds, raising a combined ~RMB 9.65bn (≈US$1.35bn); the China–Kazakhstan panda bond channel raised ~US$915m in total in H1 2026.</p>
+
+<div class="timeline">
+  <div class="tl-item"><div class="date">September 2025</div><div class="tt">Development Bank of Kazakhstan (DBK) · RMB 2.0bn</div><div class="dd">First panda bond by a Kazakhstan-linked issuer — a pilot for the subsequent sovereign deal.</div></div>
+  <div class="tl-item"><div class="date">October 2025</div><div class="tt">KazMunayGas (national oil &amp; gas company) · RMB 1.25bn</div><div class="dd">The national oil company entered the market; coupon not publicly disclosed.</div></div>
+  <div class="tl-item"><div class="date">April 9, 2026</div><div class="tt">Samruk-Kazyna Sovereign Wealth Fund · RMB 3.0bn / 3-year / 2.18%</div><div class="dd">First panda bond by a Central Asian / SCO-member issuer and by a sovereign wealth fund entity. Bank of China served as lead underwriter and lead bookrunner; CICC as joint lead underwriter. The fund ranks 21st globally among sovereign wealth funds (SWFI 2025), with ~US$88bn AUM.</div></div>
+  <div class="tl-item"><div class="date">May 26, 2026</div><div class="tt">Ministry of Finance of Kazakhstan (sovereign) · RMB 3.4bn / 3-year / 1.90%</div><div class="dd">First sovereign panda bond from Central Asia. Issued via Bond Connect with book orders exceeding 2x; dual-listed on the Beijing Financial Assets Exchange and the Astana International Exchange (AIX). CICC was lead underwriter and bookrunner; ICBC and CCB were joint lead underwriters (ICBC also joint bookrunner and account management bank). The 1.90% coupon is a record low for a BBB-rated sovereign in the Chinese market — near AA-grade issuer levels.</div></div>
+  <div class="tl-item plan"><div class="date">September 2026 (planned, pre-marketing underway)</div><div class="tt">MoF second issuance · up to RMB 6.6bn · 3Y + 5Y dual tenor</div><div class="dd">Latest terms (Bloomberg 2026-08-13, via wallstreetcn.com): 3-year tranche with initial size RMB 5bn + 5-year tranche with initial size RMB 1.6bn; bookbuilding as early as September 3. Underwriters began sounding out investors in mid-August (pre-marketing stage). The 5-year tenor is entirely new — confirming curve-building intent — and the size is a marked step up from the earlier "~US$500m" guidance. First deal RMB 3.4bn + this deal RMB 6.6bn = RMB 10bn, implying an NAFMII registration quota of ≥RMB 10bn or a quota top-up (the quota itself is not publicly disclosed). Note: the "up to US$2bn RMB financing program" announced by Kazakhstan in September 2025 is the Kazakh side's own plan, not a Chinese regulatory approval.</div></div>
+</div>
+<p class="src">Sources: Xinhua Finance / China Financial Information Network (2026-05-28, 2026-08-06), Bloomberg (via wallstreetcn.com, 2026-08-13), CICC website (2026-05-27, 2026-04-13), Bank of China website (2026-04-09), Securities Times (2026-05-27), dknews.kz (July 2026), Crypto Briefing citing report (August 2026). The KMG coupon has not been publicly disclosed; refer to the offering documents.</p>
+
+<div class="card">
+<h3>Market backdrop: a panda bond expansion window</h3>
+<ul style="margin-left:18px;font-size:13.5px;">
+  <li>2026 issuance surge: as of July 9 (settlement-date basis), year-to-date panda bond issuance had topped <b>RMB 170bn</b>, up more than 70% YoY; outstanding stock historically breached <b>RMB 500bn</b> (Xinhua Finance, 2026-08-06).</li>
+  <li>Lower rate center: 2026 panda bond coupons have ranged <b>1.46%–3.25%</b>, median <b>1.85%</b>, a marked downward shift from 2025.</li>
+  <li>Sovereign supply opening up: 2026 has seen Slovenia (April, RMB 4bn), Pakistan (May, RMB 1.75bn, 5.05x covered, with AIIB + ADB guarantees covering 95% of principal and interest), and Kazakhstan (May) enter the market.</li>
+  <li>Supporting infrastructure maturing: since May 2026, Huatai Securities and Orient Securities have executed credit risk mitigation agreements (CRMA) referencing panda bonds; Standard Chartered research cites the completed Bond Connect + Swap Connect infrastructure as a key driver of sustained momentum.</li>
+</ul>
+</div>
+
+<!-- ============ Chapter 2 ============ -->
+<h2>2. Creditworthiness Assessment: The "Relationship Premium" Between Domestic AAA and International BBB</h2>
+
+<div class="card">
+<h3>2.1 Ratings landscape: dual-track ratings — different languages, mutually corroborating</h3>
+<table>
+  <tr><th>Agency</th><th>Rating</th><th>Outlook</th><th>Date &amp; notes</th></tr>
+  <tr><td>Lianhe Ratings (domestic)</td><td><b>Issuer AAA / Issue AAA</b></td><td>Stable</td><td>Announced 2026-05-28: strong economic resilience, easing government debt burden, manageable external debt pressure, gradually strengthening debt-servicing capacity</td></tr>
+  <tr><td>S&amp;P</td><td><b>BBB</b> (upgraded from BBB-)</td><td>Stable</td><td>Upgraded 2026-08-21; first return to BBB since 2016</td></tr>
+  <tr><td>Moody's</td><td>Baa1</td><td>Stable</td><td>Maintained since the September 2024 upgrade</td></tr>
+  <tr><td>Fitch</td><td>BBB</td><td>Stable</td><td>Affirmed June 2026</td></tr>
+</table>
+<p class="src">Sources: Lianhe Ratings (cited by Xinhua Finance 2026-05-28), CICC website (2026-05-27 — at issuance S&amp;P was still BBB-), agentic_search summary (retrieved 2026-08-24). The S&amp;P upgrade of 2026-08-21 is the latest reading; the difference vs. the CICC-at-issuance reading (BBB-) reflects timing, not a data conflict.</p>
+<div class="note"><b>How to read the ratings gap?</b> Domestic AAA ≠ international AAA: domestic sovereign panda bond ratings are based on a "regional long-term credit" framework, further supported by the China–Kazakhstan permanent comprehensive strategic partnership and the RMB denomination (no FX exposure for onshore investors). The 1.90% pricing — near domestic AA-grade sovereign issuers — shows the market effectively trades this "BBB international credit" on a quasi-AA basis. That <b>relationship premium</b> is both a source of creditworthiness and a sensitivity point (see 2.4).</div>
+</div>
+
+<div class="card">
+<h3>2.2 Macro and fiscal fundamentals</h3>
+<table>
+  <tr><th>Dimension</th><th>Data</th><th>Source &amp; as-of</th></tr>
+  <tr><td>Growth</td><td>Real GDP grew <b>6.5%</b> in 2025; 4.1% in H1 2026; S&amp;P forecasts 5.1% for 2026 and ~4%–4.5% for 2027–29</td><td>agentic_search summary (2026-08-24); S&amp;P 2026-08</td></tr>
+  <tr><td>Government debt</td><td>~<b>20% of GDP</b>, far below the 32% statutory ceiling; Fitch projects ~23% of GDP in 2026–27, low among peers</td><td>Crypto Briefing / S&amp;P (2026-08); Fitch (2026-06)</td></tr>
+  <tr><td>External position</td><td>National Fund FX assets ~<b>US$66.4bn</b>; international reserves ~<b>US$67.6bn</b>; FX assets exceed external debt — net creditor position maintained</td><td>agentic_search summary (2026-08-24)</td></tr>
+  <tr><td>Fiscal position</td><td>H1 2026 deficit 1.2% of GDP (full-year target 2.5%); H1 tax revenue +17% YoY</td><td>agentic_search summary (2026-08-24)</td></tr>
+  <tr><td>Debt to China</td><td>Total debt to Chinese creditors: US$9.29bn at end-2024 → ~<b>US$12.87bn</b> at the start of 2026 (~US$3.5bn of new credit in one year)</td><td>Crypto Briefing citing report (2026-08)</td></tr>
+</table>
+<p class="src">All figures are second-hand aggregations (agentic_search, retrieved 2026-08-24); key numbers should be verified against original IMF / NBK / S&amp;P publications.</p>
+</div>
+
+<div class="card">
+<h3>2.3 Structural and mechanism-based credit enhancement</h3>
+<div class="pill-row">
+  <div class="pill"><b>Issued via Bond Connect</b><span>Open to onshore and offshore investors; mature infrastructure with a clear custody/clearing path</span></div>
+  <div class="pill"><b>Dual exchange listing</b><span>Beijing Financial Assets Exchange + Astana International Exchange (AIX) — a two-way China–Kazakhstan capital bridge</span></div>
+  <div class="pill"><b>Direct sovereign issuance</b><span>Issued by the Ministry of Finance on behalf of the state — a higher credit tier than the earlier DBK / KMG / SWF layers</span></div>
+  <div class="pill"><b>Demand validation</b><span>First deal oversubscribed &gt;2x with broad onshore institutional participation (CICC, 2026-05-27)</span></div>
+</div>
+</div>
+
+<div class="card">
+<h3>2.4 Risk factors (the weak links in creditworthiness)</h3>
+<div class="risk-item"><b>Commodity dependence:</b> Oil accounts for over half of exports, and ~80% of crude flows through Russia's CPC pipeline — a sustained oil price decline or a pipeline disruption would directly hit fiscal revenues and debt service capacity (S&amp;P's "stable" outlook itself assumes such shocks are short-lived).</div>
+<div class="risk-item"><b>Currency mismatch (issuer side):</b> Kazakh government revenue is mostly in tenge/USD while the bond liability is in RMB; a sharp RMB appreciation against the USD would raise the issuer's effective debt-service burden and could dampen future supply.</div>
+<div class="risk-item"><b>Cyclical cost advantage:</b> The current advantage rests on a China–US 10Y government bond spread inverted by over 200bp; if USD/EUR funding becomes cheap again, the channel's appeal declines (flagged by dknews.kz and NextFin).</div>
+<div class="risk-item"><b>Secondary liquidity &amp; sustainability:</b> Panda bond secondary liquidity is thin and issuer quality is concentrated; the debut benefited from a "scarce new name" premium. The second issuance is the real test of whether this is a "replicable funding channel" (NextFin, 2026-08).</div>
+<div class="risk-item"><b>Rapid build-up of debt to China:</b> Debt to Chinese creditors rose from US$9.29bn to US$12.87bn in a year — a fast pace; watch domestic Kazakh political discourse and debt-sustainability debates.</div>
+</div>
+
+<div class="card">
+<h3>2.5 Creditworthiness scorecard (qualitative)</h3>
+<div class="chart-box" id="radar"></div>
+<p class="src">Scores are this report's qualitative judgment based on the public information above (5-point scale); they are not any agency's rating and are for internal reference only. The divergence between the international rating (BBB) and domestic rating (AAA) shows up mainly in the "standalone sovereign credit" dimension.</p>
+</div>
+
+<!-- ============ Chapter 3 ============ -->
+<h2>3. Re-Issuance Analysis: How to Read the Second Deal</h2>
+
+<div class="card">
+<h3>3.1 Two meanings of "re-issuance" — disentangle first</h3>
+<table>
+  <tr><th>Type</th><th>Definition</th><th>This situation</th></tr>
+  <tr><td><b>New tranche</b></td><td>The issuer sells a second, new bond under an existing registration quota (new value date, new security code)</td><td><b>This is the case here</b> — the Kazakh MoF plans a new deal of up to RMB 6.6bn in September in a dual-tranche structure (3Y initial RMB 5bn + 5Y initial RMB 1.6bn), again via Bond Connect; the first bond's full title, "2026 Series 1 RMB Bond (Bond Connect)," itself shows it was issued under a NAFMII registration quota covering multiple series</td></tr>
+  <tr><td><b>Standardized tap</b></td><td>An additional offering of an outstanding listed bond, fungible with it (common in the interbank market; thickens liquidity in the existing line)</td><td>No tap of a Kazakhstan panda bond has been reported; if the market deepens, a tap of the May 2026 sovereign bond cannot be ruled out later</td></tr>
+</table>
+<div class="note"><b>Approval mechanism, clarified (a common misread):</b> Government-related panda bonds follow the <b>NAFMII registration system</b> — the lead underwriter files an application → NAFMII accepts it → a registration committee reviews → a Notice of Registration Acceptance is issued, valid for 2 years with installment issuance allowed within the quota. <b>There is no PBOC deal-by-deal approval, and no Indonesia-style "central bank aggregate quota" arrangement</b> (Indonesia's RMB 7bn dual-tranche panda bond of July 2026 likewise went through NAFMII registration; the China–Indonesia currency swap line is a separate matter). The "Series 1" naming of Kazakhstan's debut proves a multi-series registration quota was obtained; the September deal is a new series under the existing registration (or a top-up), requiring no fresh deal-by-deal approval. The exact quota figure is not public — at RMB 3.4bn + RMB 6.6bn it should be ≥RMB 10bn; verify directly with NAFMII or the lead underwriter.</div>
+</div>
+
+<div class="card">
+<h3>3.2 Drivers and constraints of the second issuance</h3>
+<div class="grid2">
+<div>
+<h3 style="font-size:14.5px;">Drivers</h3>
+<ul style="margin-left:18px;font-size:13.5px;">
+<li><b>Overwhelming cost advantage:</b> 1.90% vs. 4.5%+ for same-grade USD funding — a spread of over 260bp; the Kazakh MoF has publicly said the Chinese capital market offers financing at relatively low rates.</li>
+<li><b>Already in execution mode:</b> Underwriters began sounding out investors in mid-August (pre-marketing) — the deal has moved from "stated intent" to the operational stage (Bloomberg, 2026-08-13).</li>
+<li><b>Existing quota and strategy:</b> The RMB financing program of up to US$2bn announced in September 2025; the debut RMB 3.4bn + planned RMB 6.6bn already total RMB 10bn — quota utilization is accelerating and channel normalization is the clear intent.</li>
+<li><b>Curve-building intent:</b> The laddered sequence DBK → KMG → SWF → sovereign, plus the new 5-year tenor on the second deal, shows Kazakhstan intends to build a full RMB yield curve and turn a one-off showcase into a standing channel.</li>
+<li><b>Refinancing demand:</b> The June–July 2026 panda bond maturity wall supports market appetite (Yuanyuan Credit Rating).</li>
+</ul>
+</div>
+<div>
+<h3 style="font-size:14.5px;">Constraints</h3>
+<ul style="margin-left:18px;font-size:13.5px;">
+<li>The debut carried a scarcity premium; the second deal may price slightly wider (referencing the 28bp tier gap Samruk-Kazyna 2.18% → MoF 1.90%, a second sovereign deal might land in the 1.9%–2.2% range — this report's inference, not consensus).</li>
+<li>If RMB weakens or onshore liquidity tightens, bookbuilding may be cooler than the debut.</li>
+<li>Kazakhstan's election cycle, oil prices, and CPC pipeline throughput are exogenous variables.</li>
+</ul>
+</div>
+</div>
+<div class="chart-box" id="cost"></div>
+<p class="src">Sources: CICC website (2026-05-27), Bank of China website (2026-04-09), Xinhua Finance (2026-08-06). "Same-grade USD sovereign funding 4.5%+" is a market statistic cited by Xinhua Finance.</p>
+</div>
+
+<!-- ============ Chapter 4 ============ -->
+<h2>4. National Resource Endowment: The Material Base of Debt-Service Capacity</h2>
+<p class="section-intro">Kazakhstan has the richest and most diversified mineral endowment in Central Asia; the mining and metallurgy complex contributes ~8.7% of GDP, and mining and energy exports account for ~75% of total exports. Resources are the long-term material foundation of its sovereign credit — and the main track of China–Kazakhstan cooperation.</p>
+
+<div class="card">
+<h3>4.1 Core resource inventory</h3>
+<table>
+  <tr><th>Resource</th><th>Global standing</th><th>Key data</th><th>Source</th></tr>
+  <tr><td><b>Natural uranium</b></td><td>~14%–19% of global reserves; <b>#1 producer</b> (since 2009)</td><td>2025 output 25,839 tU, ~40% of global supply; 2026 guidance 27,000–29,000 tU. State operator Kazatomprom reported attributable reserves of 282,900 tU (JORC 2P) in 2025. Supplies 28% of US civilian uranium imports (2025, EIA) and 20.3% of EU supply (Euratom)</td><td>Kazatomprom FY2025 Operations &amp; Financial Review (2026-03-20), World Nuclear Association, Times of Central Asia</td></tr>
+  <tr><td><b>Oil / gas</b></td><td>Proven oil reserves ~3.9–4.3bn tonnes (roughly #9 globally)</td><td>Oil accounts for over half of exports; ~80% ships via Russia's CPC pipeline; recoverable gas reserves ~3.8 trillion m³ (Kazakh Geological Committee)</td><td>MOFCOM Country Guide (2025 edition); Kazakh Geological Committee (2026-05)</td></tr>
+  <tr><td><b>Chromite</b></td><td>Reserves #2 globally (~26.6% of world)</td><td>~320m tonnes, concentrated in Khromtau, Aktobe region; Kazchrome is a leading global chromium producer</td><td>USGS 2025 (via Minmetals research); MOFCOM guide</td></tr>
+  <tr><td><b>Copper</b></td><td>Proven reserves ~20m tonnes (USGS basis, ~#12 globally); MOFCOM basis: 40m tonnes, 6% of world</td><td>Nearly 130 registered copper deposits, including world-class Zhezkazgan and Aktogay; Kazakhmys and KAZ Minerals are the main developers</td><td>USGS 2025; MOFCOM Country Guide (2025 edition) — the two bases differ in classification and are shown side by side</td></tr>
+  <tr><td><b>Lead &amp; zinc</b></td><td>Lead #6, zinc #4 globally</td><td>Lead reserves ~14.8m tonnes, zinc ~7.4m tonnes (MOFCOM basis); 3,000+ lead-zinc occurrences, concentrated in the East Kazakhstan Altai metallogenic belt</td><td>MOFCOM Country Guide (2025 edition)</td></tr>
+  <tr><td><b>Tungsten</b></td><td>Reserves #2 globally (20%+ of world)</td><td>~2m tonnes; the Chinese-invested Bakyrchik (Bakut) tungsten mine in Almaty region is the world's 4th largest by WO₃ resource, commissioned Nov 2024 and at full capacity by H1 2025</td><td>MOFCOM Country Guide (2025 edition)</td></tr>
+  <tr><td><b>Gold</b></td><td>Reserves ~2,300 tonnes (USGS, ~#10 globally)</td><td>Exploration added 136.9 tonnes of gold reserves in 2025; Zijin Mining acquired the Raygorodok gold mine for US$1.2bn in June 2026</td><td>USGS 2025 (via Minmetals research); Kazakh Geological Committee</td></tr>
+  <tr><td><b>Coal / lithium / rare earths</b></td><td>Coal reserves #8 globally (~176.7bn tonnes)</td><td>2025 coal output 115m tonnes; balanced lithium oxide reserves 226,900 tonnes; lithium, rare earths, cobalt and nickel are on the geological exploration priority list, with 100+ exploration blocks to be auctioned in batches in 2026</td><td>MOFCOM Country Guide; Kazakh Geological Committee (2026-05)</td></tr>
+  <tr><td><b>Grain (wheat)</b></td><td>Top-10 global wheat/flour exporter</td><td>The "granary of Central Asia"; grain exports are a key non-resource source of FX income</td><td>Public sources</td></tr>
+</table>
+<div class="chart-box short" id="resource"></div>
+<p class="src">Share bases: uranium output 40% of global (Kazatomprom/WNA, 2025); uranium resources ~14% of world (WNA); chromite reserves 26.6% (USGS 2025); tungsten reserves 20%+ (MOFCOM guide); copper reserves 6% (MOFCOM guide basis). Classifications differ across sources; figures are indicative of magnitude only.</p>
+</div>
+
+<div class="card">
+<h3>4.2 The resource-to-bond transmission logic</h3>
+<div class="note" style="font-size:13.5px;">
+<b>Endowment → sovereign debt-service capacity, the chain:</b> Uranium (40% of global supply, in a nuclear renaissance cycle — NEA/IAEA project uranium demand up 50%–100% by 2050) + oil &amp; gas (export mainstay) → FX income and National Fund assets (US$66.4bn) → low government debt (20% of GDP) + net creditor position → sovereign credit fundamentals → panda bond repayment assurance (the core logic of Lianhe's AAA).<br><br>
+<b>Implication for bond investors:</b> Kazakh sovereign credit is essentially a "commodity + geopolitics" credit. Track: Brent, CPC pipeline throughput, uranium spot (UxC), the tenge exchange rate, and National Fund assets. Uranium is Kazakhstan's differentiator vs. a typical oil state — in a nuclear renaissance it offers a partial hedge against oil-price weakness.
+</div>
+</div>
+
+<!-- ============ Chapter 5 ============ -->
+<h2>5. Participation Pathways (Financial Institution + Professional Service Firm Perspectives)</h2>
+<p class="section-intro">Given your dual identity as a financial institution and a professional service firm, the pathways below run from direct underwriting to ancillary services by depth of involvement. On timing, <b>the second deal may price as early as September 3 and pre-marketing has been underway since mid-August — the engagement window is only about two weeks</b>; the actions below should proceed in parallel, immediately.</p>
+
+<div class="path-card">
+<h4><span class="badge">Path 1</span>Underwriting &amp; distribution (if holding interbank underwriting qualifications)</h4>
+<ul>
+<li><b>Entry point &amp; timing (critical):</b> The syndicate for the MoF's second deal is already formed and in pre-marketing (investor soundings since mid-August; roster not public). The deal doubles the debut's size and adds a 5-year tenor — syndicate expansion is likely. Precedent: Indonesia's RMB 7bn dual-tranche deal had BOC as lead plus ICBC / CITIC Securities / CICC / DBS as joint leads. The core team likely carries over from the debut — CICC (lead underwriter &amp; bookrunner) with ICBC/CCB as joint leads — <b>engage those deal teams now to secure a joint-lead or syndicate-member seat</b>.</li>
+<li><b>Actions:</b> Track registration disclosure via NAFMII channels; follow subsequent re-issuances and taps by Samruk-Kazyna, DBK, KMG and other Kazakh issuers (note: as of 2026-08-24 there is no public record of DBK or KMG registering a domestic panda bond — both have so far only issued in the Hong Kong dim sum market; leading indicators of a registration would be an NAFMII disclosure plus the appointment of onshore lead underwriters).</li>
+<li><b>Local gateway (a de facto must-pass):</b> Teniz Capital Investment Banking (KASE code TCIB) served as local lead on both Kazakh panda bonds — Local Lead Manager on the sovereign deal and AIX local underwriter &amp; bookrunner on Samruk-Kazyna (AIX official announcements). It is a privately owned investment bank (KASE disclosure: S. User holds 59.40%, no state ownership), founded in 1997 as IFH RESMI and renamed in April 2023; board chairman Aidar Arifkhanov (elected March 2025) previously headed Baiterek Holding and served as Deputy Minister of Finance and Deputy Chairman of Kazatomprom — deep government networks explain its back-to-back local-lead mandates. It is a "de facto gateway" through commercial incumbency, not regulatory compulsion; the September deal will most likely retain it, and <b>it is the preferred first interface for engaging the Kazakh side</b>. Do not confuse it with the separate investment bank Tengri Partners (KASE code TPIB).</li>
+<li><b>Precedents:</b> Bank of China (lead on Samruk-Kazyna's debut), ICBC (joint lead + account management bank), CCB (joint lead) — banks and securities firms compete on equal footing in panda bond underwriting; competition has shifted from market share to structural innovation and cross-border roadshow capability (Xinhua Finance).</li>
+</ul>
+</div>
+
+<div class="path-card">
+<h4><span class="badge">Path 2</span>Investment allocation (prop books / asset management / products)</h4>
+<ul>
+<li><b>Market access:</b> Invest via CIBM Direct or Bond Connect Northbound to participate in bookbuilding and secondary purchases; the Kazakh sovereign panda bond is a high-grade, rates-like RMB asset suitable for bank treasury, insurance asset management, and mutual fund / wealth-management allocations.</li>
+<li><b>Positioning:</b> 1.90% coupon vs. 3-year CDB/China Government Bonds — verify the spread at your dealing time; the essence is "a small spread in exchange for sovereign diversification and the China–Kazakhstan cooperation theme." If the second deal prices above 2%, allocation value improves.</li>
+<li><b>Productization:</b> "Belt &amp; Road" or panda-bond-themed asset management products; structured solutions referencing CRMA (Huatai and Orient have set CRMA precedents — buy CRMA protection or write CRMA to enhance yield).</li>
+</ul>
+</div>
+
+<div class="path-card">
+<h4><span class="badge">Path 3</span>Risk management &amp; market making (derivatives)</h4>
+<ul>
+<li><b>CRMA/CDS:</b> Provide credit risk mitigation instruments to institutions holding or investing in the Kazakh sovereign panda bond; the panda bond CRMA market only started in May 2026 — first movers gain the pricing benchmark and client stickiness.</li>
+<li><b>Market making:</b> Interbank market makers can quote two-way prices on outstanding Kazakh panda bonds, filling the secondary liquidity gap (today's main weakness = the business opportunity).</li>
+<li><b>FX hedging:</b> Help offshore investors (via AIX or Bond Connect) manage RMB exposure, connecting to Swap Connect.</li>
+</ul>
+</div>
+
+<div class="path-card">
+<h4><span class="badge">Path 4</span>Ancillary professional services (legal / audit / ratings / custody / advisory)</h4>
+<ul>
+<li><b>Legal:</b> Offering documents (prospectus, underwriting agreement), cross-border compliance (use and outbound remittance of proceeds, FX administration, Kazakh-law opinions) — the debut was run by cross-border legal teams; the second deal and further Belt &amp; Road sovereign issuers are a stable client pipeline.</li>
+<li><b>Accounting / tax:</b> IFRS reporting audits; tax structuring under the China–Kazakhstan double taxation treaty.</li>
+<li><b>Ratings:</b> Domestic rating mandates are <b>deal-by-deal, not exclusive</b> — the Kazakh sovereign used Lianhe Ratings (regional long-term scale, AAA), Samruk-Kazyna used CCXI (AAA), and Indonesia's panda bond again used Lianhe; different issuers from the same country use different agencies, so the domestic rating market for Kazakh and Central Asian issuers is openly competitive (Lianhe, CCXI, Shanghai Brilliance, etc. are all contenders) — an incremental opportunity for your ratings-adjacent services. Note: Lianhe rates the sovereign on a "regional long-term credit" scale, not a globally comparable one — the institutional source of the domestic-AAA vs. international-BBB divergence; mind the basis when explaining to clients.</li>
+<li><b>Custody / account management:</b> Account management bank (ICBC precedent), fund custody, coordination with Shanghai Clearing House / CCDC.</li>
+<li><b>Advisory / IR / roadshows:</b> Cross-border roadshow coordination, investor education (Kazakhstan country and credit briefing), dual AIX–Beijing listing coordination, ESG framework advisory (if the second deal carries a sustainability label).</li>
+</ul>
+</div>
+
+<div class="path-card">
+<h4><span class="badge">Path 5</span>Real-project linkage (resource-end extension)</h4>
+<ul>
+<li>Panda bond proceeds are in principle earmarked for Kazakh projects and RMB spending scenarios — forming a "financing–trade–investment" loop with China–Kazakhstan industrial cooperation, mining development (the Bakut tungsten model, Zijin's Raygorodok acquisition), and mining equipment exports (+45% YoY in China's mining-equipment exports to Kazakhstan in 2025).</li>
+<li>The China–Central Asia Mining Technology &amp; Equipment Procurement Matchmaking Event in Astana (Sept 9–12, 2026) is a potential business-development entry point (verify latest arrangements).</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>5.1 Execution roadmap (recommended actions)</h3>
+<div class="timeline">
+  <div class="tl-item"><div class="date">Now (window: ~2 weeks left)</div><div class="tt">Intelligence &amp; relationship groundwork</div><div class="dd">Pre-marketing began mid-August and bookbuilding may come as early as September 3; engage the CICC / BOC / ICBC / CCB deal teams immediately for a joint-lead or syndicate seat, open a local interface with Teniz Capital in parallel, and pre-clear internal credit approval and investment mandates.</div></div>
+  <div class="tl-item"><div class="date">Issuance window (bookbuilding possibly Sept 3)</div><div class="tt">Bookbuilding &amp; subscription</div><div class="dd">Participate in bookbuilding (dual-tranche: 3Y initial RMB 5bn + 5Y initial RMB 1.6bn); fulfill distribution obligations if a syndicate member; stand ready with CRMA and related tool quotes.</div></div>
+  <div class="tl-item"><div class="date">Post-issuance (Q4 onward)</div><div class="tt">Outstanding-bond business</div><div class="dd">Market making, CRMA trading, product packaging; track re-issuance plans by Samruk-Kazyna and other Kazakh issuers and by other Central Asian sovereigns (Uzbekistan, etc.) to replicate the service model.</div></div>
+</div>
+</div>
+
+<!-- ============ Chapter 6 ============ -->
+<h2>6. Conclusions</h2>
+<div class="card">
+<ul style="margin-left:18px;font-size:14px;">
+<li><b>Creditworthiness: solid.</b> Domestic AAA + international BBB (S&amp;P upgraded in Aug 2026) + government debt at 20% of GDP + net creditor position + a resource base (uranium/oil/chromium/copper). Repayment assurance is strong — but recognize that onshore pricing embeds a "relationship premium," and the credit is in essence commodity- and geopolitics-sensitive.</li>
+<li><b>Re-issuance:</b> The September second deal (≤RMB 6.6bn, 3Y + 5Y dual tranche, bookbuilding possibly as early as September 3) is highly probable and already in pre-marketing. The real test is not whether it gets done, but at what price relative to the 1.90% debut — that is the marker of a "replicable funding channel." Also note the distinction between a new tranche and a tap, and the NAFMII registration mechanics (no central-bank aggregate quota).</li>
+<li><b>Participation:</b> As a financial institution, enter via syndicate seats (expansion likely; Indonesia's four-joint-lead precedent), bookbuilding investment, or CRMA/market making; as a professional service firm, via legal, audit, ratings (deal-by-deal, openly competitive), custody and advisory work. Preferred local interface: Teniz Capital. <b>The engagement window is only about two weeks.</b> The four Kazakh issuers plus subsequent Central Asian issuers form a replicable client pipeline.</li>
+<li><b>Keep monitoring:</b> (1) September pricing vs. the 1.90% benchmark; (2) oil prices and CPC pipeline dynamics; (3) RMB exchange rate and the China–US rate spread; (4) the pace of Kazakhstan's debt to China and domestic sentiment; (5) whether other Central Asian states (e.g., Uzbekistan) follow with panda bonds.</li>
+</ul>
+</div>
+
+<div class="disclaim">
+<b>Disclaimer</b>: This report is based on public data and quantitative analysis and is for reference only; it does not constitute investment advice. Markets carry risk; invest with caution. Any investment decision should be made independently based on risk tolerance, financial position, and investment objectives, with licensed professional advice where necessary. Past performance does not guarantee future results.<br>
+Note: This report reflects research as of August 25, 2026. Items marked "planned/expected" (e.g., the size, tenor and pricing of the September re-issuance) are subject to the issuer's official announcements; some resource reserve figures differ across statistical bases (USGS / MOFCOM / Kazakh Geological Committee) and are annotated source by source.
+</div>
+
+<div class="foot">Kazakhstan Panda Bond: Creditworthiness and Re-Issuance Outlook · 2026-08-25 · Data as of 2026-08-24 retrieval</div>
+
+</div>
+
+<script>
+var radarChart = echarts.init(document.getElementById('radar'));
+radarChart.setOption({
+  tooltip: {},
+  radar: {
+    indicator: [
+      { name: 'Sovereign fundamentals', max: 5 },
+      { name: 'Debt capacity (debt/reserves)', max: 5 },
+      { name: 'Resource endowment support', max: 5 },
+      { name: 'Market acceptance (demand)', max: 5 },
+      { name: 'Information transparency', max: 5 },
+      { name: 'Geopolitical/commodity stability', max: 5 }
+    ],
+    radius: '62%'
+  },
+  series: [{
+    type: 'radar',
+    data: [
+      { name: 'Kazakhstan panda bond (this report, qualitative)', value: [4.0, 4.5, 4.5, 4.0, 3.5, 3.0], areaStyle: { opacity: 0.25 } }
+    ]
+  }]
+});
+
+var costChart = echarts.init(document.getElementById('cost'));
+costChart.setOption({
+  tooltip: { trigger: 'axis' },
+  grid: { left: 60, right: 30, bottom: 60, top: 40 },
+  xAxis: { type: 'category', data: ['Kazakh MoF sovereign\n(2026-05, 3Y)', 'Samruk-Kazyna\n(2026-04, 3Y)', '2026 panda bond\nmedian coupon', 'Same-grade USD\nsovereign funding'], axisLabel: { fontSize: 11, interval: 0 } },
+  yAxis: { type: 'value', name: 'Coupon (%)', min: 0, max: 5 },
+  series: [{
+    name: 'Coupon (%)',
+    type: 'bar',
+    barWidth: '52%',
+    label: { show: true, position: 'top', formatter: '{c}%' },
+    itemStyle: { color: function(params) { return params.dataIndex === 3 ? '#c0392b' : '#1a3a5c'; } },
+    data: [1.90, 2.18, 1.85, 4.5]
+  }]
+});
+
+var resChart = echarts.init(document.getElementById('resource'));
+resChart.setOption({
+  tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+  grid: { left: 170, right: 60, top: 20, bottom: 30 },
+  xAxis: { type: 'value', name: 'Global share (%)', max: 45 },
+  yAxis: { type: 'category', data: ['Copper reserves (MOFCOM)', 'Tungsten reserves', 'Uranium resources', 'Chromite reserves', 'Uranium output'] },
+  series: [{
+    name: 'Global share (%)',
+    type: 'bar',
+    barWidth: '55%',
+    label: { show: true, position: 'right', formatter: '{c}%' },
+    itemStyle: { color: '#c8963e' },
+    data: [6, 20, 14, 26.6, 40]
+  }]
+});
+
+window.addEventListener('resize', function() {
+  radarChart.resize();
+  costChart.resize();
+  resChart.resize();
+});
+</script>
+
+<!-- Floating Return to Archives Button -->
+<style>
+@keyframes vg-archives-blink {
+  0%, 100% { opacity: 1; box-shadow: 0 6px 28px rgba(22,163,74,0.5); }
+  50%       { opacity: 0.6; box-shadow: 0 6px 48px rgba(22,163,74,0.9); }
+}
+#vg-return-btn {
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
+  z-index: 99999;
+  background: #16a34a;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 800;
+  padding: 18px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: 0.5px;
+  animation: vg-archives-blink 1.5s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+#vg-return-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 48px rgba(22,163,74,0.8) !important;
+  animation-play-state: paused;
+  opacity: 1 !important;
+}
+#vg-return-btn .vg-btn-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+@media (max-width: 600px) {
+  #vg-return-btn {
+    bottom: 20px;
+    right: 16px;
+    font-size: 15px;
+    padding: 14px 22px;
+    gap: 8px;
+  }
+  #vg-return-btn .vg-btn-icon { font-size: 20px; }
+}
+</style>
+<a id="vg-return-btn" href="../archives.html">
+  <span class="vg-btn-icon">🏠</span>
+  <span id="vg-return-btn-text">Return to Matrix Bond Management Archives</span>
+</a>
+<script>
+(function () {
+  var lang = localStorage.getItem('vg_lang') || 'en';
+  var el = document.getElementById('vg-return-btn-text');
+  if (el) el.textContent = lang === 'en' ? 'Return to Matrix Bond Management Archives' : '返回Matrix Bond归档主页';
+})();
+</script>
+
+</body>
+</html>

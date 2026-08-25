@@ -262,6 +262,7 @@
     'archive.p1-date': '2026年5月25日',
     'archive.p2-date': '2026年5月26日',
     'archive.indonesia': '印尼',
+    'archive.kazakhstan': '哈萨克斯坦',
 
     /* ── Panda Bonds Surge article ─────────────────────────────── */
     'article.panda-surge.views':   '298 次浏览',
