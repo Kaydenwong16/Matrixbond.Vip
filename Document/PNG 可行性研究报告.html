@@ -59,6 +59,24 @@ ul, ol { list-style-position: inside; }
 .nav-menu a.active::after { content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); width: 20px; height: 2px; background: var(--color-gold); border-radius: 2px; }
 .nav-cta { padding: 8px 20px; background: var(--color-gold); color: var(--color-white); border-radius: 6px; font-size: 0.85rem; font-weight: 600; }
 .nav-cta:hover { background: var(--color-gold-light); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(196, 151, 59, 0.3); }
+.nav-left { display: flex; align-items: center; gap: 16px; }
+.nav-ppt-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px;
+  background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+  color: #fff; font-size: 0.85rem; font-weight: 700;
+  border-radius: 20px; white-space: nowrap; letter-spacing: 0.02em;
+  animation: nav-ppt-glow 2s ease-in-out infinite;
+  transition: transform 0.2s ease;
+}
+.nav-ppt-btn:hover { transform: scale(1.06); animation-play-state: paused; }
+@keyframes nav-ppt-glow {
+  0%, 100% { box-shadow: 0 0 0 2px var(--color-gold), 0 0 14px rgba(196, 151, 59, 0.55), 0 0 26px rgba(196, 151, 59, 0.35); }
+  50%      { box-shadow: 0 0 0 2px var(--color-gold-light), 0 0 22px rgba(212, 172, 78, 0.9), 0 0 42px rgba(212, 172, 78, 0.55); }
+}
+@media (max-width: 768px) {
+  .nav-ppt-btn { font-size: 0.72rem; padding: 6px 12px; }
+}
 .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
 .nav-toggle span { width: 22px; height: 2px; background: var(--color-white); border-radius: 2px; transition: all var(--transition); }
 
@@ -326,13 +344,16 @@ body.vg-locked > *:not(#vg-security-gate) { visibility: hidden !important; point
 
 <nav class="navbar">
   <div class="container">
-    <a href="#top" class="nav-logo">
-      <div class="logo-icon">V</div>
-      <div>
-        <div>宏鑫企业控股</div>
-        <div class="logo-en">Vastgold Enterprise Holding Limited</div>
-      </div>
-    </a>
+    <div class="nav-left">
+      <a href="#top" class="nav-logo">
+        <div class="logo-icon">V</div>
+        <div>
+          <div>宏鑫企业控股</div>
+          <div class="logo-en">Vastgold Enterprise Holding Limited</div>
+        </div>
+      </a>
+      <a class="nav-ppt-btn" href="巴新熊猫债合作讨论纪要与背景分析 2202604.pdf" target="_blank" rel="noopener">巴新熊猫债背景PPT</a>
+    </div>
     <ul class="nav-menu" id="nav-menu">
       <li><a href="#exec-summary">摘要</a></li><li><a href="#section-4">市场环境</a></li><li><a href="#section-6">发行方案</a></li><li><a href="#section-8">风险</a></li><li><a href="#section-12">结论</a></li><li><a href="#section-13">附录</a></li>
       <li><a href="#section-12" class="nav-cta">查看研究结论</a></li>
