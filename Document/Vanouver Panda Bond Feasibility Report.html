@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vancouver Panda Bond Feasibility Study (English Edition)</title>
+<style>
+
+:root{--navy:#123a63;--navy2:#0e2d4e;--gold:#b8944a;--gold2:#d9b96a;--bg:#f4f6f8;--card:#fff;--ink:#1d2b39;--muted:#5d6e7f;--line:#e3e8ee;--good:#1e7d46;--warn:#b26a00;--bad:#c0392b;--chip:#eaf1f8}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.78;font-size:15px;-webkit-font-smoothing:antialiased}
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0;z-index:99}
+.cover{background:linear-gradient(135deg,#0b2440 0%,#123a63 55%,#1b4d80 100%);color:#fff;padding:64px 32px 48px;position:relative;overflow:hidden}
+.cover::after{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border:2px solid rgba(255,255,255,.14);border-radius:50%}
+.cover::before{content:"";position:absolute;right:40px;bottom:-120px;width:260px;height:260px;border:1px solid rgba(255,255,255,.10);border-radius:50%}
+.cover-inner{max-width:1000px;margin:0 auto;position:relative;z-index:1}
+.cover .kicker{display:inline-block;letter-spacing:.18em;font-size:12px;border:1px solid rgba(255,255,255,.35);padding:4px 14px;border-radius:999px;color:#e8d5ac;margin-bottom:22px}
+.cover h1{font-size:clamp(26px,4vw,42px);line-height:1.32;font-weight:700;letter-spacing:.02em;margin-bottom:16px}
+.cover .sub{font-size:15px;color:#cfe0f2;max-width:780px;margin-bottom:28px;line-height:1.7}
+.cover .org{font-size:18px;font-weight:600;color:#fff;margin-bottom:6px}
+.cover .meta{font-size:13px;color:#9db8d6;margin-bottom:26px}
+.cover .note{font-size:12px;color:#8fa9c4;border-top:1px solid rgba(255,255,255,.18);padding-top:14px;max-width:840px;line-height:1.7}
+.verbar{max-width:1280px;margin:20px auto 0;padding:0 24px}
+.verbar .in{background:linear-gradient(90deg,#fdf9ef,#fbf5e4);border:1px solid #ecd9a8;border-radius:10px;padding:12px 18px;font-size:13.5px;color:#6b5a2e;line-height:1.7}
+.layout{display:flex;gap:32px;max-width:1280px;margin:0 auto;padding:24px 24px 56px}
+nav.toc{width:272px;flex-shrink:0;position:sticky;top:20px;align-self:flex-start;max-height:calc(100vh - 40px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 14px}
+nav.toc h3{font-size:12px;letter-spacing:.16em;color:var(--muted);margin:0 6px 10px;text-transform:uppercase}
+nav.toc a{display:block;font-size:13px;color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:6px;border-left:2px solid transparent;line-height:1.5}
+nav.toc a.sec{padding-left:24px;font-size:12.5px}
+nav.toc a:hover{color:var(--navy);background:var(--chip)}
+nav.toc a.active{color:var(--navy);background:var(--chip);border-left-color:var(--gold);font-weight:600}
+.tocbtn{display:none;max-width:1280px;margin:14px auto 0;padding:0 24px}
+.tocbtn button{width:100%;padding:10px;border:1px solid var(--line);background:var(--card);color:var(--navy);font-size:14px;border-radius:10px;cursor:pointer}
+main{flex:1;min-width:0}
+article{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:36px 44px}
+h2.chapter{font-size:21px;color:var(--navy);font-weight:700;letter-spacing:.01em;margin:8px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--navy)}
+h3.section{font-size:17px;color:var(--navy2);margin:28px 0 12px;font-weight:650}
+h4{font-size:15px;color:var(--navy2);margin:18px 0 8px}
+p{margin:10px 0;text-align:justify}
+ul,ol{margin:10px 0 10px 24px}
+li{margin:6px 0}
+hr.sec-divider{border:none;border-top:1px dashed var(--line);margin:28px 0}
+blockquote{background:#fbf7ee;border-left:3px solid var(--gold);padding:12px 18px;border-radius:0 8px 8px 0;color:#4a463c;margin:14px 0;font-size:14.5px;line-height:1.75}
+.tbl-wrap{overflow-x:auto;margin:18px 0;border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px}
+thead th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-weight:600;white-space:nowrap;line-height:1.5}
+tbody td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even){background:#f7fafc}
+table.charter td{font-size:12.5px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.dot.good{background:var(--good)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+footer{max-width:1280px;margin:0 auto;padding:0 24px 44px;color:var(--muted);font-size:12.5px}
+footer .foot{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 22px;line-height:1.7}
+@media (max-width:960px){
+  .layout{flex-direction:column;padding:16px}
+  nav.toc{width:100%;position:static;max-height:none;display:none}
+  nav.toc.open{display:block}
+  .tocbtn{display:block}
+  article{padding:24px 18px}
+  .cover{padding:44px 20px 36px}
+}
+@media print{
+  nav.toc,.tocbtn,#progress,.verbar{display:none!important}
+  body{background:#fff}
+  article{border:none;padding:0}
+  .cover{background:#123a63!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  thead th{background:#123a63!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .layout{max-width:none;padding:0}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ========== SECURITY GATE ========== -->
+<style>
+body.vg-locked > *:not(#vg-security-gate) { visibility: hidden !important; pointer-events: none !important; }
+#vg-security-gate {
+  position: fixed; inset: 0; z-index: 999999;
+  background: linear-gradient(160deg, #0b2440 0%, #123a63 55%, #1b4d80 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: "Segoe UI", Roboto, Arial, sans-serif;
+}
+#vg-security-gate .gate-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(184,148,74,0.35);
+  border-radius: 18px;
+  padding: 52px 44px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  backdrop-filter: blur(12px);
+}
+#vg-security-gate .gate-logo { font-size: 46px; margin-bottom: 10px; }
+#vg-security-gate .gate-title {
+  color: #b8944a; font-size: 21px; font-weight: 800;
+  letter-spacing: 2px; margin-bottom: 8px;
+}
+#vg-security-gate .gate-subtitle {
+  color: rgba(255,255,255,0.5); font-size: 13px;
+  line-height: 1.7; margin-bottom: 36px;
+}
+#vg-security-gate .gate-label {
+  color: rgba(255,255,255,0.65); font-size: 12px;
+  text-align: left; margin-bottom: 10px; letter-spacing: 0.5px;
+}
+#vg-security-gate input {
+  width: 100%; padding: 16px 18px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(184,148,74,0.4);
+  background: rgba(255,255,255,0.07);
+  color: #fff; font-size: 26px;
+  letter-spacing: 10px; text-align: center;
+  outline: none; margin-bottom: 18px;
+  transition: border-color 0.2s;
+}
+#vg-security-gate input:focus { border-color: #b8944a; }
+#vg-security-gate input.vg-gate-shake {
+  border-color: #e74c3c !important;
+  animation: gate-shake 0.35s ease;
+}
+#vg-security-gate button {
+  width: 100%; padding: 15px;
+  border-radius: 10px; background: #b8944a;
+  color: #0b2440; font-size: 16px; font-weight: 800;
+  border: none; cursor: pointer; letter-spacing: 1px;
+  transition: background 0.2s, transform 0.1s;
+}
+#vg-security-gate button:hover { background: #d9b96a; transform: scale(1.02); }
+#vg-security-gate button.gate-cancel {
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+#vg-security-gate button.gate-cancel:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.45);
+  color: #fff;
+  transform: none;
+}
+#vg-security-gate .gate-error {
+  color: #ff6b6b; font-size: 13px;
+  margin-top: 14px; min-height: 18px;
+}
+@keyframes gate-shake {
+  0%,100% { transform: translateX(0); }
+  25%      { transform: translateX(-10px); }
+  75%      { transform: translateX(10px); }
+}
+</style>
+
+<div id="vg-security-gate">
+  <div class="gate-box">
+    <div class="gate-logo">🔒</div>
+    <div class="gate-title">Matrix Bond Management</div>
+    <div class="gate-subtitle">Confidential Document — Please Enter Security Code</div>
+    <div class="gate-label">Security Code</div>
+    <input type="password" id="vg-gate-input" maxlength="6" placeholder="······" autocomplete="off" inputmode="numeric">
+    <button onclick="vgGateSubmit()">Enter</button>
+    <button class="gate-cancel" type="button" onclick="window.location.href='../archives.html'">Cancel</button>
+    <div class="gate-error" id="vg-gate-error"></div>
+  </div>
+</div>
+<script>
+(function () {
+  var CORRECT = '202605';
+  document.body.classList.add('vg-locked');
+  document.getElementById('vg-gate-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') vgGateSubmit();
+  });
+  window.vgGateSubmit = function () {
+    var input = document.getElementById('vg-gate-input');
+    var errEl = document.getElementById('vg-gate-error');
+    if (input.value.trim() === CORRECT) {
+      unlock();
+    } else {
+      input.classList.remove('vg-gate-shake');
+      void input.offsetWidth;
+      input.classList.add('vg-gate-shake');
+      input.value = '';
+      var lang = localStorage.getItem('vg_lang') || 'en';
+      errEl.textContent = lang === 'en' ? 'Incorrect code. Please try again.' : '安全码错误，请重试。';
+      setTimeout(function () { input.classList.remove('vg-gate-shake'); }, 400);
+    }
+  };
+  function unlock() {
+    var gate = document.getElementById('vg-security-gate');
+    if (gate) gate.remove();
+    document.body.classList.remove('vg-locked');
+  }
+})();
+</script>
+<!-- ========== END SECURITY GATE ========== -->
+
+<!-- Watermark -->
+<style>
+.watermark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url('../Matrix Logo MBM rem bckgd.png');
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 180px auto;
+  opacity: 0.06;
+}
+</style>
+<div class="watermark"></div>
+
+<div id="progress"></div>
+<div class="cover">
+<div class="cover-inner">
+<div class="kicker">CONFIDENTIAL · For designated recipients only</div><h1>Vancouver Panda Bond Feasibility Study and Analysis Report</h1><p class="sub">Feasibility study on the issuance of Panda Bonds by the City of Vancouver, British Columbia, Canada<br>with: Charter Provisions Conferring Independent Borrowing Authority on the City of Vancouver (English–Chinese)</p><div class="org">VASTGOLD ENTERPRISE HOLDING LTD</div><div class="meta">Monday, August 25, 2026 · English Edition (HTML) · Adds Chapters 14 &amp; 15 to the Bilingual Edition</div><div class="note">This report is for internal evaluation and designated recipients only; it may not be forwarded or cited without written permission. It does not constitute legal, tax or investment advice. Conclusions regarding the Vancouver Charter and PRC regulations are subject to written confirmation by qualified counsel in British Columbia and the PRC.</div>
+</div>
+</div>
+<div class="verbar"><div class="in">
+HTML edition note: built on the August 25, 2026 Bilingual Edition, this edition adds <strong>Chapter 14 “Our Role and Value Proposition: Why Our Firm Should Lead the Mandate”</strong> and <strong>Chapter 15 “Engagement Progress with Canadian Government and Banks — Status and Next Steps”</strong>, presented as a single-language, typeset edition.
+</div></div>
+<div class="tocbtn"><button id="tocbtn" type="button">
+Table of Contents
+</button></div>
+<div class="layout">
+<nav class="toc"><h3>
+Contents
+</h3>
+<a href="#ch1">1. Executive Summary</a>
+<a href="#ch2">2. Background and Purpose</a>
+<a href="#ch3">3. Panda Bond Market and Regulatory Framework</a>
+<a class="sec" href="#sc1">Regulatory Architecture</a>
+<a class="sec" href="#sc2">No Municipal-Level Prohibition</a>
+<a href="#ch4">4. Credit and Financial Profile of the City of Vancouver</a>
+<a class="sec" href="#sc3">Financial Position</a>
+<a class="sec" href="#sc4">Credit Ratings: AAA and Above the Province</a>
+<a href="#ch5">5. Benchmark: Credit Ratings and Scale of Foreign Government-Type Panda Issuers</a>
+<a class="sec" href="#sc5">Three Conclusions from the Comparison</a>
+<a class="sec" href="#sc6">Significance of a City-Level First</a>
+<a href="#ch6">6. Municipal vs Provincial Borrowing Scale</a>
+<a class="sec" href="#sc7">Interpretation</a>
+<a href="#ch7">7. PRC-Side Eligibility</a>
+<a class="sec" href="#sc8">Issuer Category and Registration Path</a>
+<a class="sec" href="#sc9">Directly Reliance-Precedents</a>
+<a class="sec" href="#sc10">Domestic Rating</a>
+<a class="sec" href="#sc11">Conclusion</a>
+<a href="#ch8">8. Charter Provisions Conferring Independent Issuance Authority</a>
+<a class="sec" href="#sc12">Legal Status of the Vancouver Charter and the Constitutional Framework</a>
+<a class="sec" href="#sc13">Article-by-Article Schedule of Part V Borrowing Provisions (English–Chinese)</a>
+<a class="sec" href="#sc14">Dual-Track Internal Authorization: s.242 No-Plebiscite and s.245 Plebiscite Tracks</a>
+<a class="sec" href="#sc15">Debt Ceiling and Borrowing Autonomy</a>
+<a class="sec" href="#sc16">The Complete Legal Chain of Independent Issuance</a>
+<a class="sec" href="#sc17">Outstanding Legal Items</a>
+<a href="#ch9">9. Structuring Options</a>
+<a class="sec" href="#sc18">Use of Proceeds and FX Arrangements</a>
+<a class="sec" href="#sc19">Green / Sustainable Panda Bond Positioning</a>
+<a href="#ch10">10. Cross-Case Comparison with Our Prior Mandates</a>
+<a href="#ch11">11. Risk Factors and Mitigations</a>
+<a href="#ch12">12. Implementation Roadmap and Indicative Timeline</a>
+<a href="#ch13">13. Conclusion and Recommendations</a>
+<a href="#ch14">14. Our Role and Value Proposition: Why Our Firm Should Lead the Mandate</a>
+<a class="sec" href="#sc20">14.1 Capability Base and Track Record</a>
+<a class="sec" href="#sc21">14.2 Six Value Entry Points</a>
+<a class="sec" href="#sc22">14.3 Value Checklist by Stakeholder</a>
+<a href="#ch15">15. Engagement Progress with Canadian Government and Banks - Status and Next Steps</a>
+<a class="sec" href="#sc23">15.1 Engagement to Date</a>
+<a class="sec" href="#sc24">15.2 Engagement Themes and Current Status</a>
+<a class="sec" href="#sc25">15.3 Next Steps</a>
+<a href="#ch16">References</a>
+<a href="#ch17">Disclaimer</a>
+</nav>
+<main><article>
+<h2 class="chapter" id="ch1">1. Executive Summary</h2><p>Following the feasibility framework our firm applied to the Malaysia Sabah, Pakistan and Papua New Guinea mandates, this report provides a full analysis of the eligibility and feasibility of the City of Vancouver, British Columbia, Canada issuing Panda Bonds, together with three mandated topics: (1) a credit comparison with foreign government-type Panda issuers that have successfully issued; (2) a quantitative comparison of borrowing scale between municipal and provincial issuers; and (3) a bilingual (English–Chinese) schedule of the Vancouver Charter provisions under which the City of Vancouver may independently exercise its borrowing authority. <strong>Key conclusions:</strong></p><ul><li><strong>PRC-side eligibility: fully satisfied.</strong> The City of Vancouver falls within the "foreign government-type institution" issuer category under the PBOC/MOF Announcement No. 16 of 2018. The RMB 6 billion British Columbia Panda Bond program of 2015–2017 (in which our firm participated) and Sharjah's issuances of 2018 and 2025 have established complete, replicable regulatory precedents for sub-sovereign government issuers.</li><li><strong>Canadian legal authority: express and free of senior-government approval.</strong> Part V (sections 236–264) of the Vancouver Charter expressly authorizes Council to borrow "in such currencies whether of Canada or some other country as the Council deems expedient," with debentures payable "within or without Canada." A RMB-denominated Panda Bond payable in China falls squarely within the express statutory authorization — no legislative amendment or exemption is required, and there is no federal or provincial approval step (see the article-by-article schedule in Chapter 8).</li><li><strong>Credit quality: among the highest-rated government-type candidates in Panda Bond history.</strong> Moody's April 2026 credit opinion maintains the City's AAA rating (BCA also AAA), two notches above the Province of BC (downgraded to AA2, negative outlook, in March 2026) — a rare "city above province" inversion; S&P also rates the City AAA.</li><li><strong>Market positioning: the world's first foreign city-level government Panda Bond.</strong> If successfully issued, Vancouver would be the first foreign municipal government to issue Panda Bonds, without the ADB/AIIB partial-guarantee credit enhancement used in the Pakistan transaction — enhancement cost is zero.</li><li><strong>Principal constraints: not eligibility, but (i) alignment of use of proceeds with elector-approved capital plan borrowing; (ii) FX hedging and deployment of RMB proceeds; (iii) Council political will and the Canada–China environment.</strong></li><li><strong>Recommended path:</strong> Following the BC model, the City registers an RMB 3 billion MTN program in the interbank market in its own name, with an inaugural tranche of RMB 500–1,500 million (3–5 year tenor), labelled green/sustainable under the City's Sustainability Bond Framework, and placed via targeted (private placement-style) distribution to compress the sales cycle. Overall implementation timeline: approximately 6–9 months, targeting a first issuance in H1 2027.</li></ul><hr class="sec-divider"><h2 class="chapter" id="ch2">2. Background and Purpose</h2><p>Our firm previously established a unified assessment framework for the Panda Bond feasibility of the Sabah (Malaysia), Pakistan and Papua New Guinea mandates. This report evaluates the City of Vancouver under the same framework and, as instructed, adds: (1) a credit comparison with foreign government-type Panda issuers; (2) a quantitative municipal-vs-provincial borrowing scale comparison; and (3) — new in this edition — a bilingual schedule of the Vancouver Charter borrowing provisions that the City may independently rely upon, as a normative annex to the Canadian legal authority analysis.</p><hr class="sec-divider"><h2 class="chapter" id="ch3">3. Panda Bond Market and Regulatory Framework</h2><h3 class="section" id="sc1">Regulatory Architecture</h3><p>Panda Bonds are RMB-denominated bonds issued in the Chinese onshore market by foreign institutions. The core rules are the Interim Measures for the Administration of Bond Issuance by Overseas Institutions in the National Interbank Bond Market (PBOC/MOF Announcement [2018] No. 16), which classify overseas issuers into four categories: foreign government-type institutions, international development institutions, foreign financial institutions and foreign non-financial corporate legal persons. Government-type issuances are subject to registration-based administration by the National Association of Financial Market Institutional Investors (NAFMII), with phased issuance permitted within the registration validity period. Key requirements for foreign government-type issuers include: a genuine and lawful RMB funding need; audited financial information prepared under home-country or internationally accepted accounting standards (government issuers disclose fiscal and debt information in lieu of corporate financial statements); a rating from a qualified domestic credit rating agency (in practice, China Chengxin International or Lianhe Credit); and a PRC legal opinion covering the issuer's legal status, internal authorization and the legality of the bonds.</p><h3 class="section" id="sc2">No Municipal-Level Prohibition</h3><p>Notably, Announcement No. 16 and the NAFMII guidelines do not restrict "foreign government-type institutions" by administrative level. Issuers to date have spanned sovereign states (Korea, Poland, Hungary, Philippines, Portugal, Egypt, Pakistan), a provincial government (British Columbia) and an emirate (Sharjah, UAE). Although no city-level government has yet issued, there is no regulatory obstacle — the decisive factor is that the issuer has independent statutory borrowing authority under its own law and can deliver an unqualified legal opinion. This is precisely Vancouver's decisive advantage over Sabah, as elaborated in Chapter 8.</p><hr class="sec-divider"><h2 class="chapter" id="ch4">4. Credit and Financial Profile of the City of Vancouver</h2><h3 class="section" id="sc3">Financial Position</h3><p>The City's audited consolidated financial statements for FY2025 show an extremely sound financial position. Key indicators:</p><div class="tbl-wrap"><table><thead><tr><th>Metric (FY2025, audited)</th><th>Amount (CAD)</th><th>Notes</th></tr></thead><tbody><tr><td>Annual surplus</td><td>$530.4m</td><td>$386m better than budget</td></tr><tr><td>Accumulated surplus (net assets)</td><td>~$11.0bn</td><td>cumulative</td></tr><tr><td>Non-financial assets (land, infrastructure, etc.)</td><td>~$9.4bn</td><td>growing</td></tr><tr><td>Net financial assets</td><td>$1.54bn</td><td>positive (assets exceed liabilities)</td></tr><tr><td>Reserves</td><td>>$2.3bn</td><td>housing, infrastructure, contingencies</td></tr><tr><td>External long-term debt (gross, end-2021)</td><td>$1.014bn</td><td>net $591m after sinking funds</td></tr></tbody></table></div><p>Table 4-1 Key financial indicators of the City of Vancouver (Sources: City's 2025 Statement of Financial Information and Council bond program reports) It is worth emphasizing that the City's net financial assets are positive ($1.54 billion) — financial assets exceed total liabilities, which is rare among government issuers. The City holds approximately $9.4 billion of non-financial assets (land, infrastructure, etc.) and over $2.3 billion of reserves. Gross external long-term debt is approximately $1.014 billion, or only about $591 million net of sinking funds, against a taxable real property assessment base of approximately $464.6 billion — an exceptionally light debt burden.</p><h3 class="section" id="sc4">Credit Ratings: AAA and Above the Province</h3><p>Moody's April 2026 credit opinion maintains the City's AAA rating with a BCA of AAA, consistent with the scorecard; S&P also maintains AAA (stable). By contrast, in March 2026 Moody's downgraded the Province of BC's long-term issuer and senior unsecured ratings from AA1 to AA2, negative outlook, on entrenched structural deficits and rapid debt accumulation; S&P rates the Province A+ (negative). This creates a rare "city above province" inversion of two notches. For Chinese investors the commercial meaning is direct: when BC issued its Panda Bonds (2016, 2017) the Province was rated AAA/AAA, but today the Province cannot offer AAA paper. The City of Vancouver is currently the only issuer in Western Canada able to bring AAA government credit into the Panda Bond market — effectively a "credit equivalent" of the 2016 BC transaction.</p><hr class="sec-divider"><h2 class="chapter" id="ch5">5. Benchmark: Credit Ratings and Scale of Foreign Government-Type Panda Issuers</h2><p>The table below summarizes the level, scale, pricing and credit ratings of the principal foreign government-type Panda issuers to date, with the proposed positioning of the City of Vancouver:</p><div class="tbl-wrap"><table><thead><tr><th>Issuer</th><th>Level</th><th>First issue</th><th>Size</th><th>Coupon</th><th>International rating (at issue/now)</th><th>Domestic rating</th></tr></thead><tbody><tr><td>Korea</td><td>Sovereign</td><td>2015</td><td>RMB 3.0bn</td><td>3.0%</td><td>Aa2 / AA</td><td>AAA</td></tr><tr><td>British Columbia</td><td>Provincial</td><td>2016</td><td>RMB 3.0bn+1.0bn (6.0bn program)</td><td>2.95%</td><td>AAA at issue; now AA2</td><td>AAA</td></tr><tr><td>Poland</td><td>Sovereign</td><td>2016</td><td>RMB 3.0bn</td><td>~3.4%</td><td>A2 / A-</td><td>AAA</td></tr><tr><td>Hungary</td><td>Sovereign</td><td>2017</td><td>RMB 1.0bn; +5.0bn in 2025</td><td>—</td><td>Baa3 / BBB</td><td>AAA</td></tr><tr><td>Sharjah (UAE)</td><td>Emirate (sub-sovereign)</td><td>2018</td><td>RMB 2.0bn; +2.0bn in 2025</td><td>5.8% (2018)</td><td>Ba1 / BBB-</td><td>Lianhe AAA</td></tr><tr><td>Egypt</td><td>Sovereign</td><td>2023</td><td>RMB 3.5bn (sustainable)</td><td>~3.5%</td><td>B range</td><td>AAA (guaranteed)</td></tr><tr><td>Pakistan</td><td>Sovereign</td><td>2026</td><td>RMB 1.75bn (5x oversubscribed)</td><td>2.5%</td><td>CCXI international B⁻g</td><td>CCXI local AA+/bond AAA</td></tr><tr><td>Vancouver (proposed)</td><td>City-level (first)</td><td>2027E</td><td>RMB 0.5–1.5bn (3.0bn program)</td><td>est. ≤3%</td><td>AAA (Moody’s, 2026)</td><td>est. AAA (no enhancement)</td></tr></tbody></table></div><p>Table 5-1 Foreign government-type Panda issuers compared (Sharjah rated Ba1/BBB- with domestic Lianhe AAA in 2025; some historical coupons per public reports)</p><h3 class="section" id="sc5">Three Conclusions from the Comparison</h3><ul><li><strong>Top-rated.</strong> Vancouver's AAA ranks first among all issuers in the table, matching BC at the time of its 2016 issuance and well above Sharjah (Ba1), Hungary (Baa3), Egypt and Pakistan. No Panda Bond in history has been issued by a higher-rated government — Vancouver would be among the best-credit government issuers the Panda Bond market has ever seen.</li><li><strong>Domestic rating unproblematic; zero enhancement cost.</strong> Precedents such as Sharjah (Ba1 internationally, Lianhe AAA domestically) and Pakistan (B-range, bond AAA via partial guarantees) show that Vancouver's AAA international rating would translate into a domestic AAA from China Chengxin International or Lianhe Credit without any doubt — and without the ADB/AIIB partial guarantee relied on in the Egypt/Pakistan transactions.</li><li><strong>Competitive pricing.</strong> The coupon range of highly-rated issuers (Korea 3.0%, BC 2.95%, guaranteed Pakistan 2.5%) suggests Vancouver's 3–5 year Panda Bonds would price at no more than ~3%, offering all-in funding costs (after swaps) comparable to or better than its domestic CAD bonds in the current RMB rate environment.</li></ul><h3 class="section" id="sc6">Significance of a City-Level First</h3><p>To date the lowest government levels to issue Panda Bonds are a province (BC) and an emirate (Sharjah). A successful Vancouver issuance would set the record as "the world's first foreign city government to issue Panda Bonds," replicating BC's first-mover path (first offshore-government dim sum bond, 2013; first Panda Bond program, 2015). The first-mover effect is attractive to underwriters, rating agencies and NAFMII alike, supporting both registration and pricing.</p><hr class="sec-divider"><h2 class="chapter" id="ch6">6. Municipal vs Provincial Borrowing Scale</h2><p>As requested, the following table compares the borrowing scale and RMB market records of the City of Vancouver and the Province of BC:</p><div class="tbl-wrap"><table><thead><tr><th>Metric</th><th>City of Vancouver</th><th>Province of BC</th></tr></thead><tbody><tr><td>Annual issuance/borrowing</td><td>~$100–150m (annual debenture program)</td><td>$31.5bn (2025-26 actual); $34.9bn (2026-27 plan)</td></tr><tr><td>Long-term debt</td><td>~$1.0bn gross (end-2021), ~$0.59bn net of sinking funds</td><td>total debt approaching $155bn; taxpayer-supported debt rising to $189bn</td></tr><tr><td>Debt limit</td><td>Charter s.236: max 20% of 2-year average assessed value of taxable real property (current debt far below)</td><td>no statutory cap; debt/GDP 26.1% → 37.4% (2028-29)</td></tr><tr><td>Credit ratings (2026)</td><td>Moody’s AAA (BCA AAA)</td><td>Moody’s AA2 (negative); S&P A+ (negative)</td></tr><tr><td>RMB market record</td><td>none (proposed debut)</td><td>2013 dim sum RMB 2.5bn; 2016 Panda RMB 3.0bn (2.95%); 2017 RMB 1.0bn; RMB 6.0bn program</td></tr><tr><td>Proposed Panda scale</td><td>RMB 0.5–1.5bn first tranche (≈$100–290m CAD), RMB 3.0bn registered program</td><td>(reference: single tranche up to RMB 3.0bn, tenor up to 10 years)</td></tr></tbody></table></div><p>Table 6-1 Vancouver vs BC borrowing scale (Sources: Council bond reports, BC Budget 2026, DBRS and bank commentary)</p><h3 class="section" id="sc7">Interpretation</h3><p>Vancouver's annual borrowing is roughly 0.4%–0.5% of BC's — a difference of two orders of magnitude. This is precisely the source of its credit strength: the City carries an extremely light debt burden and positive net financial assets, while the Province is in a cycle of record deficits and rapid debt accumulation (a $13.3 billion deficit in 2026-27, with negative outlooks from all four rating agencies). Logic of the recommended size: the City's annual debenture program of ~$100–150 million CAD corresponds to roughly RMB 500–750 million. As Panda registration programs are typically filed for 2–3 years of issuance needs, we recommend a registered RMB 3.0 billion program (≈$580 million CAD, covering a capital-plan cycle of borrowing authority) with a first tranche of RMB 500–1,500 million. This size (i) matches the City's existing annual issuance rhythm and does not constitute over-borrowing; (ii) clears the liquidity threshold for government-type bonds in the interbank market; and (iii) equals one-sixth to one-half of BC's 2016 first tranche (RMB 3.0 billion), consistent with the municipal-provincial fiscal scale ratio — reasonable and easy to present to NAFMII.</p><hr class="sec-divider"><h2 class="chapter" id="ch7">7. PRC-Side Eligibility</h2><h3 class="section" id="sc8">Issuer Category and Registration Path</h3><p>The City of Vancouver is a municipal corporation established under the Vancouver Charter (a special BC statute of 1953), borrowing, taxing and managing sinking funds in its own name. It therefore falls within the "foreign government-type institution" category under Announcement No. 16 and is subject to NAFMII registration. The registration package includes: the registration report; three years of audited financial information (prepared under Canadian public sector accounting standards (PSAS), audited by KPMG, satisfying the requirement for internationally accepted or recognized equivalent accounting standards); a domestic rating report; Canadian and PRC legal opinions; a statement of use of proceeds; and the FX arrangements.</p><h3 class="section" id="sc9">Directly Reliance-Precedents</h3><p>BC's RMB 6.0 billion program approved in 2015 established every technical path for a Canadian sub-sovereign issuer: fiscal-report disclosure in lieu of corporate statements; sinking fund mechanism disclosure; the legal structure backing repayment by the taxing power; and offshore deployment and hedging of proceeds (in 2016 BC immediately reinvested proceeds in UOB Singapore offshore RMB products to hedge FX risk). Vancouver can adopt the framework wholesale, substituting the Vancouver Charter for the provincial legislation. As a participant in the BC and National Bank of Canada (2016, RMB 3.5 billion Panda) transactions, our firm has direct experience with this documentation package.</p><h3 class="section" id="sc10">Domestic Rating</h3><p>Following the Sharjah (Lianhe AAA) and BC (AAA) precedents, Vancouver's domestic issuer rating is expected to be AAA without any enhancement. Compared with Pakistan (CCXI rating repaired from CCCg to B⁻g, with the bonds lifted to AAA via ADB/AIIB partial guarantees), Vancouver's rating exercise is a purely confirmatory process with no structural design difficulty; the rating timeline can be compressed to 6–8 weeks.</p><h3 class="section" id="sc11">Conclusion</h3><p>There is no PRC-side eligibility obstacle. Vancouver satisfies all substantive requirements of a foreign government-type issuer and is precisely the high-quality, first-of-its-kind issuer regulators are inclined to support.</p><hr class="sec-divider"><h2 class="chapter" id="ch8">8. Charter Provisions Conferring Independent Issuance Authority</h2><blockquote>This is the core chapter of this report. It sets out, article by article (English–Chinese), the Vancouver Charter provisions under which the City of Vancouver may independently exercise its borrowing authority, and demonstrates that under Canada's constitutional framework a Vancouver RMB Panda Bond issuance requires no federal or provincial approval, no exchange-control authorization, and no involvement of a provincial municipal financing agency.</blockquote><h3 class="section" id="sc12">Legal Status of the Vancouver Charter and the Constitutional Framework</h3><ul><li>The Vancouver Charter (S.B.C. 1953, c. 55, as amended) is a special charter statute enacted by the Legislature of British Columbia for the City of Vancouver, superseding the Vancouver Incorporation Act, 1921. Under s. 92(8) of the Constitution Act, 1867, municipal institutions fall within exclusive provincial legislative jurisdiction; the federal government has no jurisdiction over, and no approval role in, municipal borrowing.</li><li>Vancouver is not an ordinary municipality under the Local Government Act or the Community Charter, but a corporation established by its own charter with broader powers. Its borrowing, taxation and sinking-fund-management authority all derive from the express grants of the Charter.</li><li>Canada abolished exchange controls with the repeal of the Foreign Exchange Control Act in 1951 and operates a floating currency. There is no federal exchange-control regime and no federal approval for foreign-currency borrowing; a RMB-denominated bond payable in China requires no federal licence or filing.</li></ul><h3 class="section" id="sc13">Article-by-Article Schedule of Part V Borrowing Provisions (English–Chinese)</h3><p>Part V of the Vancouver Charter, "By-laws for Contracting Debts" (ss. 236–264), comprehensively governs the City's borrowing powers. The table below lists, article by article, the provisions directly relevant to a Panda Bond issuance, with key statutory text (EN) and interpretation (ZH), and their significance for independent issuance:</p><div class="tbl-wrap"><table class="charter"><thead><tr><th>Section</th><th>Title</th><th>Key statutory text (EN)</th><th>Significance (ZH)</th></tr></thead><tbody><tr><td>236(1)</td><td>Limit of borrowing power</td><td>“The Council may pass by-laws for contracting debts by borrowing money or otherwise for any authorized purpose, in such currencies whether of Canada or some other country as the Council deems expedient, and for levying taxes on the real property in the city ... but the aggregate of the debt so contracted shall not at any time be increased so as to exceed twenty per centum of the total assessed value of such real property calculated upon the average assessment for the two years prior to the year in which the by-law is passed. The debentures issued therefor may be made payable at such places, within or without Canada, and in such currencies ... as the Council deems expedient.”</td><td>Core authorization for Panda Bonds: expressly permits borrowing “in such currencies whether of Canada or some other country” with debentures payable “within or without Canada,” subject to an aggregate cap of 20% of the two-year average assessed value of taxable real property. A RMB-denominated bond payable in China falls squarely within the grant — no amendment or exemption needed.</td></tr><tr><td>237</td><td>When by-law takes effect</td><td>“The by-law shall name a day in the year in which it is passed upon which the by-law shall take effect.”</td><td>A borrowing by-law takes effect on the day it names upon passage by Council — no provincial approval.</td></tr><tr><td>238</td><td>When debt repayable</td><td>Debentures issued within 5 years after passing of by-law; whole debt payable within 50 years at most.</td><td>Debentures issued within 5 years of the by-law and debt maturing within 50 years — a 3–5 year Panda Bond fits comfortably, and tranching under a registered program is unrestricted.</td></tr><tr><td>239</td><td>Sinking fund and serial debentures</td><td>Annual real-property tax levies to pay interest and principal; sinking fund or serial structure prescribed.</td><td>Annual real-property tax levies fund interest and principal — a statutory repayment mechanism for bondholders; compatible with sinking-fund or serial structures.</td></tr><tr><td>241</td><td>Debt may be callable</td><td>Debentures (or a portion) may be called in and paid before maturity on such terms as specified.</td><td>The by-law may provide for early redemption, adding tenor flexibility to the Panda Bond.</td></tr><tr><td>242(1)</td><td>What borrowing to be submitted to electors</td><td>General rule: Council shall not contract any debt not fully provided for in current-year estimates unless authorized by a by-law passed with the assent of the electors.</td><td>General rule: borrowing not fully provided for in current-year estimates requires elector assent. This is the legal starting point for choosing “no-plebiscite uses” or “plebiscite authority” for the Panda Bond.</td></tr><tr><td>242(2)(a)(b)(b.1)</td><td>Exemptions: waterworks; sewerage and drainage; energy utility system</td><td>Exempted from elector assent: (a) construction, installation, maintenance, replacement, repair and regulation of a waterworks system; (b) a system of sewerage and drainage; (b.1) design, construction, installation, maintenance and repair of an energy utility system, including acquiring real property and easements therefor (b.1 added 2007).</td><td>Waterworks, sewerage and drainage, and energy utility systems are exempt from elector assent — Council may pass the borrowing by-law directly. If Panda proceeds are earmarked for such utility capital projects, only Council procedure is required; the City’s 2023–2026 Capital Plan and its debenture by-laws (e.g., By-law No. 14504 of 2025) operate on this basis.</td></tr><tr><td>243</td><td>Valid after expiration of month</td><td>Any by-law passed and debenture issued shall be absolutely valid and binding unless challenged by application or action commenced within one month after final passing.</td><td>A by-law and the debentures issued under it are absolutely valid unless challenged within one month of final passage — strong legal certainty for bondholders.</td></tr><tr><td>244</td><td>Provision for amendment or diversion</td><td>Elector-assented by-laws may not be amended or repealed by Council except with consent of the Lieutenant-Governor in Council; surplus proceeds may be transferred to the sinking fund or a repayment fund.</td><td>Elector-assented by-laws may be amended only with provincial Cabinet consent, protecting investors’ expectations on use of proceeds; surplus may be diverted to the sinking fund.</td></tr><tr><td>245</td><td>Borrowing over a period of years</td><td>Council may submit to electors a question authorizing borrowing by debentures over designated years (not exceeding 10 years in all) in an aggregate designated sum; upon majority assent, Council may pass borrowing by-laws without further assent; projects/amounts may be varied by a two-thirds Council vote so long as the aggregate is not exceeded; delayed projects may be borrowed within 7 years after the last year.</td><td>The capital-plan plebiscite track: the October 15, 2022 election approved 2023–2026 Capital Plan borrowing limits (delayed projects extendable to 2033); the October 2026 election will vote the 2027–2030 limits. A Panda Bond can tap existing or pending authority — no dedicated plebiscite.</td></tr><tr><td>246</td><td>Conditions of borrowing</td><td>The s.245 power is exercisable only if no matured debenture debt remains unpaid after written demand, and all sinking fund levies required by law have been made.</td><td>Two preconditions (no matured debt unpaid after demand; all sinking-fund levies made) — both satisfied by Vancouver.</td></tr><tr><td>247A</td><td>Debt repayment fund</td><td>Council may by by-law set aside surplus moneys in a debt repayment fund to provide in advance for retirement of outstanding debentures and annual interest; fund moneys investable per s.260.</td><td>Permits advance provision for debt retirement — the legal basis of the City’s self-managed sinking fund and a key disclosure item for Panda repayment arrangements.</td></tr><tr><td>248A</td><td>Issue and servicing of debentures</td><td>Provisions governing issue and servicing of debentures (terms set by Council).</td><td>Council holds full authority over issue terms and may authorize the Director of Finance to set rates, price and other terms.</td></tr><tr><td>258</td><td>Sale of debenture</td><td>Council may sell debentures at such price and on such terms as it sees fit.</td><td>Express authority to sell at such price and terms as the City sees fit — interfaces directly with onshore targeted placement.</td></tr><tr><td>260–262</td><td>Sinking fund investments, accounts, transfer of surplus</td><td>Investment of sinking funds, maintenance of accounts, and transfer of surplus to sinking funds.</td><td>The entire sinking-fund management chain is run by the City itself — no provincial municipal financing agency.</td></tr><tr><td>263–264</td><td>Borrowing pending collection of real-property taxes / pending sale of debentures</td><td>Council may borrow pending collection of real-property taxes and pending the sale of debentures.</td><td>Short-term liquidity tools bridging the timing between Panda proceeds receipt and capital expenditure.</td></tr></tbody></table></div><p>Table 8-1 Schedule of Part V borrowing provisions of the Vancouver Charter (English–Chinese; per the current BC Laws consolidation)</p><h3 class="section" id="sc14">Dual-Track Internal Authorization: s.242 No-Plebiscite and s.245 Plebiscite Tracks</h3><ul><li><strong>Section 242 (no-plebiscite track):</strong> Borrowing for waterworks, sewerage and drainage, and energy utility systems requires no elector assent; Council may pass the borrowing by-law directly. If the Panda Bond proceeds are earmarked for such utility capital projects, internal authorization is a Council-only procedure — the fastest and most controllable route.</li><li><strong>Section 245 (plebiscite track):</strong> All other purposes require an aggregate borrowing authority approved by electors in a borrowing plebiscite; Council then passes by-laws from time to time within the approved limit. Vancouver's 2022 election approved the 2023–2026 Capital Plan borrowing limits (with delayed projects extended to 2033); the October 2026 municipal election will vote on the 2027–2030 limits. A Panda Bond can tap existing or upcoming authority without a dedicated plebiscite.</li></ul><h3 class="section" id="sc15">Debt Ceiling and Borrowing Autonomy</h3><ul><li><strong>Statutory ceiling is ample:</strong> s.236 caps aggregate debt at 20% of the two-year average assessed value of taxable real property. On the 2025 assessment base of ~$464.6 billion, the theoretical ceiling is ~$92.9 billion, against gross external long-term debt of only ~$1.0 billion — headroom is immense, and an RMB 3.0 billion program would be immaterial to the ceiling.</li><li><strong>The only BC municipality borrowing outside the MFABC:</strong> Vancouver is the only municipality in British Columbia that manages its own borrowing program outside the Municipal Finance Authority of BC (MFABC), borrowing in its own name with full autonomy over the timing, amount and terms of issuance and managing its own sinking funds. The Canadian counterparty to a Panda Bond transaction is therefore the City's own finance department — a short decision chain.</li><li><strong>No senior-government approval:</strong> under the constitutional division of powers the federal government has no role in municipal borrowing; provincially, s.236 of the Charter is itself the grant of authority, with no approval by the provincial Cabinet, Ministry of Finance or any provincial agency required. The BC precedent (2015–2017) likewise involved no additional federal or provincial approvals.</li></ul><h3 class="section" id="sc16">The Complete Legal Chain of Independent Issuance</h3><p>From by-law to repayment, the City can independently complete the entire issuance chain under the Charter: (1) Council passes a borrowing by-law under s.236 (uses within the s.242 exemption, or within the s.245 approved authority); (2) the by-law takes effect on the day it names under s.237; (3) under s.240 the by-law contains the required recitals and, under s.248A, Council authorizes the Director of Finance to set interest rate, price and terms and to instruct the bank syndicate; (4) under s.258 debentures are sold at such price and on such terms as the City sees fit; (5) under s.238 debentures are issued within five years of the by-law and the debt matures within 50 years; (6) under ss.239 and 247A annual real-property tax levies and the sinking fund ensure timely payment of interest and retirement of principal; and (7) under s.243 the by-law is absolutely valid and binding once one month has passed without challenge. There is no provincial or federal approval node anywhere in the chain.</p><h3 class="section" id="sc17">Outstanding Legal Items</h3><p>Consistent with our firm's standing practice, the Charter interpretations above must be confirmed by a written legal opinion from BC-qualified counsel before contacting the issuer or regulators, covering at least: (i) confirmation that the s.236 foreign-currency authority extends to an interbank-market registered issuance; (ii) the interface between the borrowing by-law and the NAFMII registration documentation; (iii) confirmation that existing s.245 authority covers the proposed uses; (iv) the authorization documents required by PRC counsel for the issuer's legal-status opinion; and (v) confirmation under Canadian securities law (municipal debentures are generally exempt securities, and an offshore private placement would not involve a prospectus, but this must be confirmed by local securities counsel).</p><hr class="sec-divider"><h2 class="chapter" id="ch9">9. Structuring Options</h2><p>Unlike the Sabah project, which required a qualified corporate vehicle, Vancouver's complete direct borrowing authority makes both paths viable — but their merits differ sharply:</p><div class="tbl-wrap"><table class="status"><thead><tr><th>Dimension</th><th>Path 1: Direct City issuance</th><th>Path 2: City-owned corporate vehicle</th></tr></thead><tbody><tr><td>Legal basis</td><td>s.236 expressly authorizes foreign-currency borrowing — lawful and direct</td><td><span class="dot warn"></span>viable, but vehicle credit weaker than the City; needs a City guarantee</td></tr><tr><td>Issuer category</td><td>foreign government-type (BC/Sharjah precedents apply)</td><td>foreign non-financial corporate (many precedents, loses government-type scarcity)</td></tr><tr><td>Ratings</td><td><span class="dot good"></span>AAA passes through to domestic AAA, zero enhancement</td><td>relies on guarantee; structure complex</td></tr><tr><td>First-mover effect</td><td>world’s first city-level government Panda Bond</td><td><span class="dot good"></span>none</td></tr><tr><td>Internal process</td><td>Council by-law (s.242 uses) or s.245 approved authority</td><td>vehicle set-up + guarantee by-law; longer process</td></tr><tr><td>Overall</td><td><span class="dot good"></span>Recommended</td><td><span class="dot warn"></span>alternative (only if political preference to isolate the City’s balance sheet)</td></tr></tbody></table></div><p>Table 9-1 Structuring options compared (green = favourable; yellow = additional arrangements; red = unfavourable) Note: our firm's standing structural principle of "issuance through a qualified corporate vehicle" applies where the issuer itself lacks lawful borrowing authority (as in Sabah). Vancouver is not such a case — direct issuance is fully lawful, and the government-type status is the core value of this project. Direct issuance is therefore recommended, with the vehicle path retained only as an alternative.</p><h3 class="section" id="sc18">Use of Proceeds and FX Arrangements</h3><p>Following the BC model, proceeds may be remitted offshore under SAFE cross-border rules and immediately placed in offshore RMB assets or swapped into CAD for capital plan expenditures; a portion may also be retained onshore for China-related expenditures. The registration documentation should emphasize a "remit + hedge" approach, using BC's 2016 UOB offshore reinvestment arrangement as the regulatory-communication precedent.</p><h3 class="section" id="sc19">Green / Sustainable Panda Bond Positioning</h3><p>The City has established a Sustainability Bond Framework with green/sustainable issuance practice (inaugural green bond of CAD 85 million at 3.10% in 2018; Environmental Finance "Sustainability Bond of the Year" 2022). Labelling the Panda Bond green or sustainable: (i) aligns with interbank-market policy support for green Panda Bonds; (ii) naturally matches s.242 utility uses such as district energy and drainage; and (iii) strengthens the first-mover narrative ("first foreign city green Panda Bond").</p><hr class="sec-divider"><h2 class="chapter" id="ch10">10. Cross-Case Comparison with Our Prior Mandates</h2><p>Placed against our firm's existing mandate sequence (including the confidential PNG project, whose details are not disclosed here), Vancouver's relative advantages are immediately apparent:</p><div class="tbl-wrap"><table class="status"><thead><tr><th>Factor</th><th>Vancouver (this report)</th><th>BC (precedent)</th><th>Sabah</th><th>Pakistan</th></tr></thead><tbody><tr><td>Home-law authority</td><td>Charter expressly authorizes foreign-currency borrowing</td><td>complete provincial authority</td><td><span class="dot bad"></span>direct self-issuance ultra vires</td><td>sovereign, complete</td></tr><tr><td>Senior-government approval</td><td><span class="dot good"></span>none</td><td><span class="dot good"></span>none</td><td><span class="dot warn"></span>federal approval (strained)</td><td>n/a</td></tr><tr><td>International credit</td><td><span class="dot good"></span>AAA</td><td><span class="dot good"></span>AAA at issue; now AA2</td><td>strong finances, implicit state support</td><td>B range (repairing)</td></tr><tr><td>Enhancement need</td><td><span class="dot good"></span>none</td><td><span class="dot good"></span>none</td><td><span class="dot warn"></span>needs ADB/AIIB-type partial guarantee</td><td>used ADB/AIIB partial guarantees</td></tr><tr><td>Executable conclusion</td><td>direct issuance, 6–9 months</td><td><span class="dot good"></span>completed (our firm participated)</td><td>only via state vehicle</td><td>scaling up (~6 months)</td></tr></tbody></table></div><p>Table 10-1 Cross-case comparison (green = no obstacle; yellow = structural arrangement; red = prohibitive) Conclusion: Vancouver is the shortest legal path, the highest credit quality and the zero-enhancement-cost project among all candidates our firm has assessed to date; its principal uncertainty lies in issuer willingness, not feasibility.</p><hr class="sec-divider"><h2 class="chapter" id="ch11">11. Risk Factors and Mitigations</h2><ul><li><strong>Political will (principal risk):</strong> Council may have political reservations about RMB-denominated debt, and the October 2026 municipal election may change Council composition. Mitigation: frame the transaction around "funding diversification + cost savings + green capital," citing BC's precedent of advancing China bond issuance under governments of both parties; complete technical preparation before the election and launch decision-making after it.</li><li><strong>Canada–China relations and geopolitics:</strong> volatility may affect the regulatory climate and public opinion. Mitigation: the transaction is market-based financing; the BC precedent shows the technical track can decouple from political cycles; targeted placement reduces public exposure.</li><li><strong>FX risk:</strong> mismatch between RMB liabilities and CAD revenues. Mitigation: BC-style offshore reinvestment hedging, or cross-currency swaps to lock in CAD cost; a mature technical arrangement, and the City's finance department has derivative-management capability.</li><li><strong>Use-of-proceeds fit:</strong> alignment between s.245 approved authority and RMB proceeds must be confirmed by counsel. Mitigation: prioritize s.242 no-plebiscite uses (water, sewerage, district energy), resolved together with the green label.</li><li><strong>Pricing risk:</strong> if all-in swapped cost exceeds direct CAD issuance, the economics weaken. Mitigation: the registered program permits opportunistic tranched issuance, executed only when the cost window is favourable; first-mover scarcity typically supports pricing.</li><li><strong>Process risk:</strong> sequencing of NAFMII registration, domestic rating and dual legal opinions. Mitigation: our firm coordinates the documentation package leveraging the BC and National Bank of Canada experience; per firm standards, all constitutional and regulatory conclusions are conditioned on written local counsel opinions before approaching the issuer.</li></ul><hr class="sec-divider"><h2 class="chapter" id="ch12">12. Implementation Roadmap and Indicative Timeline</h2><div class="tbl-wrap"><table><thead><tr><th>Phase (total ~6–9 months)</th><th>Key activities</th></tr></thead><tbody><tr><td>Phase 1 (~1–2 months)</td><td>BC legal opinion; initial engagement with the City finance department; confirm uses (s.242 track preferred) and green labelling; preliminary underwriting syndicate arrangements (independent lead syndicate per the Pakistan model)</td></tr><tr><td>Phase 2 (~2–3 months)</td><td>Council internal authorization; engage domestic rating agency and PRC counsel; prepare the NAFMII registration package (RMB 3.0bn program)</td></tr><tr><td>Phase 3 (~2–3 months)</td><td>NAFMII registration feedback and approval; pre-placing of investors (our firm’s buyer network); finalize swaps and remittance arrangements</td></tr><tr><td>Phase 4 (~1 month)</td><td>price, close and list the first RMB 0.5–1.5bn tranche; subsequent tranches opportunistically</td></tr></tbody></table></div><p>Table 12-1 Overall implementation timeline (per firm practice, only overall phases, no weekly milestones)</p><hr class="sec-divider"><h2 class="chapter" id="ch13">13. Conclusion and Recommendations</h2><p>The City of Vancouver is fully qualified on both sides of the Pacific to issue Panda Bonds: on the PRC side it falls within the foreign government-type category with the direct BC and Sharjah precedents; on the Canadian side, Part V of the Vancouver Charter (notably the s.236 foreign-currency borrowing power, the s.242 no-plebiscite uses, the s.245 plebiscite authority, and the ss.239/247A repayment mechanisms) provides a complete, express and approval-free legal basis for independent issuance. Its Moody's AAA rating makes it one of the highest-credit government candidates in Panda Bond history, and the current two-notch inversion above the Province offers a unique window to tell Chinese investors the story of "reproducing the 2016 BC AAA transaction at the municipal level." <strong>Recommendations:</strong> Approve the mandate and first commission a BC lawyer's written opinion on Charter authorization; Use direct issuance as the base structure: register an RMB 3.0bn program, first tranche RMB 0.5–1.5bn, 3–5 year tenor, green/sustainable label, targeted placement; Our firm coordinates syndicate organization and pre-placement, following the Pakistan independent-lead-syndicate model; Sequence engagement around the October 2026 municipal election, targeting a first issuance in H1 2027. If closed, the project would achieve a triple first: the world's first foreign city Panda Bond, the first foreign city green Panda Bond, and our firm's third RMB bond participation in the Canadian market after BC and National Bank of Canada.</p><hr class="sec-divider"><h2 class="chapter" id="ch14">14. Our Role and Value Proposition: Why Our Firm Should Lead the Mandate</h2><p>Our firm (Vastgold Enterprise Holding Ltd), a financial services institution active on both sides of the Pacific and focused on the cross-border RMB bond market, has the direct capability to support the City of Vancouver through the entire Panda Bond process. This chapter sets out our entry points and the value we bring to the transaction.</p><h3 class="section" id="sc20">14.1 Capability Base and Track Record</h3><ul><li><strong>Direct transaction experience:</strong> Our firm participated in BC's RMB 6.0 billion Panda Bond program (2015-2017) and the National Bank of Canada RMB 3.5 billion Panda Bond (2016); the legal and documentation framework of Chapters 8 and 9 of this report derives from the hands-on experience of those two transactions.</li><li><strong>Reusable assessment framework:</strong> Our firm has built a unified Panda Bond feasibility framework applied to candidate issuers including Sabah (Malaysia), Pakistan and Papua New Guinea; this report is the direct application of that framework to Vancouver, giving management a complete frame of reference.</li><li><strong>Buyer network:</strong> Our firm maintains an existing buyer network and investor relationships in the onshore interbank market, supporting targeted placement and pre-issuance book-building to compress the sales cycle.</li><li><strong>Bilingual team:</strong> Our team is familiar with Canadian public sector accounting standards (PSAS) disclosures, Council decision-making processes, and PBOC/NAFMII registration requirements, enabling seamless coordination of Canadian and PRC advisers with minimal friction.</li></ul><h3 class="section" id="sc21">14.2 Six Value Entry Points</h3><div class="tbl-wrap"><table><thead><tr><th>Entry point</th><th>What we deliver</th><th>Related chapters</th></tr></thead><tbody><tr><td>1. Legal and structuring design</td><td>Commission a BC-qualified counsel's written opinion on the Vancouver Charter; design the interface between s.242 no-plebiscite uses and s.245 plebiscite authority; determine the green/sustainable label structure</td><td>8, 9</td></tr><tr><td>2. Syndicate and advisers</td><td>Build an independent lead syndicate per the Pakistan model; coordinate domestic and international rating agencies, Canadian and PRC counsel, and auditors</td><td>9, 12</td></tr><tr><td>3. Registration documentation</td><td>Prepare and coordinate the NAFMII registration package (RMB 3.0bn program); arrange the domestic rating (China Chengxin International / Lianhe Credit); align disclosure standards</td><td>7, 12</td></tr><tr><td>4. Investor engagement</td><td>Pre-place targeted investors through our existing buyer network; organize roadshows and Q&A; calibrate the pricing range</td><td>5, 12</td></tr><tr><td>5. FX and funds flow</td><td>Design the "remit + hedge" structure (per BC's 2016 offshore reinvestment); implement SAFE cross-border arrangements and cross-currency swaps</td><td>9</td></tr><tr><td>6. Full-cycle service</td><td>Post-issuance investor relations, periodic disclosure, and support for opportunistic subsequent tranches</td><td>12</td></tr></tbody></table></div><h3 class="section" id="sc22">14.3 Value Checklist by Stakeholder</h3><ul><li><strong>For the City of Vancouver:</strong> a complete on-ramp to the Chinese capital market at zero upfront cost; funding diversification and potential all-in cost savings; green capital directly aligned with the City's Sustainability Bond Framework; a full project delivery team (legal, rating, distribution, treasury) without adding municipal headcount.</li><li><strong>For PRC regulators and investors:</strong> a high-quality AAA government-type issuer; transparent, standard registration documents with bilingual disclosure; lower due-diligence and post-investment tracking costs.</li><li><strong>For the syndicate and advisers:</strong> our firm acts as transaction initiator and project organizer, giving each adviser a high-quality mandate without incurring origination costs.</li></ul><h2 class="chapter" id="ch15">15. Engagement Progress with Canadian Government and Banks - Status and Next Steps</h2><p>Our firm has already initiated substantive engagement with government and banking institutions in Canada, all currently at the feasibility-study and information-exchange stage. This chapter summarizes the progress and sets out the next steps.</p><h3 class="section" id="sc23">15.1 Engagement to Date</h3><ul><li><strong>Government side:</strong> Our firm has established initial contact and communication channels with the relevant departments of the City of Vancouver, including preliminary exchanges on the Panda Bond feasibility study and the Charter authorization framework, with research materials submitted; at the provincial level we also have an engagement basis - as a participant in BC's Panda Bond program, we maintain a prior working relationship with the relevant provincial departments.</li><li><strong>Bank side:</strong> Our firm has engaged with several major Canadian banks, covering head-office capital markets/treasury desks and their onshore (China) operations, primarily on: global coordinator or syndicate roles, settlement and custody arrangements, offshore RMB products and hedging, and investor distribution channels.</li><li><strong>Compliance note:</strong> None of the above constitutes a commitment or contractual obligation; the specific names of institutions, meeting minutes and authorization status are per our firm's internal records and can be supplemented on request.</li></ul><h3 class="section" id="sc24">15.2 Engagement Themes and Current Status</h3><div class="tbl-wrap"><table><thead><tr><th>Counterparty</th><th>Engagement themes</th><th>Current status</th><th>Next steps</th></tr></thead><tbody><tr><td>City of Vancouver finance/treasury</td><td>Panda feasibility; s.242/s.245 use-of-proceeds interface; Sustainability Bond Framework</td><td>Initial channel established; research materials delivered</td><td>Formal mandate after NDA</td></tr><tr><td>BC provincial bodies</td><td>Panda precedent experience; regulatory and public environment</td><td>Continued from prior cooperation</td><td>Dedicated engagement as needed</td></tr><tr><td>Major Canadian banks (capital markets/treasury)</td><td>Underwriting, settlement, custody; offshore RMB products</td><td>Preliminary discussions underway</td><td>Form syndicate upon issuance window</td></tr><tr><td>Canadian banks' China operations</td><td>Cross-border payments, RMB accounts, investor services</td><td>Business contact established</td><td>Activate at transaction stage</td></tr></tbody></table></div><h3 class="section" id="sc25">15.3 Next Steps</h3><ol><li><strong>Near term (1-2 months):</strong> sign an NDA with the City of Vancouver; commission a BC-qualified counsel's written legal opinion; circulate an information memorandum (IM) to prospective banks for underwriting indications;</li><li><strong>Medium term (2-4 months):</strong> confirm the Council internal authorization path (s.242 preferred); engage the domestic rating agency and PRC counsel; begin drafting the NAFMII registration package;</li><li><strong>Key milestone:</strong> sequence around the October 2026 municipal election - complete all technical preparation before the election and launch formal decision-making after it;</li><li><strong>Compliance:</strong> all external engagement is conducted in accordance with applicable law and our firm's compliance procedures; any formal arrangement is subject to executed written agreements.</li></ol><h2 class="chapter" id="ch16">References</h2><ul><li>Moody's Ratings, Credit Opinion: Vancouver, City of (2026-04-02); Moody's rating action on BC (March 2026, AA1 to AA2, negative); S&P Global Ratings on the City of Vancouver (AAA, stable).</li><li>City of Vancouver, 2025 Statement of Financial Information (published April 2026, audited by KPMG); Council debenture program reports (July 2022; July 2025); City investor relations page; 2023–2026 Capital Plan; By-law No. 14504 (25 Nov 2025).</li><li>Vancouver Charter, S.B.C. 1953, c. 55, Part V (ss. 236–264), current consolidation, BC Laws.</li><li>BC Government press releases: Panda Bond program approval (Dec 2015), first tranche (Jan 2016, RMB 3.0bn, 2.95%), second tranche (Nov 2017, RMB 1.0bn); China Daily coverage.</li><li>NAFMII & ICMA, "Panda Bonds — Raising Finance in China's Bond Market" (Sep 2021).</li><li>Sharjah panda issuance reports (Feb 2018 RMB 2.0bn, 5.8%; Oct 2025 RMB 2.0bn; Ba1/BBB-/Lianhe AAA), Zawya, GlobalCapital.</li><li>Province of BC Budget 2026 and three-year fiscal plan; Morningstar DBRS budget commentary (2026-02-18); National Bank of Canada and Desjardins budget analyses.</li><li>PBOC & MOF Announcement [2018] No. 16, Interim Measures for the Administration of Bond Issuance by Overseas Institutions in the National Interbank Bond Market; NAFMII implementing guidelines.</li><li>Pakistan's first Panda Bond (14 May 2026, RMB 1.75bn, 2.5%) and CCXI rating reports (firm archives).</li></ul><hr class="sec-divider"><h2 class="chapter" id="ch17">Disclaimer</h2><p>This report is prepared by Vastgold Enterprise Holding Ltd for internal evaluation and designated recipients only. It does not constitute legal, tax or investment advice, nor an offer or solicitation of any securities. Conclusions regarding the Vancouver Charter and PRC regulations are subject to written confirmation by qualified counsel in British Columbia and the PRC. Financial and market data are drawn from public sources; the Company accepts no liability for their completeness or subsequent changes.</p>
+</article></main>
+</div>
+<footer><div class="foot">
+VASTGOLD ENTERPRISE HOLDING LTD ｜ CONFIDENTIAL ｜ August 25, 2026 ｜ This report does not constitute legal, tax or investment advice; Charter interpretations are subject to written confirmation by BC-qualified counsel.
+</div></footer>
+<script>
+
+(function(){
+  var prog=document.getElementById('progress');
+  addEventListener('scroll',function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;prog.style.width=p+'%';},{passive:true});
+  var links=Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var secs=links.map(function(l){return document.querySelector(l.getAttribute('href'));});
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var activeLink=null;links.forEach(function(l){var isActive=l.getAttribute('href')==='#'+e.target.id;l.classList.toggle('active',isActive);if(isActive)activeLink=l;});if(activeLink)activeLink.scrollIntoView({block:'nearest',inline:'nearest'});}});},{rootMargin:'-15% 0px -70% 0px'});
+    secs.forEach(function(s){if(s)obs.observe(s);});
+  }
+  var btn=document.getElementById('tocbtn');
+  if(btn){btn.addEventListener('click',function(){document.querySelector('nav.toc').classList.toggle('open');});}
+})();
+
+</script>
+
+<!-- Floating Return to Archives Button -->
+<style>
+@keyframes vg-archives-blink {
+  0%, 100% { opacity: 1; box-shadow: 0 6px 28px rgba(22,163,74,0.5); }
+  50%       { opacity: 0.6; box-shadow: 0 6px 48px rgba(22,163,74,0.9); }
+}
+#vg-return-btn {
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
+  z-index: 99999;
+  background: #16a34a;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 800;
+  padding: 18px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: 0.5px;
+  animation: vg-archives-blink 1.5s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+#vg-return-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 48px rgba(22,163,74,0.8) !important;
+  animation-play-state: paused;
+  opacity: 1 !important;
+}
+#vg-return-btn .vg-btn-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+@media (max-width: 600px) {
+  #vg-return-btn {
+    bottom: 20px;
+    right: 16px;
+    font-size: 15px;
+    padding: 14px 22px;
+    gap: 8px;
+  }
+  #vg-return-btn .vg-btn-icon { font-size: 20px; }
+}
+</style>
+<a id="vg-return-btn" href="../archives.html">
+  <span class="vg-btn-icon">🏠</span>
+  <span id="vg-return-btn-text">Return to Matrix Bond Management Archives</span>
+</a>
+<script>
+(function () {
+  var lang = localStorage.getItem('vg_lang') || 'en';
+  var el = document.getElementById('vg-return-btn-text');
+  if (el) el.textContent = lang === 'en' ? 'Return to Matrix Bond Management Archives' : '返回Matrix Bond归档主页';
+})();
+</script>
+
+</body>
+</html>

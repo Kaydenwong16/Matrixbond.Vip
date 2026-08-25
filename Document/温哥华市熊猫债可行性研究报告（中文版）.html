@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>温哥华市熊猫债可行性研究与分析报告（中文版）</title>
+<style>
+
+:root{--navy:#123a63;--navy2:#0e2d4e;--gold:#b8944a;--gold2:#d9b96a;--bg:#f4f6f8;--card:#fff;--ink:#1d2b39;--muted:#5d6e7f;--line:#e3e8ee;--good:#1e7d46;--warn:#b26a00;--bad:#c0392b;--chip:#eaf1f8}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.78;font-size:15px;-webkit-font-smoothing:antialiased}
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold2));width:0;z-index:99}
+.cover{background:linear-gradient(135deg,#0b2440 0%,#123a63 55%,#1b4d80 100%);color:#fff;padding:64px 32px 48px;position:relative;overflow:hidden}
+.cover::after{content:"";position:absolute;right:-80px;top:-80px;width:320px;height:320px;border:2px solid rgba(255,255,255,.14);border-radius:50%}
+.cover::before{content:"";position:absolute;right:40px;bottom:-120px;width:260px;height:260px;border:1px solid rgba(255,255,255,.10);border-radius:50%}
+.cover-inner{max-width:1000px;margin:0 auto;position:relative;z-index:1}
+.cover .kicker{display:inline-block;letter-spacing:.18em;font-size:12px;border:1px solid rgba(255,255,255,.35);padding:4px 14px;border-radius:999px;color:#e8d5ac;margin-bottom:22px}
+.cover h1{font-size:clamp(26px,4vw,42px);line-height:1.32;font-weight:700;letter-spacing:.02em;margin-bottom:16px}
+.cover .sub{font-size:15px;color:#cfe0f2;max-width:780px;margin-bottom:28px;line-height:1.7}
+.cover .org{font-size:18px;font-weight:600;color:#fff;margin-bottom:6px}
+.cover .meta{font-size:13px;color:#9db8d6;margin-bottom:26px}
+.cover .note{font-size:12px;color:#8fa9c4;border-top:1px solid rgba(255,255,255,.18);padding-top:14px;max-width:840px;line-height:1.7}
+.verbar{max-width:1280px;margin:20px auto 0;padding:0 24px}
+.verbar .in{background:linear-gradient(90deg,#fdf9ef,#fbf5e4);border:1px solid #ecd9a8;border-radius:10px;padding:12px 18px;font-size:13.5px;color:#6b5a2e;line-height:1.7}
+.layout{display:flex;gap:32px;max-width:1280px;margin:0 auto;padding:24px 24px 56px}
+nav.toc{width:272px;flex-shrink:0;position:sticky;top:20px;align-self:flex-start;max-height:calc(100vh - 40px);overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 14px}
+nav.toc h3{font-size:12px;letter-spacing:.16em;color:var(--muted);margin:0 6px 10px;text-transform:uppercase}
+nav.toc a{display:block;font-size:13px;color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:6px;border-left:2px solid transparent;line-height:1.5}
+nav.toc a.sec{padding-left:24px;font-size:12.5px}
+nav.toc a:hover{color:var(--navy);background:var(--chip)}
+nav.toc a.active{color:var(--navy);background:var(--chip);border-left-color:var(--gold);font-weight:600}
+.tocbtn{display:none;max-width:1280px;margin:14px auto 0;padding:0 24px}
+.tocbtn button{width:100%;padding:10px;border:1px solid var(--line);background:var(--card);color:var(--navy);font-size:14px;border-radius:10px;cursor:pointer}
+main{flex:1;min-width:0}
+article{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:36px 44px}
+h2.chapter{font-size:21px;color:var(--navy);font-weight:700;letter-spacing:.01em;margin:8px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--navy)}
+h3.section{font-size:17px;color:var(--navy2);margin:28px 0 12px;font-weight:650}
+h4{font-size:15px;color:var(--navy2);margin:18px 0 8px}
+p{margin:10px 0;text-align:justify}
+ul,ol{margin:10px 0 10px 24px}
+li{margin:6px 0}
+hr.sec-divider{border:none;border-top:1px dashed var(--line);margin:28px 0}
+blockquote{background:#fbf7ee;border-left:3px solid var(--gold);padding:12px 18px;border-radius:0 8px 8px 0;color:#4a463c;margin:14px 0;font-size:14.5px;line-height:1.75}
+.tbl-wrap{overflow-x:auto;margin:18px 0;border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:520px}
+thead th{background:var(--navy);color:#fff;text-align:left;padding:10px 12px;font-weight:600;white-space:nowrap;line-height:1.5}
+tbody td{padding:10px 12px;border-top:1px solid var(--line);vertical-align:top;line-height:1.6}
+tbody tr:nth-child(even){background:#f7fafc}
+table.charter td{font-size:12.5px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.dot.good{background:var(--good)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+footer{max-width:1280px;margin:0 auto;padding:0 24px 44px;color:var(--muted);font-size:12.5px}
+footer .foot{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 22px;line-height:1.7}
+@media (max-width:960px){
+  .layout{flex-direction:column;padding:16px}
+  nav.toc{width:100%;position:static;max-height:none;display:none}
+  nav.toc.open{display:block}
+  .tocbtn{display:block}
+  article{padding:24px 18px}
+  .cover{padding:44px 20px 36px}
+}
+@media print{
+  nav.toc,.tocbtn,#progress,.verbar{display:none!important}
+  body{background:#fff}
+  article{border:none;padding:0}
+  .cover{background:#123a63!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  thead th{background:#123a63!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .layout{max-width:none;padding:0}
+}
+
+</style>
+</head>
+<body>
+
+<!-- ========== SECURITY GATE ========== -->
+<style>
+body.vg-locked > *:not(#vg-security-gate) { visibility: hidden !important; pointer-events: none !important; }
+#vg-security-gate {
+  position: fixed; inset: 0; z-index: 999999;
+  background: linear-gradient(160deg, #0b2440 0%, #123a63 55%, #1b4d80 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: "PingFang SC", "Microsoft YaHei", "Segoe UI", Roboto, Arial, sans-serif;
+}
+#vg-security-gate .gate-box {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(184,148,74,0.35);
+  border-radius: 18px;
+  padding: 52px 44px;
+  text-align: center;
+  max-width: 420px;
+  width: 90%;
+  backdrop-filter: blur(12px);
+}
+#vg-security-gate .gate-logo { font-size: 46px; margin-bottom: 10px; }
+#vg-security-gate .gate-title {
+  color: #b8944a; font-size: 21px; font-weight: 800;
+  letter-spacing: 2px; margin-bottom: 8px;
+}
+#vg-security-gate .gate-subtitle {
+  color: rgba(255,255,255,0.5); font-size: 13px;
+  line-height: 1.7; margin-bottom: 36px;
+}
+#vg-security-gate .gate-label {
+  color: rgba(255,255,255,0.65); font-size: 12px;
+  text-align: left; margin-bottom: 10px; letter-spacing: 0.5px;
+}
+#vg-security-gate input {
+  width: 100%; padding: 16px 18px;
+  border-radius: 10px;
+  border: 1.5px solid rgba(184,148,74,0.4);
+  background: rgba(255,255,255,0.07);
+  color: #fff; font-size: 26px;
+  letter-spacing: 10px; text-align: center;
+  outline: none; margin-bottom: 18px;
+  transition: border-color 0.2s;
+}
+#vg-security-gate input:focus { border-color: #b8944a; }
+#vg-security-gate input.vg-gate-shake {
+  border-color: #e74c3c !important;
+  animation: gate-shake 0.35s ease;
+}
+#vg-security-gate button {
+  width: 100%; padding: 15px;
+  border-radius: 10px; background: #b8944a;
+  color: #0b2440; font-size: 16px; font-weight: 800;
+  border: none; cursor: pointer; letter-spacing: 1px;
+  transition: background 0.2s, transform 0.1s;
+}
+#vg-security-gate button:hover { background: #d9b96a; transform: scale(1.02); }
+#vg-security-gate button.gate-cancel {
+  background: transparent;
+  color: rgba(255,255,255,0.55);
+  border: 1.5px solid rgba(255,255,255,0.25);
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+#vg-security-gate button.gate-cancel:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.45);
+  color: #fff;
+  transform: none;
+}
+#vg-security-gate .gate-error {
+  color: #ff6b6b; font-size: 13px;
+  margin-top: 14px; min-height: 18px;
+}
+@keyframes gate-shake {
+  0%,100% { transform: translateX(0); }
+  25%      { transform: translateX(-10px); }
+  75%      { transform: translateX(10px); }
+}
+</style>
+
+<div id="vg-security-gate">
+  <div class="gate-box">
+    <div class="gate-logo">🔒</div>
+    <div class="gate-title">Matrix Bond Management</div>
+    <div class="gate-subtitle">机密文件 — 请输入安全码<br>Confidential Document — Enter Security Code</div>
+    <div class="gate-label">安全码 / Security Code</div>
+    <input type="password" id="vg-gate-input" maxlength="6" placeholder="······" autocomplete="off" inputmode="numeric">
+    <button onclick="vgGateSubmit()">进入 &nbsp;/&nbsp; Enter</button>
+    <button class="gate-cancel" type="button" onclick="window.location.href='../archives.html'">取消 &nbsp;/&nbsp; Cancel</button>
+    <div class="gate-error" id="vg-gate-error"></div>
+  </div>
+</div>
+<script>
+(function () {
+  var CORRECT = '202605';
+  document.body.classList.add('vg-locked');
+  document.getElementById('vg-gate-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') vgGateSubmit();
+  });
+  window.vgGateSubmit = function () {
+    var input = document.getElementById('vg-gate-input');
+    var errEl = document.getElementById('vg-gate-error');
+    if (input.value.trim() === CORRECT) {
+      unlock();
+    } else {
+      input.classList.remove('vg-gate-shake');
+      void input.offsetWidth;
+      input.classList.add('vg-gate-shake');
+      input.value = '';
+      var lang = localStorage.getItem('vg_lang') || 'zh';
+      errEl.textContent = lang === 'en' ? 'Incorrect code. Please try again.' : '安全码错误，请重试。';
+      setTimeout(function () { input.classList.remove('vg-gate-shake'); }, 400);
+    }
+  };
+  function unlock() {
+    var gate = document.getElementById('vg-security-gate');
+    if (gate) gate.remove();
+    document.body.classList.remove('vg-locked');
+  }
+})();
+</script>
+<!-- ========== END SECURITY GATE ========== -->
+
+<!-- Watermark -->
+<style>
+.watermark {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url('../Matrix Logo MBM rem bckgd.png');
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 180px auto;
+  opacity: 0.06;
+}
+</style>
+<div class="watermark"></div>
+
+<div id="progress"></div>
+<div class="cover">
+<div class="cover-inner">
+<div class="kicker">机密文件 · CONFIDENTIAL · 仅供指定接收方使用</div><h1>温哥华市熊猫债可行性研究与分析报告</h1><p class="sub">加拿大不列颠哥伦比亚省温哥华市（City of Vancouver）发行熊猫债券之可行性研究<br>附：温哥华市政府独立发债权限法律条文章程（中英对照）</p><div class="org">宏鑫企业控股有限公司 · VASTGOLD ENTERPRISE HOLDING LTD</div><div class="meta">2026年8月25日（星期一） · 中文版（HTML） · 在《中英双语版》基础上新增第十四、十五章</div><div class="note">本报告仅供内部评估及指定接收方使用，未经书面许可不得转发或引用。本报告不构成法律、税务或投资意见；涉及《温哥华宪章》及中国监管规则的结论，以不列颠哥伦比亚省及中国执业律师书面确认为准。</div>
+</div>
+</div>
+<div class="verbar"><div class="in">
+HTML 版更新说明：本版在 2026年8月25日《中英双语版》报告基础上，新增 <strong>第十四章「我们的角色与价值切入点：为何由本公司协助发债」</strong> 与 <strong>第十五章「加拿大政银接触进展与下一步行动」</strong>，并整理为中文单语精排版。
+</div></div>
+<div class="tocbtn"><button id="tocbtn" type="button">
+目录
+</button></div>
+<div class="layout">
+<nav class="toc"><h3>
+目录
+</h3>
+<a href="#ch1">一、执行摘要</a>
+<a href="#ch2">二、项目背景与目的</a>
+<a href="#ch3">三、熊猫债券市场与监管框架概述</a>
+<a class="sec" href="#sc1">3.1 监管架构</a>
+<a class="sec" href="#sc2">3.2 政府类发行人层级：无城市级禁止性规定</a>
+<a href="#ch4">四、温哥华市信用与财务状况分析</a>
+<a class="sec" href="#sc3">4.1 财务状况</a>
+<a class="sec" href="#sc4">4.2 信用评级：AAA，且高于所在省</a>
+<a href="#ch5">五、案例对比：境外政府类熊猫债发行人级别与规模</a>
+<a class="sec" href="#sc5">5.1 级别对比的三点结论</a>
+<a class="sec" href="#sc6">5.2 城市级首单的意义</a>
+<a href="#ch6">六、市级与省级发行规模对比</a>
+<a class="sec" href="#sc7">6.1 规模对比的解读</a>
+<a href="#ch7">七、中国侧发行资格分析</a>
+<a class="sec" href="#sc8">7.1 发行人类别归属与注册路径</a>
+<a class="sec" href="#sc9">7.2 先例的直接可援引性</a>
+<a class="sec" href="#sc10">7.3 境内评级</a>
+<a class="sec" href="#sc11">7.4 结论</a>
+<a href="#ch8">八、温哥华市政府独立发行权限的法律条文章程</a>
+<a class="sec" href="#sc12">8.1 《温哥华宪章》的法律地位与宪制框架</a>
+<a class="sec" href="#sc13">8.2 宪章第五部分发债条文清单（中英对照）</a>
+<a class="sec" href="#sc14">8.3 内部授权双轨：第242条免公投通道与第245条公投授权通道</a>
+<a class="sec" href="#sc15">8.4 债务上限与发债自主权</a>
+<a class="sec" href="#sc16">8.5 独立发债的完整法律链条</a>
+<a class="sec" href="#sc17">8.6 待办法律事项</a>
+<a href="#ch9">九、发行结构路径选择</a>
+<a class="sec" href="#sc18">9.1 募集资金与外汇安排</a>
+<a class="sec" href="#sc19">9.2 绿色/可持续熊猫债定位</a>
+<a href="#ch10">十、与本所过往评估案例的横向对比</a>
+<a href="#ch11">十一、风险因素与缓释措施</a>
+<a href="#ch12">十二、实施路径与总体时间表（预计）</a>
+<a href="#ch13">十三、结论与建议</a>
+<a href="#ch14">十四、我们的角色与价值切入点：为何由本公司协助发债</a>
+<a class="sec" href="#sc20">14.1 能力基础与过往履历</a>
+<a class="sec" href="#sc21">14.2 六大价值切入点</a>
+<a class="sec" href="#sc22">14.3 对各方"帮助点"清单</a>
+<a href="#ch15">十五、加拿大政银接触进展与下一步行动</a>
+<a class="sec" href="#sc23">15.1 已开展的接触（现状汇总）</a>
+<a class="sec" href="#sc24">15.2 接触要点与当前状态</a>
+<a class="sec" href="#sc25">15.3 下一步行动安排</a>
+<a href="#ch16">参考资料</a>
+<a href="#ch17">免责声明</a>
+</nav>
+<main><article>
+<h2 class="chapter" id="ch1">一、执行摘要</h2><p>本报告依照本所此前对马来西亚沙巴州、巴基斯坦及巴布亚新几内亚项目所采用的可行性评估框架，对加拿大不列颠哥伦比亚省温哥华市（City of Vancouver，下称“温哥华市”）发行熊猫债券的资格与可行性进行全面分析，并按要求补充三项专题内容：（1）与已成功发行熊猫债的境外政府类发行人的信用级别对比；（2）市级与省级发行主体在借款规模上的量化对比；（3）温哥华市政府依《温哥华宪章》可独立行使的发债法律条文章程清单（中英对照）。 <strong>核心结论如下</strong></p><ul><li><strong>中国侧资格：完全具备。</strong> 温哥华市属于中国人民银行、财政部2018年第16号公告框架下的“外国政府类机构”发行人类别。BC省2015—2017年人民币60亿元熊猫债计划（本所曾参与）及沙迦酋长国2018年、2025年两次发行，已为次主权政府发行人建立了完整、可复制的监管先例。</li><li><strong>加方法律授权：明确且无上级审批障碍。</strong> 《温哥华宪章》（Vancouver Charter, S.B.C. 1953, c.55）第五部分（第236—264条）明文授权市议会“以加拿大或其他国家之货币”举债，债券可“在加拿大境内或境外”付款。人民币计价、在中国境内付款的熊猫债落入宪章明文授权范围，无需修改立法或豁免；亦不存在联邦或省级审批环节（详见第八章条文清单）。</li><li><strong>信用资质：熊猫债市场历史上信用等级最高的候选政府类发行人之一。</strong> 穆迪2026年4月信用意见维持温哥华市AAA评级（基础信用评估亦为AAA），高于BC省（2026年3月遭下调至AA2、展望负面）两个子级，形成罕见的“市高于省”评级倒挂；标普亦授予AAA。</li><li><strong>市场定位：全球首单外国城市级政府熊猫债。</strong> 若成功发行，温哥华市将成为全球首个发行熊猫债的外国城市级政府，且无需类似巴基斯坦交易中的亚开行/亚投行部分担保增信机制，增信成本为零。</li><li><strong>主要制约因素：并非资格问题，而是（i）资金用途与公投授权资本计划的衔接；（ii）人民币募集资金的汇率对冲与资金运用安排；（iii）市议会的政治意愿与中加关系环境。</strong></li><li><strong>建议路径：</strong> 参照BC省模式，由温哥华市以自身名义在银行间市场注册人民币30亿元中期票据计划，首期发行人民币5—15亿元、期限3—5年，以绿色/可持续熊猫债形式对接市《可持续债券框架》，采用定向发售压缩销售周期。总体实施周期约6—9个月，力争2027年上半年完成首发。</li></ul><hr class="sec-divider"><h2 class="chapter" id="ch2">二、项目背景与目的</h2><p>本所此前就马来西亚沙巴州、巴基斯坦及巴布亚新几内亚项目的熊猫债可行性建立了统一的评估框架。本报告在相同框架下评估温哥华市，并按委托要求补充：（1）境外政府类发行人信用级别对比；（2）市级与省级借款规模量化对比；（3）本版新增——温哥华市政府可独立援引的宪章发债条文清单（中英对照），作为加方法律权限分析的规范性附录。</p><hr class="sec-divider"><h2 class="chapter" id="ch3">三、熊猫债券市场与监管框架概述</h2><h3 class="section" id="sc1">3.1 监管架构</h3><p>熊猫债券指境外机构在中国境内市场发行的人民币计价债券。现行核心规则为中国人民银行、财政部2018年联合发布的第16号公告《全国银行间债券市场境外机构债券发行管理暂行办法》，将银行间市场境外发行人划分为四类：外国政府类机构、国际开发机构、境外金融机构法人及境外非金融企业法人。政府类机构发行实行中国银行间市场交易商协会（NAFMII）注册制，注册有效期内可分期发行。 对外国政府类发行人的基本要求包括：具备真实合法的人民币资金需求；按注册地或国际通行会计准则编制并披露经审计财务信息（政府类主体以财政与债务信息披露替代企业财务报表）；聘请具备资质的境内信用评级机构出具评级（实践中为中诚信国际、联合资信等）；聘请中国境内律师出具法律意见书，就发行人主体资格、内部授权及债券合法性发表意见。</p><h3 class="section" id="sc2">3.2 政府类发行人层级：无城市级禁止性规定</h3><p>需要特别指出：第16号公告及NAFMII相关指引对“外国政府类机构”未按行政层级设限。实践中已完成发行的政府类主体涵盖主权国家（韩国、波兰、匈牙利、菲律宾、葡萄牙、埃及、巴基斯坦）、省级政府（加拿大BC省）与酋长国（阿联酋沙迦）。城市级政府虽尚无先例，但不存在规则障碍——关键在于发行人依其本国法律具备独立举债的法定权限，并能出具无保留的法律意见。此点正是温哥华市区别于沙巴州的决定性优势，详见第八章。</p><hr class="sec-divider"><h2 class="chapter" id="ch4">四、温哥华市信用与财务状况分析</h2><h3 class="section" id="sc3">4.1 财务状况</h3><p>温哥华市2025财年经审计合并财务报表显示其财务状况极为稳健，关键指标如下：</p><div class="tbl-wrap"><table><thead><tr><th>指标（2025财年，经审计）</th><th>金额（加元）</th><th>说明</th></tr></thead><tbody><tr><td>年度盈余</td><td>5.304亿</td><td>优于预算的3.86亿</td></tr><tr><td>累计盈余（净资产）</td><td>约110亿</td><td>历年盈余累计</td></tr><tr><td>非金融资产（土地、基础设施等）</td><td>约94亿</td><td>持续增长</td></tr><tr><td>净金融资产</td><td>15.4亿</td><td>金融资产减负债后为正</td></tr><tr><td>各类储备金</td><td>逾23亿</td><td>住房、基建、应急专项</td></tr><tr><td>对外长期债务（毛额，2021年末）</td><td>10.14亿</td><td>扣除偿债基金后净额5.91亿</td></tr></tbody></table></div><p>表4-1 温哥华市主要财务指标（来源：市2025年度财务信息报告及市议会债券计划报告） 值得强调的是，温哥华市净金融资产为正（15.4亿加元），即金融资产足以覆盖全部负债——这在政府发行人中极为罕见。市政府拥有约94亿加元非金融资产（土地、基础设施等）与逾23亿加元储备金。对外长期债务毛额约10.14亿加元，扣除偿债基金后净额仅约5.91亿加元，对应约4,646亿加元的应税不动产评估基数，债务负担极轻。</p><h3 class="section" id="sc4">4.2 信用评级：AAA，且高于所在省</h3><p>穆迪2026年4月信用意见维持温哥华市AAA评级，基础信用评估（BCA）为AAA，与评分卡结果一致；标普亦维持AAA（稳定）。与此对照，穆迪于2026年3月将BC省长期发行人及高级无抵押评级由AA1下调至AA2、展望负面，理由是结构性赤字固化与债务快速累积；标普对省的评级为A+（负面展望）。由此形成温哥华市信用等级高于其所在省两个子级的“评级倒挂”格局。 对中国投资人而言，这一格局的商业含义直接：BC省熊猫债（2016年、2017年）发行时省评级为AAA/AAA，而今日的BC省已无法提供AAA纸张；温哥华市是当前加拿大西部唯一能以AAA政府信用进入熊猫债市场的发行主体，可视为“2016年BC省交易的信用等价物”。</p><hr class="sec-divider"><h2 class="chapter" id="ch5">五、案例对比：境外政府类熊猫债发行人级别与规模</h2><p>下表汇总迄今主要境外政府类熊猫债发行人的层级、规模、定价及信用级别，并标注温哥华市的拟议定位：</p><div class="tbl-wrap"><table><thead><tr><th>发行人</th><th>层级</th><th>首发年份</th><th>发行规模</th><th>票面利率</th><th>国际评级（发行时/现时）</th><th>中国境内评级</th></tr></thead><tbody><tr><td>韩国</td><td>主权</td><td>2015</td><td>RMB 30亿</td><td>3.0%</td><td>Aa2 / AA</td><td>AAA</td></tr><tr><td>BC省（加拿大）</td><td>省级</td><td>2016</td><td>RMB 30亿+10亿（60亿计划）</td><td>2.95%</td><td>发行时AAA；现Aa2</td><td>AAA</td></tr><tr><td>波兰</td><td>主权</td><td>2016</td><td>RMB 30亿</td><td>约3.4%</td><td>A2 / A-</td><td>AAA</td></tr><tr><td>匈牙利</td><td>主权</td><td>2017</td><td>RMB 10亿；2025年增发50亿</td><td>—</td><td>Baa3 / BBB</td><td>AAA</td></tr><tr><td>沙迦（阿联酋）</td><td>酋长国（次主权）</td><td>2018</td><td>RMB 20亿；2025年再发20亿</td><td>5.8%（2018）</td><td>Ba1 / BBB-</td><td>联合资信 AAA</td></tr><tr><td>埃及</td><td>主权</td><td>2023</td><td>RMB 35亿（可持续）</td><td>约3.5%</td><td>B级区间</td><td>担保后债项AAA</td></tr><tr><td>巴基斯坦</td><td>主权</td><td>2026</td><td>RMB 17.5亿（5倍超额认购）</td><td>2.5%</td><td>CCXI国际序列 B⁻g</td><td>CCXI本币AA+/债项AAA</td></tr><tr><td>温哥华市（拟）</td><td>城市级（首单）</td><td>拟2027</td><td>建议RMB 5—15亿（30亿计划）</td><td>预计≤3%</td><td>AAA（穆迪，2026）</td><td>预计AAA（无需增信）</td></tr></tbody></table></div><p>表5-1 境外政府类熊猫债发行人对比（沙迦2025年评级为Ba1/BBB-，联合资信境内AAA；部分历史票面利率为公开报道口径）</p><h3 class="section" id="sc5">5.1 级别对比的三点结论</h3><ul><li><strong>评级位居首位。</strong> 温哥华市AAA评级在上表全部发行人中位居首位，与2016年发行时的BC省持平，显著高于沙迦（Ba1）、匈牙利（Baa3）、埃及及巴基斯坦。历史上尚无任何一单熊猫债的发行人国际评级高于温哥华市——温哥华市将是熊猫债市场有史以来信用资质最高的政府类发行人之一。</li><li><strong>境内评级无障碍、增信成本为零。</strong> 沙迦（国际Ba1）获联合资信境内AAA、巴基斯坦（国际B级区间）经担保机制后获债项AAA的先例表明：温哥华市以AAA国际评级获得中诚信国际或联合资信境内主体AAA评级不存在任何悬念，且完全无需埃及、巴基斯坦交易所依赖的亚开行/亚投行部分担保机制——增信成本为零。</li><li><strong>定价具备竞争力。</strong> 高资质发行人（韩国3.0%、BC省2.95%、巴基斯坦经担保后2.5%）的票面利率区间提示，温哥华市3—5年期熊猫债定价预计不高于3%，在当前人民币利率环境下具备与其加元债券可比甚至更优的综合融资成本（含掉期后）。</li></ul><h3 class="section" id="sc6">5.2 城市级首单的意义</h3><p>迄今熊猫债政府类发行人最低行政层级为省级（BC省）与酋长国（沙迦）。温哥华市若发行成功，将创下“全球首个发行熊猫债的外国城市政府”纪录，复制BC省2013年（首单境外政府点心债）、2015年（首个熊猫债计划）两度“首单”的示范路径。首单效应对承销团、评级机构及NAFMII均具吸引力，有助于争取注册与定价环节的支持。</p><hr class="sec-divider"><h2 class="chapter" id="ch6">六、市级与省级发行规模对比</h2><p>按要求，下表将温哥华市与BC省的借款规模及人民币市场纪录并列对比：</p><div class="tbl-wrap"><table><thead><tr><th>指标</th><th>温哥华市</th><th>BC省</th></tr></thead><tbody><tr><td>年度发债/借款规模</td><td>约1—1.5亿加元（年度债券计划）</td><td>315亿加元（2025-26实际）；349亿（2026-27计划）</td></tr><tr><td>长期债务余额</td><td>毛额约10亿加元（2021年末），扣除偿债基金后净额约5.9亿</td><td>总债务逼近1,550亿加元；纳税人支持债务计划期内升至1,890亿</td></tr><tr><td>债务上限</td><td>宪章第236条：不超过应税不动产两年平均评估值的20%（现有债务远低于上限）</td><td>无法定上限；债务/GDP由26.1%升向37.4%（2028-29）</td></tr><tr><td>信用评级（2026年）</td><td>穆迪 AAA（BCA AAA）</td><td>穆迪 AA2（负面）；标普 A+（负面）</td></tr><tr><td>人民币市场纪录</td><td>无（拟首发）</td><td>2013年点心债RMB 25亿；2016年熊猫债RMB 30亿（2.95%）；2017年RMB 10亿；计划总额RMB 60亿</td></tr><tr><td>建议熊猫债规模</td><td>首期RMB 5—15亿（约1—2.9亿加元），注册RMB 30亿计划分期发行</td><td>（先例参照：单期上限RMB 30亿、期限至10年）</td></tr></tbody></table></div><p>表6-1 温哥华市与BC省借款规模对比（金额来源：市议会债券报告、BC省2026年预算、DBRS及银行评论）</p><h3 class="section" id="sc7">6.1 规模对比的解读</h3><p>温哥华市年度发债规模约为BC省的0.4%—0.5%，债务体量相差两个数量级——这恰恰是其信用优势的来源：市政府债务负担极轻、净金融资产为正，而省政府正处于创纪录赤字与债务快速扩张周期（2026-27年赤字133亿加元，四家评级机构展望均为负面）。 规模建议的逻辑：温哥华市年度债券计划约1—1.5亿加元，对应人民币约5—7.5亿元；考虑到熊猫债注册计划通常按2—3年发行需求申报，建议注册RMB 30亿元计划（约5.8亿加元，覆盖一个资本计划周期的举债授权），首期发行RMB 5—15亿元。该规模（i）与市既有年度发债节奏匹配，不构成超额举债；（ii）达到银行间市场政府类债券的流动性门槛；（iii）为BC省2016年首期（RMB 30亿）的1/6至1/2，与市省财政体量比例关系一致，定位合理、易向NAFMII说明。</p><hr class="sec-divider"><h2 class="chapter" id="ch7">七、中国侧发行资格分析</h2><h3 class="section" id="sc8">7.1 发行人类别归属与注册路径</h3><p>温哥华市为依《温哥华宪章》（BC省1953年专门立法）设立的法人市政府，以自身名义举债、征税并管理偿债基金，属第16号公告项下“外国政府类机构”，适用NAFMII注册制。注册文件核心包括：注册报告、近三年经审计财务信息（市按加拿大公共部门会计准则PSAS编制，KPMG审计，满足“国际通行会计准则或经认可等效准则”要求）、境内评级报告、境内外法律意见书、募集资金用途说明及外汇安排说明。</p><h3 class="section" id="sc9">7.2 先例的直接可援引性</h3><p>BC省2015年获批的RMB 60亿计划确立了加拿大次主权政府发行人的全部技术路径：披露口径（财政报告替代企业报表）、偿债基金机制说明、以征税权作偿付承诺的法律结构、募集资金离岸运用与对冲安排（BC省2016年将募集资金即时转投新加坡大华银行离岸人民币产品以对冲汇率风险）。温哥华市可整体沿用该框架，仅需将省级立法依据替换为《温哥华宪章》。本所作为BC省及加拿大国民银行（2016年RMB 35亿熊猫债）交易的参与方，对上述文件包具备直接经验。</p><h3 class="section" id="sc10">7.3 境内评级</h3><p>参照沙迦（联合资信AAA）与BC省（AAA）先例，温哥华市境内主体评级预计为AAA，无需任何增信。与巴基斯坦交易（CCXI评级由CCCg修复至B⁻g、再经亚开行/亚投行部分担保将债项推至AAA）相比，温哥华项目的评级工作是纯粹的确认性程序，不存在结构设计难度，评级周期可压缩至6—8周。</p><h3 class="section" id="sc11">7.4 结论</h3><p>中国侧不存在资格障碍。温哥华市满足外国政府类机构发行人的全部实质要件，且为监管机构乐于支持的高资质、首单型发行人。</p><hr class="sec-divider"><h2 class="chapter" id="ch8">八、温哥华市政府独立发行权限的法律条文章程</h2><blockquote>本章为本报告的核心章节，逐条列明温哥华市政府依《温哥华宪章》可独立行使的发债法律条文（中英对照），并论证：在加拿大宪制框架下，温哥华市发行人民币熊猫债无需联邦或省政府批准、无需外汇管制许可、亦无需省级市政融资机构介入。</blockquote><h3 class="section" id="sc12">8.1 《温哥华宪章》的法律地位与宪制框架</h3><ul><li>《温哥华宪章》（Vancouver Charter, S.B.C. 1953, c. 55，经多次修订）是不列颠哥伦比亚省立法机关针对温哥华市制定的专门宪章性法规，取代此前的《温哥华市组织法》（Vancouver Incorporation Act, 1921）。依《1867年宪法法》第92条第8项，市政机构属省级专属立法权限；联邦对市政举债无任何管辖权或审批权。</li><li>温哥华市并非《地方政府法》（Local Government Act）或《社区宪章》（Community Charter）下的普通市政当局，而是依专门宪章设立、权限更广的法人。其举债、征税、偿债基金管理权限全部来源于宪章的明文授予。</li><li>加拿大自1951年废除《外汇管制法》后实行浮动汇率，无任何联邦外汇管制或外币举债审批机制。以人民币计价、在中国境内支付的债券在联邦层面不存在许可或备案要求。</li></ul><h3 class="section" id="sc13">8.2 宪章第五部分发债条文清单（中英对照）</h3><p>《温哥华宪章》第五部分“举债附例”（By-laws for Contracting Debts，第236—264条）完整规定市的举债权限。下表逐条列明与熊猫债发行直接相关的条文（原文要点与中文解读），并标注其对独立发债的意义：</p><div class="tbl-wrap"><table class="charter"><thead><tr><th>条文</th><th>条文标题</th><th>法定条文要点（英文）</th><th>中文解读与对熊猫债的意义</th></tr></thead><tbody><tr><td>236(1)</td><td>借款能力上限</td><td>“The Council may pass by-laws for contracting debts by borrowing money or otherwise for any authorized purpose, in such currencies whether of Canada or some other country as the Council deems expedient, and for levying taxes on the real property in the city ... but the aggregate of the debt so contracted shall not at any time be increased so as to exceed twenty per centum of the total assessed value of such real property calculated upon the average assessment for the two years prior to the year in which the by-law is passed. The debentures issued therefor may be made payable at such places, within or without Canada, and in such currencies ... as the Council deems expedient.”</td><td>熊猫债核心授权条款：明文允许“以加拿大或其他国家之货币”举债、债券“在加拿大境内或境外”付款，并对债务总额设定上限（不超过通过附例当年之前两年应税不动产平均评估值的20%）。人民币计价、中国境内付款的债券直接落入授权范围，无需修法或豁免。</td></tr><tr><td>237</td><td>附例生效时点</td><td>“The by-law shall name a day in the year in which it is passed upon which the by-law shall take effect.”</td><td>举债附例经市议会通过即按其指定日期生效，无需省级批准。</td></tr><tr><td>238</td><td>偿债期限</td><td>Debentures issued within 5 years after passing of by-law; whole debt payable within 50 years at most.</td><td>附例通过后5年内发行债券、期限最长50年——熊猫债3—5年期完全符合，注册计划期内分期发行不受限。</td></tr><tr><td>239</td><td>偿债基金与分期债券</td><td>Annual real-property tax levies to pay interest and principal; sinking fund or serial structure prescribed.</td><td>以不动产税年度摊款为偿债来源，构成对债券持有人的法定偿付机制；可与偿债基金/分期偿还两种结构衔接。</td></tr><tr><td>241</td><td>可提前赎回</td><td>Debentures (or a portion) may be called in and paid before maturity on such terms as specified.</td><td>附例可设提前赎回条款，为熊猫债提供期限灵活性。</td></tr><tr><td>242(1)</td><td>何种举债须经选民同意</td><td>General rule: Council shall not contract any debt not fully provided for in current-year estimates unless authorized by a by-law passed with the assent of the electors.</td><td>一般原则：年度预算未安排全额偿付的举债须经选民同意（公投）。此为熊猫债须确定“免公投用途”或“公投额度”的法律起点。</td></tr><tr><td>242(2)(a)(b)(b.1)</td><td>免公投用途</td><td>Exempted from elector assent: (a) construction, installation, maintenance, replacement, repair and regulation of a waterworks system; (b) a system of sewerage and drainage; (b.1) design, construction, installation, maintenance and repair of an energy utility system, including acquiring real property and easements therefor (b.1 added 2007).</td><td>供水、排污排水及区域能源（区划供热等）系统资本用途举债无需选民公投，市议会可直接通过举债附例——熊猫债若指定用于上述公用事业资本项目，内部授权仅需议会程序；市2023—2026资本计划及历次债券附例（如2025年附例第14504号）均依此操作。</td></tr><tr><td>243</td><td>期满生效/异议期</td><td>Any by-law passed and debenture issued shall be absolutely valid and binding unless challenged by application or action commenced within one month after final passing.</td><td>举债附例最终通过满一个月未被起诉即为绝对有效，增强债券法律确定性。</td></tr><tr><td>244</td><td>修订与转用限制</td><td>Elector-assented by-laws may not be amended or repealed by Council except with consent of the Lieutenant-Governor in Council; surplus proceeds may be transferred to the sinking fund or a repayment fund.</td><td>经公投的举债附例原则上不得修改（省级内阁同意除外），保障投资人对资金用途的预期；结余资金可转偿债基金。</td></tr><tr><td>245</td><td>多年期借款授权（资本计划公投）</td><td>Council may submit to electors a question authorizing borrowing by debentures over designated years (not exceeding 10 years in all) in an aggregate designated sum; upon majority assent, Council may pass borrowing by-laws without further assent; projects/amounts may be varied by a two-thirds Council vote so long as the aggregate is not exceeded; delayed projects may be borrowed within 7 years after the last year.</td><td>资本计划公投通道：2022年10月15日市政选举公投已批准2023—2026资本计划各类举债额度，且延迟项目可在2027—2033年期间继续举债；2026年10月市政选举将表决2027—2030年额度。熊猫债可衔接既有或即将批准的额度，无需专门公投。</td></tr><tr><td>246</td><td>行使前提</td><td>The s.245 power is exercisable only if no matured debenture debt remains unpaid after written demand, and all sinking fund levies required by law have been made.</td><td>两项先决条件（无到期未付债务、偿债基金摊款已足额计提）温哥华市均满足。</td></tr><tr><td>247A</td><td>偿债基金（预提）</td><td>Council may by by-law set aside surplus moneys in a debt repayment fund to provide in advance for retirement of outstanding debentures and annual interest; fund moneys investable per s.260.</td><td>允许提前计提偿债资金，是市“自管偿债基金”的法律基础，亦是熊猫债偿付安排披露的重要内容。</td></tr><tr><td>248A</td><td>债券发行与服务</td><td>Provisions governing issue and servicing of debentures (terms set by Council).</td><td>市议会对发行条款拥有完整决定权，可授权财务总监确定利率、价格及其他条款。</td></tr><tr><td>258</td><td>债券出售</td><td>Council may sell debentures at such price and on such terms as it sees fit.</td><td>自主定价与出售条款的明文授权，可对接中国境内定向发售安排。</td></tr><tr><td>260–262</td><td>偿债基金投资、账户与盈余结转</td><td>Investment of sinking funds, maintenance of accounts, and transfer of surplus to sinking funds.</td><td>偿债基金管理全链条由市自行运作，无需省级市政融资机构。</td></tr><tr><td>263–264</td><td>税款收缴期与债券销售期内的临时借款</td><td>Council may borrow pending collection of real-property taxes and pending the sale of debentures.</td><td>提供流动性缓冲工具，保障熊猫债资金到账与资本支出之间的现金流衔接。</td></tr></tbody></table></div><p>表8-1 温哥华宪章第五部分发债条文清单（中英对照；条文依据：BC Laws现行合并文本）</p><h3 class="section" id="sc14">8.3 内部授权双轨：第242条免公投通道与第245条公投授权通道</h3><ul><li><strong>第242条（免公投通道）：</strong> 为供水、排污排水及区域能源系统之建设、更换、维修等目的举债，无需选民同意，市议会可直接通过举债附例。若熊猫债募集资金指定用于上述公用事业资本项目，内部授权仅需议会程序，最快、最可控。</li><li><strong>第245条（公投授权通道）：</strong> 其他用途须经市政选举中的举债公投授权总额度，议会在额度内择机通过附例发债。温哥华市2022年选举已批准2023—2026年资本计划各类举债额度（含延迟项目展期至2033年）；2026年10月市政选举将表决2027—2030年资本计划额度。熊猫债可衔接既有或即将批准的额度，无需专门公投。</li></ul><h3 class="section" id="sc15">8.4 债务上限与发债自主权</h3><ul><li><strong>法定上限宽裕：</strong> 第236条设定债务总额不得超过应税不动产两年平均评估值20%的上限。以2025年评估基数约4,646亿加元计，理论上限约929亿加元，而市对外长期债务毛额仅约10亿加元——举债空间极其充裕，熊猫债规模（RMB 30亿计划）对上限的影响可忽略不计。</li><li><strong>唯一不经省级市政融资机构的市政府：</strong> 温哥华市是BC省唯一不经省市政融资局（Municipal Finance Authority of BC, MFABC）、以自身名义直接进入资本市场的市政府，对发行时点、金额、条款拥有完全自主权，并自行管理偿债基金。这意味着熊猫债交易的加方对手就是市财政部门本身，决策链条短。</li><li><strong>无上级审批环节：</strong> 依宪制分权，联邦对市政举债无管辖权；省层面，宪章第236条已明文授权，无需省政府、省财政厅或省级内阁批准。BC省先例（2015—2017年）亦未涉及任何联邦或省级额外审批。</li></ul><h3 class="section" id="sc16">8.5 独立发债的完整法律链条</h3><p>从附例到偿付，温哥华市可依宪章独立完成发债全链条：(1) 市议会依第236条通过举债附例（用途属第242条免公投范围，或衔接第245条公投额度）；(2) 附例依第237条于指定日期生效；(3) 依第240条附例载明陈述，依第248A条由市议会授权财务总监确定利率、价格及条款并组建承销团；(4) 依第258条以市认为适当的价格和条款出售债券；(5) 债券依第238条在附例通过后5年内发行、期限不超过50年；(6) 依第239条及第247A条，年度不动产税摊款及偿债基金确保本息按期偿付；(7) 依第243条，附例最终通过满一个月未被起诉即绝对有效。整条链条不存在任何省或联邦审批节点。</p><h3 class="section" id="sc17">8.6 待办法律事项</h3><p>按本所一贯原则，上述宪章解读须在接触发行人及监管机构前取得BC省执业律师的书面法律意见确认，重点包括：（i）第236条外币授权适用于银行间市场注册发行的确认；（ii）举债附例与NAFMII注册文件的衔接；（iii）第245条既有额度覆盖拟议用途的确认；（iv）中国境内律师就发行人主体资格出具意见所需的授权文件清单；（v）加拿大证券法层面的合规确认（市政债券一般属证券法下的豁免证券，境外定向发售亦不涉及招股文件，但须经当地证券律师确认）。</p><hr class="sec-divider"><h2 class="chapter" id="ch9">九、发行结构路径选择</h2><p>与沙巴项目“必须经合格企业法人载体”的结论不同，温哥华市因具备完整的直接举债法律授权，两条路径均可行，但优劣分明：</p><div class="tbl-wrap"><table class="status"><thead><tr><th>维度</th><th>路径一：市政府直接发行</th><th>路径二：市属企业载体发行</th></tr></thead><tbody><tr><td>法律基础</td><td>宪章第236条明文授权外币举债——合法且直接</td><td><span class="dot warn"></span>可行，但市属载体信用弱于市本身，需市担保</td></tr><tr><td>发行人类别</td><td>外国政府类机构（BC省、沙迦先例直接适用）</td><td>境外非金融企业（先例多但丧失政府类稀缺性）</td></tr><tr><td>评级</td><td><span class="dot good"></span>AAA直通境内AAA，零增信</td><td><span class="dot warn"></span>需依赖市担保传导评级，结构复杂化</td></tr><tr><td><span class="dot good"></span>首单效应</td><td>全球首个城市级政府熊猫债</td><td><span class="dot good"></span>无</td></tr><tr><td>内部程序</td><td>议会附例（第242条用途）或衔接公投额度（第245条）</td><td>载体设立/改组+市担保附例，程序更长</td></tr><tr><td>综合评价</td><td><span class="dot good"></span>推荐路径</td><td><span class="dot warn"></span>备选（仅当政治层面希望隔离市资产负债表时采用）</td></tr></tbody></table></div><p>表9-1 发行路径对比（绿色=有利；黄色=需额外安排；红色=不利） 需说明：本所“经合格企业法人载体发行”的一贯结构原则，适用于发行人自身缺乏合法举债权限的情形（如沙巴州）。温哥华市不属此类——其直接发行在法律上完全成立，且政府类身份正是本项目的核心价值。故本项目推荐直接发行，载体路径仅作备选保留。</p><h3 class="section" id="sc18">9.1 募集资金与外汇安排</h3><p>参照BC省模式，募集资金可依SAFE跨境资金管理规定汇出境外，即时转入离岸人民币资产或经货币掉期换回加元用于资本计划支出；亦可部分留存境内用于对华相关支出。建议在注册文件中采用“汇出+对冲”为主的表述，并以BC省2016年大华银行离岸再投资安排作为监管沟通先例。</p><h3 class="section" id="sc19">9.2 绿色/可持续熊猫债定位</h3><p>温哥华市已建立《可持续债券框架》（Sustainability Bond Framework）并有绿色/可持续债券发行实践（2018年首发绿色债券8,500万加元、票面3.10%，2022年获Environmental Finance“年度可持续债券奖”）。将熊猫债贴标为绿色或可持续品种：（i）契合银行间市场对绿色熊猫债的政策支持；（ii）与市第242条项下区域能源、排水等公用事业用途天然衔接；（iii）进一步强化首单叙事（“首单外国城市绿色熊猫债”）。</p><hr class="sec-divider"><h2 class="chapter" id="ch10">十、与本所过往评估案例的横向对比</h2><p>将温哥华项目置于本所既有项目序列（含处于保密阶段、此处不展开细节的巴新项目）中对比，其相对优势一目了然：</p><div class="tbl-wrap"><table class="status"><thead><tr><th>要素</th><th>温哥华市（本报告）</th><th>BC省（先例）</th><th>沙巴州</th><th>巴基斯坦</th></tr></thead><tbody><tr><td>本国法律授权</td><td>宪章明文授权外币举债</td><td>省级完整授权</td><td><span class="dot bad"></span>直接自发越权无效</td><td><span class="dot good"></span>主权，授权完整</td></tr><tr><td>上级政府审批</td><td><span class="dot good"></span>无需</td><td><span class="dot good"></span>无需</td><td><span class="dot bad"></span>须联邦批准（关系紧张）</td><td>不适用</td></tr><tr><td>国际信用</td><td><span class="dot good"></span>AAA</td><td><span class="dot good"></span>发行时AAA，现AA2</td><td><span class="dot warn"></span>州财政强但依赖隐性州支持评价</td><td><span class="dot warn"></span>B级区间（修复中）</td></tr><tr><td><span class="dot warn"></span>增信需求</td><td><span class="dot good"></span>无</td><td><span class="dot good"></span>无</td><td><span class="dot warn"></span>需亚开行/亚投行式部分担保</td><td><span class="dot warn"></span>已用亚开行/亚投行部分担保</td></tr><tr><td>可执行结论</td><td><span class="dot good"></span>直接发行，6—9个月</td><td><span class="dot good"></span>已完成（本所参与）</td><td><span class="dot warn"></span>仅可经州属载体</td><td><span class="dot good"></span>扩大发行推进中（约6个月）</td></tr></tbody></table></div><p>表10-1 跨案例对比（绿色=无障碍；黄色=需结构安排；红色=禁止性障碍） 结论：温哥华市是本所迄今评估的全部候选发行人中，法律路径最短、信用资质最高、增信成本为零的项目，其主要不确定性集中于发行人意愿而非可行性本身。</p><hr class="sec-divider"><h2 class="chapter" id="ch11">十一、风险因素与缓释措施</h2><ul><li><strong>政治意愿风险（主要风险）：</strong> 市议会对发行人民币债券可能存在政治顾虑，且2026年10月市政选举可能改变议会构成。缓释：以“融资多元化+成本节约+绿色资金”为切入点，援引BC省两党时期均推进对华发债的先例；争取在选举前完成技术准备、选举后启动决策。</li><li><strong>中加关系与地缘环境：</strong> 双边关系波动可能影响审批氛围与舆论。缓释：交易本质为市场化融资，BC省先例表明技术层面可与政治周期脱钩；采用定向发售降低公开曝光度。</li><li><strong>汇率风险：</strong> 人民币负债与加元收入的错配。缓释：BC省式离岸再投资对冲，或交叉货币掉期锁定加元成本；此为成熟技术安排，市财政部门具备衍生品管理能力。</li><li><strong>用途衔接风险：</strong> 第245条公投额度与人民币资金用途的匹配须经律师确认。缓释：优先指定第242条免公投用途（供水、排污、区域能源），与绿色贴标同步解决。</li><li><strong>定价风险：</strong> 若掉期后综合成本高于加元直发，交易经济性削弱。缓释：注册计划制下可择机分期发行，仅在成本窗口有利时执行；首单稀缺性通常带来定价支持。</li><li><strong>程序风险：</strong> NAFMII注册、境内评级、双边法律意见的时序衔接。缓释：本所依托BC省及加拿大国民银行交易经验统筹文件包；按本所标准，所有宪法及监管结论以当地执业律师书面意见为准后方接触发行人。</li></ul><hr class="sec-divider"><h2 class="chapter" id="ch12">十二、实施路径与总体时间表（预计）</h2><div class="tbl-wrap"><table><thead><tr><th>阶段（总体约6—9个月）</th><th>主要工作</th></tr></thead><tbody><tr><td>第一阶段（约1—2个月）</td><td>BC省律师书面法律意见；与市财政部门初步接触；确定用途（第242条通道优先）与绿色贴标方案；本所完成承销团初步安排（参照巴基斯坦模式组织独立牵头承销团）</td></tr><tr><td>第二阶段（约2—3个月）</td><td>市议会内部授权程序；聘任境内评级机构（中诚信国际/联合资信）与中国律师；编制NAFMII注册文件包（RMB 30亿计划）</td></tr><tr><td>第三阶段（约2—3个月）</td><td>NAFMII注册反馈与获准；定向发售投资人预先锁定（本所既有买方网络）；掉期/资金汇出安排落地</td></tr><tr><td>第四阶段（约1个月）</td><td>首期RMB 5—15亿定价发行、缴款、上市流通；后续期数按窗口择机执行</td></tr></tbody></table></div><p>表12-1 总体实施时间表（按本所惯例仅列总体阶段，不设周度里程碑）</p><hr class="sec-divider"><h2 class="chapter" id="ch13">十三、结论与建议</h2><p>温哥华市在中加两侧均完全具备发行熊猫债券的资格：中国侧落入外国政府类机构类别且有BC省、沙迦直接先例；加方《温哥华宪章》第五部分条文（尤以第236条外币举债权、第242条免公投用途、第245条公投额度、第239条及第247A条偿债机制为要）为市政府独立发债提供了完整、明文、无需上级审批的法律基础。其穆迪AAA评级使之成为熊猫债市场有史以来信用资质最高的政府类候选发行人之一，且当前高于BC省两个子级的评级倒挂，恰为向中国投资人讲述“以市级主体重现2016年BC省AAA交易”提供了独特窗口。 <strong>建议</strong></p><ol><li>批准立项，首先委托BC省律师出具宪章授权书面意见；</li><li>以直接发行为基准结构，注册RMB 30亿计划、首期RMB 5—15亿、3—5年期、绿色/可持续贴标、定向发售；</li><li>由本所统筹承销团组织与买方预配售，整体参照巴基斯坦项目的独立牵头承销团模式；</li><li>以2026年10月市政选举为节点安排接触时序，力争2027年上半年完成首发。</li></ol><p>本项目若落地，将同时实现三重定位：全球首单外国城市熊猫债、首单外国城市绿色熊猫债、以及本所继BC省、加拿大国民银行之后在加拿大市场的第三单人民币债券参与纪录。</p><hr class="sec-divider"><h2 class="chapter" id="ch14">十四、我们的角色与价值切入点：为何由本公司协助发债</h2><p>本公司（宏鑫企业控股有限公司，VASTGOLD ENTERPRISE HOLDING LTD）作为在中加两地均有布局、专注跨境人民币债券市场的金融服务机构，已具备协助温哥华市政府完成熊猫债发行全流程的直接能力。本章从"切入点"与"帮助点"两个维度，说明本公司在温哥华熊猫债项目中的参与价值。</p><h3 class="section" id="sc20">14.1 能力基础与过往履历</h3><ul><li><strong>直接交易经验：</strong> 本公司是BC省2015—2017年人民币60亿元熊猫债计划及加拿大国民银行2016年人民币35亿元熊猫债的参与方，本报告第八章、第九章的法律与文件框架即源自上述两项交易的实操经验。</li><li><strong>评估框架复用：</strong> 本公司已就马来西亚沙巴州、巴基斯坦、巴布亚新几内亚等候选发行人建立了统一的熊猫债可行性评估框架，本报告为该框架在温哥华项目上的直接应用，管理层拥有完整的横向决策参照系。</li><li><strong>买方网络：</strong> 本公司在境内银行间市场拥有既有的买方网络与投资者关系，可支撑定向发售与发行前预配售，显著压缩销售周期。</li><li><strong>双语团队：</strong> 本公司团队熟悉加拿大公共部门会计准则（PSAS）披露口径、市议会决策程序，以及中国人民银行、交易商协会注册要求，可同时对接加中两侧中介机构，减少沟通损耗。</li></ul><h3 class="section" id="sc21">14.2 六大价值切入点</h3><div class="tbl-wrap"><table><thead><tr><th>切入点</th><th>具体内容</th><th>对应章节</th></tr></thead><tbody><tr><td>1. 前期法律与结构设计</td><td>协助委托BC省执业律师出具《温哥华宪章》授权书面意见；设计第242条免公投用途与第245条公投额度的衔接方案；确定绿色/可持续贴标结构</td><td>第八、九章</td></tr><tr><td>2. 承销团与中介组织</td><td>参照巴基斯坦模式组建独立牵头承销团；协调境内外评级机构、加拿大与中国双地律师及审计师</td><td>第九、十二章</td></tr><tr><td>3. 注册文件统筹</td><td>编制并统筹NAFMII注册文件包（人民币30亿元计划）；安排境内评级（中诚信国际/联合资信）；统一信息披露口径</td><td>第七、十二章</td></tr><tr><td>4. 投资人对接与预配售</td><td>依托既有买方网络预先锁定定向发售投资者；组织路演与答疑；协助测算定价区间</td><td>第五、十二章</td></tr><tr><td>5. 资金与外汇安排</td><td>设计"汇出+对冲"方案（参照BC省2016年离岸再投资安排）；落实SAFE跨境资金流转与交叉货币掉期安排</td><td>第九章</td></tr><tr><td>6. 全周期服务</td><td>发行后投资者关系维护、定期信息披露、后续期数择机发行支持</td><td>第十二章</td></tr></tbody></table></div><h3 class="section" id="sc22">14.3 对各方"帮助点"清单</h3><ul><li><strong>对温哥华市政府：</strong> 以零前期成本获得中国资本市场的完整入场通道；融资渠道多元化与潜在的综合成本节约；绿色资金与市《可持续债券框架》直接对接；无需扩充市政编制，即可获得覆盖法律、评级、销售、资金的全套项目执行团队。</li><li><strong>对中方监管与投资者：</strong> 提供AAA级政府类优质发行人；注册文件规范透明、双语披露；降低投资者尽调与投后跟踪成本。</li><li><strong>对承销团与中介机构：</strong> 本公司承担交易发起人与项目组织者角色，各中介无需自行承担业务开拓成本，即可获得高质量的交易机会。</li></ul><h2 class="chapter" id="ch15">十五、加拿大政银接触进展与下一步行动</h2><p>本公司目前在加拿大已开展与政府及银行机构的实质性接触，均处于可行性研究与信息交流阶段。本章汇总接触进展，并给出下一步行动安排。</p><h3 class="section" id="sc23">15.1 已开展的接触（现状汇总）</h3><ul><li><strong>政府侧：</strong> 本公司已与温哥华市政府相关职能部门建立初步接触与沟通渠道，就熊猫债可行性研究与宪章授权框架进行了前期交流，相关研究材料已向对方提交；BC省层面亦具备沟通基础——本公司为BC省熊猫债计划参与方，与省相关部门保持既往合作关系。</li><li><strong>银行侧：</strong> 本公司已与多家加拿大主要银行开展接触，涵盖其总行资本市场/资金部门及在华经营机构，主要探讨：全球协调人或承销团成员角色、结算与托管安排、离岸人民币产品与资金对冲方案、投资者分销渠道等。</li><li><strong>合规说明：</strong> 上述接触均不构成任何承诺或合同义务；具体机构名称、会议纪要与授权状态以本公司内部记录为准，可按贵方要求补充完善。</li></ul><h3 class="section" id="sc24">15.2 接触要点与当前状态</h3><div class="tbl-wrap"><table><thead><tr><th>接触对象</th><th>沟通主题</th><th>当前状态</th><th>下一步安排</th></tr></thead><tbody><tr><td>温哥华市政府财政/司库部门</td><td>熊猫债可行性、第242/245条用途衔接、《可持续债券框架》</td><td>已建立初步沟通渠道，研究材料已送达</td><td>签署保密协议后正式立项</td></tr><tr><td>BC省相关机构</td><td>熊猫债先例经验、监管与舆论环境</td><td>基于既往合作延续沟通</td><td>视交易需要启动专项沟通</td></tr><tr><td>加拿大主要银行（总行资本市场部/资金部）</td><td>承销、结算、托管角色；离岸人民币产品</td><td>初步意向沟通中</td><td>发行窗口确认后组建承销团</td></tr><tr><td>加拿大银行在华经营机构</td><td>跨境支付、人民币账户、投资者服务</td><td>已建立业务联系</td><td>交易推进阶段激活</td></tr></tbody></table></div><h3 class="section" id="sc25">15.3 下一步行动安排</h3><ol><li><strong>短期（1—2个月）：</strong> 与温哥华市政府签署保密协议（NDA）；委托BC省执业律师出具书面法律意见；向意向银行发送信息备忘录（IM）征询承销意向；</li><li><strong>中期（2—4个月）：</strong> 完成市议会内部授权路径确认（第242条优先）；聘任境内评级机构与中国律师；启动NAFMII注册文件初稿编制；</li><li><strong>关键节点：</strong> 以2026年10月市政选举为时点——选举前完成全部技术准备，选举后正式启动决策程序；</li><li><strong>合规提示：</strong> 一切对外接触均在遵守适用法律与本公司合规制度下进行；任何正式安排以签署书面协议为准。</li></ol><h2 class="chapter" id="ch16">参考资料</h2><ul><li>穆迪评级：《信用意见：温哥华市》（2026-04-02）；穆迪对BC省评级行动（2026年3月，由AA1下调至AA2，展望负面）；标普对温哥华市评级（AAA，稳定）。</li><li>温哥华市《2025年度财务信息报告》（2026年4月发布，KPMG审计）；市议会债券计划报告（2022年7月；2025年7月）；市投资者关系页面；《2023—2026资本计划》；第14504号附例（2025年11月25日）。</li><li>《温哥华宪章》（Vancouver Charter, S.B.C. 1953, c. 55）第五部分（第236—264条），BC Laws现行合并文本。</li><li>BC省政府新闻稿：熊猫债计划获批（2015年12月）、首期发行（2016年1月，人民币30亿元，2.95%）、第二期（2017年11月，人民币10亿元）；《中国日报》相关报道。</li><li>中国银行间市场交易商协会与国际资本市场协会（ICMA）：《熊猫债——在中国债券市场融资》（2021年9月）。</li><li>沙迦熊猫债报道（2018年2月人民币20亿元、5.8%；2025年10月人民币20亿元；Ba1/BBB-/联合资信AAA），Zawya、GlobalCapital。</li><li>BC省《2026年预算》及三年财政计划；Morningstar DBRS预算评论（2026-02-18）；加拿大国民银行及Desjardins预算分析。</li><li>中国人民银行、财政部《关于境外机构在银行间市场发行债券有关事项的公告》（2018年第16号）及中国银行间市场交易商协会配套指引。</li><li>巴基斯坦首单熊猫债（2026年5月14日，人民币17.5亿元，2.5%）及CCXI评级报告（本所档案）。</li></ul><hr class="sec-divider"><h2 class="chapter" id="ch17">免责声明</h2><p>本报告由宏鑫企业控股有限公司编制，仅供内部评估及指定接收方参考，不构成法律、税务或投资意见，亦不构成任何证券的要约或要约邀请。报告中涉及《温哥华宪章》及中国监管规则的结论，须经不列颠哥伦比亚省及中国执业律师书面确认后方可作为交易依据。财务与市场数据引自公开来源，本公司不对其完整性或后续变动承担责任。</p>
+</article></main>
+</div>
+<footer><div class="foot">
+宏鑫企业控股有限公司 · VASTGOLD ENTERPRISE HOLDING LTD ｜ 机密文件 · CONFIDENTIAL ｜ 2026年8月25日 ｜ 本报告不构成法律、税务或投资意见；宪章条文解读以BC省执业律师书面意见为准。
+</div></footer>
+<script>
+
+(function(){
+  var prog=document.getElementById('progress');
+  addEventListener('scroll',function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;prog.style.width=p+'%';},{passive:true});
+  var links=Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var secs=links.map(function(l){return document.querySelector(l.getAttribute('href'));});
+  if('IntersectionObserver' in window){
+    var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){var activeLink=null;links.forEach(function(l){var isActive=l.getAttribute('href')==='#'+e.target.id;l.classList.toggle('active',isActive);if(isActive)activeLink=l;});if(activeLink)activeLink.scrollIntoView({block:'nearest',inline:'nearest'});}});},{rootMargin:'-15% 0px -70% 0px'});
+    secs.forEach(function(s){if(s)obs.observe(s);});
+  }
+  var btn=document.getElementById('tocbtn');
+  if(btn){btn.addEventListener('click',function(){document.querySelector('nav.toc').classList.toggle('open');});}
+})();
+
+</script>
+
+<!-- Floating Return to Archives Button -->
+<style>
+@keyframes vg-archives-blink {
+  0%, 100% { opacity: 1; box-shadow: 0 6px 28px rgba(22,163,74,0.5); }
+  50%       { opacity: 0.6; box-shadow: 0 6px 48px rgba(22,163,74,0.9); }
+}
+#vg-return-btn {
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
+  z-index: 99999;
+  background: #16a34a;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 800;
+  padding: 18px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: 0.5px;
+  animation: vg-archives-blink 1.5s ease-in-out infinite;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+#vg-return-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 48px rgba(22,163,74,0.8) !important;
+  animation-play-state: paused;
+  opacity: 1 !important;
+}
+#vg-return-btn .vg-btn-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+@media (max-width: 600px) {
+  #vg-return-btn {
+    bottom: 20px;
+    right: 16px;
+    font-size: 15px;
+    padding: 14px 22px;
+    gap: 8px;
+  }
+  #vg-return-btn .vg-btn-icon { font-size: 20px; }
+}
+</style>
+<a id="vg-return-btn" href="../archives.html">
+  <span class="vg-btn-icon">🏠</span>
+  <span id="vg-return-btn-text">返回Matrix Bond归档主页</span>
+</a>
+<script>
+(function () {
+  var lang = localStorage.getItem('vg_lang') || 'zh';
+  var el = document.getElementById('vg-return-btn-text');
+  if (el) el.textContent = lang === 'en' ? 'Return to Matrix Bond Management Archives' : '返回Matrix Bond归档主页';
+})();
+</script>
+
+</body>
+</html>

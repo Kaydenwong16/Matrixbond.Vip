@@ -21,8 +21,8 @@
   .docmeta div{background:rgba(255,255,255,.08);border-radius:8px;padding:8px 12px;font-size:12px;}
   .docmeta b{display:block;font-size:11px;color:rgba(255,255,255,.6);font-weight:400;letter-spacing:1px;margin-bottom:2px;}
   .docmeta span{font-size:12.5px;font-weight:600;}
-  h2{font-size:20px;color:var(--primary);margin:38px 0 6px;padding-left:12px;border-left:5px solid var(--accent);letter-spacing:.5px;}
-  h3{font-size:16px;color:var(--primary);margin:22px 0 8px;}
+  h2{font-size:21px;color:#fff;background:linear-gradient(135deg,#1a3a5c 0%,#27527d 100%);margin:42px 0 14px;padding:14px 20px;border-radius:8px;border-left:5px solid var(--accent);letter-spacing:.5px;box-shadow:0 2px 8px rgba(26,58,92,.12);line-height:1.4;}
+  h3{font-size:16px;color:#fff;margin:24px 0 8px;padding:8px 14px;background:linear-gradient(135deg,#2c5a86 0%,#356a9c 100%);border-left:4px solid var(--accent);border-radius:5px;letter-spacing:.3px;line-height:1.4;}
   .section-intro{color:var(--muted);font-size:13px;margin-bottom:14px;}
   .card{background:var(--card);border-radius:12px;padding:22px 26px;margin-top:14px;box-shadow:0 1px 4px rgba(30,50,80,.06);}
   .tldr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:6px;}
@@ -52,8 +52,8 @@
   .pill b{display:block;font-size:13.5px;}
   .pill span{font-size:12.5px;color:var(--muted);}
   .path-card{border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin-top:12px;background:#fff;}
-  .path-card h4{font-size:15px;color:var(--primary);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
-  .path-card h4 .badge{font-size:11px;background:var(--primary);color:#fff;border-radius:5px;padding:2px 8px;font-weight:400;}
+  .path-card h4{font-size:15px;color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:8px;padding:7px 12px;background:#27527d;border-radius:4px;letter-spacing:.3px;line-height:1.4;}
+  .path-card h4 .badge{font-size:11px;background:var(--accent);color:#16324f;border-radius:5px;padding:2px 8px;font-weight:600;}
   .path-card ul{margin:6px 0 0 18px;font-size:13.5px;}
   .path-card li{margin-bottom:6px;}
   .risk-item{background:#fdf5f4;border-left:4px solid #c0392b;border-radius:8px;padding:12px 16px;margin-top:10px;font-size:13.5px;}
@@ -70,6 +70,14 @@
   .toc li{margin:5px 0;}
   .toc a{color:var(--primary);text-decoration:none;}
   .toc a:hover{text-decoration:underline;color:var(--accent);}
+  .tabnav{position:sticky;top:0;z-index:100;background:linear-gradient(180deg,#dcebf8 0%,#eaf3fb 100%);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:2px solid #b8d4ec;border-radius:10px;margin:0 0 18px;padding:4px 6px;display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin;box-shadow:0 2px 10px rgba(30,50,80,.10);}
+  .tabnav::-webkit-scrollbar{height:3px;}
+  .tabnav::-webkit-scrollbar-thumb{background:#b8d4ec;border-radius:3px;}
+  .tabnav a{flex:0 0 auto;padding:9px 14px;font-size:12.5px;font-weight:500;color:#3d5a78;text-decoration:none;border-bottom:3px solid transparent;transition:color .15s,border-color .15s,background .15s;white-space:nowrap;cursor:pointer;border-radius:6px 6px 0 0;}
+  .tabnav a:hover{color:var(--primary);background:rgba(42,98,158,.12);}
+  .tabnav a.active{color:#16324f;border-bottom-color:var(--accent);font-weight:600;background:#c9e0f5;box-shadow:0 0 0 2px var(--accent),0 0 12px rgba(200,150,62,.65),0 0 24px rgba(200,150,62,.40);border-radius:6px 6px 0 0;animation:tabglow 2s ease-in-out infinite;}
+  @keyframes tabglow{0%,100%{box-shadow:0 0 0 2px var(--accent),0 0 10px rgba(200,150,62,.50),0 0 20px rgba(200,150,62,.30);}50%{box-shadow:0 0 0 2px var(--accent),0 0 18px rgba(200,150,62,.85),0 0 34px rgba(200,150,62,.50);}}
+  h2{scroll-margin-top:56px;}
   .disclaim{margin-top:34px;padding:16px 20px;border:1px dashed #c9d4de;border-radius:10px;font-size:12.5px;color:#7d8a96;}
   .foot{margin-top:26px;font-size:12px;color:#9aa7b2;text-align:center;}
   @media (max-width:860px){.tldr-grid{grid-template-columns:1fr 1fr;}.grid2{grid-template-columns:1fr;}.docmeta{grid-template-columns:1fr 1fr;}}
@@ -233,6 +241,19 @@ body.vg-locked > *:not(#vg-security-gate) { visibility: hidden !important; point
     <div><b>数据截止</b><span>2026-08-24 检索</span></div>
   </div>
 </header>
+
+<nav class="tabnav" id="tabnav">
+  <a href="#s0" data-target="s0">〇 数据分级</a>
+  <a href="#s1" data-target="s1">一 基础知识</a>
+  <a href="#s2" data-target="s2">二 发行全景</a>
+  <a href="#s3" data-target="s3">三 可信性评估</a>
+  <a href="#s4" data-target="s4">四 增发分析</a>
+  <a href="#s5" data-target="s5">五 资源禀赋</a>
+  <a href="#s6" data-target="s6">六 参与路径</a>
+  <a href="#s7" data-target="s7">七 路线图</a>
+  <a href="#s8" data-target="s8">八 学习要点</a>
+  <a href="#s9" data-target="s9">九 结论</a>
+</nav>
 
 <div class="toc">
   <b style="color:var(--primary);">目录</b>
@@ -579,6 +600,43 @@ body.vg-locked > *:not(#vg-security-gate) { visibility: hidden !important; point
 </div>
 
 <script>
+// Tab navigation: click to scroll + active-tab-on-scroll
+(function(){
+  var tabLinks = document.querySelectorAll('.tabnav a');
+  var sections = [];
+  tabLinks.forEach(function(link){
+    var id = link.getAttribute('data-target');
+    var el = document.getElementById(id);
+    if(el) sections.push({id:id, el:el, link:link});
+  });
+  tabLinks.forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.getElementById(this.getAttribute('data-target'));
+      if(target){
+        var top = target.getBoundingClientRect().top + window.pageYOffset - 52;
+        window.scrollTo({top:top, behavior:'smooth'});
+      }
+    });
+  });
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        var id = entry.target.id;
+        tabLinks.forEach(function(l){
+          l.classList.toggle('active', l.getAttribute('data-target') === id);
+        });
+        // scroll the active tab into view in the tab bar
+        var activeLink = document.querySelector('.tabnav a.active');
+        if(activeLink){
+          activeLink.scrollIntoView({block:'nearest', inline:'center'});
+        }
+      }
+    });
+  }, {rootMargin:'-80px 0px -70% 0px'});
+  sections.forEach(function(s){ observer.observe(s.el); });
+})();
+
 var radarChart = echarts.init(document.getElementById('radar'));
 radarChart.setOption({
   tooltip: {},
