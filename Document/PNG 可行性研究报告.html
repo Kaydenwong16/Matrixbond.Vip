@@ -58,6 +58,11 @@ ul, ol { list-style-position: inside; }
 .nav-menu a.active { color: var(--color-gold); }
 .nav-menu a.active::after { content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%); width: 20px; height: 2px; background: var(--color-gold); border-radius: 2px; }
 .nav-cta { padding: 8px 20px; background: var(--color-gold); color: var(--color-white); border-radius: 6px; font-size: 0.85rem; font-weight: 600; }
+.nav-dropdown { position: relative; }
+.nav-dropdown > .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; margin-top: 6px; min-width: 260px; list-style: none; background: rgba(15, 36, 56, 0.97); border: 1px solid rgba(196, 151, 59, 0.25); border-radius: 8px; padding: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.35); z-index: 1001; }
+.nav-dropdown:hover > .nav-dropdown-menu, .nav-dropdown:focus-within > .nav-dropdown-menu { display: block; }
+.nav-dropdown-menu a { display: block; padding: 8px 12px; font-size: 0.85rem; white-space: nowrap; border-radius: 6px; color: rgba(255,255,255,0.85); }
+.nav-dropdown-menu a:hover { background: rgba(255,255,255,0.08); color: #fff; }
 .nav-cta:hover { background: var(--color-gold-light); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(196, 151, 59, 0.3); }
 .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
 .nav-toggle span { width: 22px; height: 2px; background: var(--color-white); border-radius: 2px; transition: all var(--transition); }
@@ -335,6 +340,7 @@ body.vg-locked > *:not(#vg-security-gate) { visibility: hidden !important; point
     </a>
     <ul class="nav-menu" id="nav-menu">
       <li><a href="#exec-summary">摘要</a></li><li><a href="#section-4">市场环境</a></li><li><a href="#section-6">发行方案</a></li><li><a href="#section-8">风险</a></li><li><a href="#section-12">结论</a></li><li><a href="#section-13">附录</a></li>
+      <li class="nav-dropdown"><a href="#">相关文件</a><ul class="nav-dropdown-menu"><li><a href="巴新熊猫债合作讨论纪要与背景分析 2202604.pdf" target="_blank" rel="noopener">巴新熊猫债合作讨论纪要与背景分析</a></li></ul></li>
       <li><a href="#section-12" class="nav-cta">查看研究结论</a></li>
     </ul>
     <div class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></div>
