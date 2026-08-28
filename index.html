@@ -645,7 +645,7 @@ body { -webkit-font-smoothing: antialiased; }
     <div class="slider-section style1">
         <div class="hero-slider owl-carousel">
                         <div class="slider-item" style="background-image: url('wp-content/uploads/2024/12/home-hero.jpg'); background-size: cover; background-repeat: no-repeat;">
-                <video class="vg-hero-video" autoplay muted loop playsinline preload="auto" poster="wp-content/uploads/2024/12/home-hero.jpg">
+                <video class="vg-hero-video" autoplay muted loop playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false" preload="auto" poster="wp-content/uploads/2024/12/home-hero.jpg">
                     <source src="wp-content/uploads/2024/12/home-hero-video.mp4" type="video/mp4">
                 </video>
                 <div class="container">
@@ -682,6 +682,25 @@ body { -webkit-font-smoothing: antialiased; }
                 autoplay:false,
                 animateOut: 'fadeOut',
             });
+
+            // Some mobile browsers (in-app browsers, older Android WebViews,
+            // data-saver modes) silently ignore the <video autoplay> attribute
+            // even when muted+playsinline. Belt-and-suspenders: call play()
+            // explicitly, and if that's rejected, retry on the visitor's first
+            // touch/scroll/click so the video still starts as soon as the
+            // browser allows it — it never gets stuck frozen on the poster.
+            var $heroVideo = $('.vg-hero-video').get(0);
+            if ($heroVideo) {
+                var vgTryPlayHero = function () {
+                    var p = $heroVideo.play();
+                    if (p && typeof p.catch === 'function') {
+                        p.catch(function () {
+                            $(document).one('touchstart click scroll', vgTryPlayHero);
+                        });
+                    }
+                };
+                vgTryPlayHero();
+            }
             
             $('.venobox').venobox();
         });
