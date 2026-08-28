@@ -252,9 +252,14 @@ body { -webkit-font-smoothing: antialiased; }
 }
 /* Tighten the gap above the buttons (theme default is 58px) so the
    subtitle/title/description sit close above them instead of floating
-   with a big gap in between. */
+   with a big gap in between. Also flex+align-items so "Learn More" and
+   "Our Clients" line up on the same baseline instead of the default
+   inline-block vertical-align making the bordered button2 sit offset
+   from the solid-fill button. */
 .slider-section.style1 .hero-slider .slider-item .button-set {
-  margin-top: 16px !important;
+  margin-top: 8px !important;
+  display: flex !important;
+  align-items: center !important;
 }
 /* Semi-transparent black backdrop directly behind the text block
    (on top of the whole-photo overlay above) for extra guaranteed
@@ -305,6 +310,26 @@ body { -webkit-font-smoothing: antialiased; }
   height: 100%;
   object-fit: cover;
   display: block;
+}
+/* City-photo carousel: hidden and cross-fades in once the video has
+   played through twice (see the JS below), then cycles through each
+   city photo, replacing the video in the same layer. */
+.slider-section.style1 .hero-slider .slider-item img.vg-hero-carousel {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+.slider-section.style1 .hero-slider .slider-item img.vg-hero-carousel.is-active {
+  opacity: 1;
+}
+/* Buttons hidden per current design. */
+.slider-section.style1 .hero-slider .slider-item .button-set {
+  display: none !important;
 }
 .slider-section.style1 .hero-slider .slider-item > .container {
   position: relative;
@@ -409,13 +434,12 @@ body { -webkit-font-smoothing: antialiased; }
     padding-bottom: 10px !important;
     padding-left: 24px !important;
   }
-  /* Keep "Learn More" / "Our Clients" side by side on one row (English
-     is the longer of the two languages here) instead of wrapping onto
-     two stacked rows, so the button row stays flush at the bottom. */
+  /* Buttons hidden per current design (see the unconditional
+     display:none above) — this mobile rule would otherwise win on
+     small screens and re-show them, since it's more specific by
+     media scope alone doesn't beat source order + equal specificity. */
   .slider-section.style1 .hero-slider .slider-item .button-set {
-    display: flex !important;
-    flex-wrap: nowrap !important;
-    align-items: center !important;
+    display: none !important;
   }
   .slider-section.style1 .hero-slider .slider-item .button-set a {
     white-space: nowrap !important;
@@ -689,9 +713,10 @@ body { -webkit-font-smoothing: antialiased; }
     <div class="slider-section style1">
         <div class="hero-slider owl-carousel">
                         <div class="slider-item" style="background-image: url('wp-content/uploads/2024/12/home-hero.jpg'); background-size: cover; background-repeat: no-repeat;">
-                <video class="vg-hero-video" autoplay muted loop playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false" preload="auto" poster="wp-content/uploads/2024/12/home-hero.jpg">
+                <video class="vg-hero-video" autoplay muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false" preload="auto" poster="wp-content/uploads/2024/12/home-hero.jpg">
                     <source src="wp-content/uploads/2024/12/home-hero-video.mp4" type="video/mp4">
                 </video>
+                <img class="vg-hero-carousel" alt="" />
                 <div class="container">
                     <div class="text-wrapper slide-up">
                                                     <h5 class="subtitle" data-i18n="index.hero.subtitle">Panda Bond Futures and Options</h5>
@@ -744,8 +769,46 @@ body { -webkit-font-smoothing: antialiased; }
                     }
                 };
                 vgTryPlayHero();
+
+                // After the video has played through twice, switch the hero
+                // over to a photo carousel (Singapore/Hong Kong/Toronto/
+                // Shanghai/Vancouver), cross-fading to a new city every 1.5s.
+                // The <video> no longer has the `loop` attribute (which would
+                // otherwise suppress the 'ended' event entirely) — looping is
+                // done manually here so plays can be counted.
+                var vgHeroPlayCount = 0;
+                var vgCarouselPhotos = [
+                    'wp-content/uploads/2024/12/singapore-1.jpg',
+                    'wp-content/uploads/2024/12/hong-kong-1.jpg',
+                    'wp-content/uploads/2024/12/toronto-1.jpg',
+                    'wp-content/uploads/2024/12/shanghai-1.jpg',
+                    'wp-content/uploads/2024/12/vancouver-1.jpg'
+                ];
+                var $carouselImg = $('.vg-hero-carousel');
+
+                function vgStartHeroCarousel() {
+                    $heroVideo.pause();
+                    $heroVideo.style.display = 'none';
+                    var i = 0;
+                    function showNext() {
+                        $carouselImg.attr('src', vgCarouselPhotos[i]).addClass('is-active');
+                        i = (i + 1) % vgCarouselPhotos.length;
+                    }
+                    showNext();
+                    setInterval(showNext, 1500);
+                }
+
+                $heroVideo.addEventListener('ended', function () {
+                    vgHeroPlayCount++;
+                    if (vgHeroPlayCount < 2) {
+                        $heroVideo.currentTime = 0;
+                        vgTryPlayHero();
+                    } else {
+                        vgStartHeroCarousel();
+                    }
+                });
             }
-            
+
             $('.venobox').venobox();
         });
     </script>
@@ -1269,5 +1332,23 @@ var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false
 
 
 
+<script>
+window.addEventListener('load', function(){
+  setTimeout(function(){
+    var bs = document.querySelector('.button-set');
+    var a1 = document.querySelector('.button-set a.button');
+    var out = document.createElement('div');
+    out.style.cssText='position:fixed;top:0;left:0;background:yellow;color:black;z-index:99999;font-size:11px;padding:6px;white-space:pre;';
+    function info(name, el){
+      if(!el) return name+': NULL\n';
+      var cs = getComputedStyle(el);
+      var r = el.getBoundingClientRect();
+      return name+': disp='+cs.display+' opac='+cs.opacity+' vis='+cs.visibility+' h='+r.height+' w='+r.width+' top='+r.top+'\n';
+    }
+    out.textContent = info('button-set', bs) + info('button a', a1);
+    document.body.appendChild(out);
+  }, 1000);
+});
+</script>
 </body>
 </html>
