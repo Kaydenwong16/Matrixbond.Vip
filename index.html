@@ -260,6 +260,7 @@ body { -webkit-font-smoothing: antialiased; }
   margin-top: 8px !important;
   display: flex !important;
   align-items: center !important;
+  flex-wrap: nowrap !important;
 }
 /* Semi-transparent black backdrop directly behind the text block
    (on top of the whole-photo overlay above) for extra guaranteed
@@ -760,12 +761,13 @@ body { -webkit-font-smoothing: antialiased; }
                 };
                 vgTryPlayHero();
 
-                // After the video has played through twice, switch the hero
-                // over to a photo carousel (Singapore/Hong Kong/Toronto/
-                // Shanghai/Vancouver), cross-fading to a new city every 3s.
-                // The <video> no longer has the `loop` attribute (which would
-                // otherwise suppress the 'ended' event entirely) — looping is
-                // done manually here so plays can be counted.
+                // Hero sequence: play the video twice, then cycle through all
+                // 5 city photos (Singapore/Hong Kong/Toronto/Shanghai/
+                // Vancouver) once, then play the video once more, then the
+                // photos once more, and so on — alternating forever. The
+                // <video> has no `loop` attribute (that would suppress the
+                // 'ended' event) — looping/alternating is all done manually
+                // here so each phase can be counted and handed off cleanly.
                 var vgCarouselPhotos = [
                     'wp-content/uploads/2024/12/singapore-1.jpg',
                     'wp-content/uploads/2024/12/hong-kong-1.jpg',
@@ -773,70 +775,114 @@ body { -webkit-font-smoothing: antialiased; }
                     'wp-content/uploads/2024/12/shanghai-1.jpg',
                     'wp-content/uploads/2024/12/vancouver-1.jpg'
                 ];
+                var vgPhotoIntervalMs = 4000;
 
                 // Fetch every photo into the browser cache well ahead of time
-                // (video plays ~20s before the carousel even starts), so each
-                // cross-fade swap below is instant instead of waiting on a
-                // fresh network request.
+                // (video plays ~20s before the carousel first starts), so
+                // every cross-fade swap below is instant instead of waiting
+                // on a fresh network request.
                 vgCarouselPhotos.forEach(function (src) {
                     var preload = new Image();
                     preload.src = src;
                 });
 
-                var vgCarouselStarted = false;
-                var vgHeroPlayCount = 0;
+                var vgCarouselLayers = [
+                    document.querySelector('.vg-hero-carousel-a'),
+                    document.querySelector('.vg-hero-carousel-b')
+                ];
 
-                function vgStartHeroCarousel() {
-                    if (vgCarouselStarted) { return; }
-                    vgCarouselStarted = true;
+                // Two stacked <img> layers ping-ponging opacity via CSS
+                // transition gives a real cross-fade between photos —
+                // reusing a single <img> and only swapping its `src` would
+                // just hard-cut with no fade.
+                function vgPlayPhotosOnce(onDone) {
                     $heroVideo.pause();
                     $heroVideo.style.display = 'none';
-
-                    // Two stacked <img> layers ping-ponging opacity via CSS
-                    // transition gives a real cross-fade between photos —
-                    // reusing a single <img> and only swapping its `src`
-                    // would just hard-cut with no fade.
-                    var layers = [
-                        document.querySelector('.vg-hero-carousel-a'),
-                        document.querySelector('.vg-hero-carousel-b')
-                    ];
                     var activeLayer = -1;
                     var photoIndex = 0;
+                    var timer;
 
                     function showNext() {
+                        if (photoIndex >= vgCarouselPhotos.length) {
+                            clearInterval(timer);
+                            onDone();
+                            return;
+                        }
                         var nextLayer = activeLayer === 0 ? 1 : 0;
-                        var incoming = layers[nextLayer];
-                        var outgoing = activeLayer === -1 ? null : layers[activeLayer];
+                        var incoming = vgCarouselLayers[nextLayer];
+                        var outgoing = activeLayer === -1 ? null : vgCarouselLayers[activeLayer];
                         incoming.onload = function () {
                             incoming.classList.add('is-active');
                             if (outgoing) { outgoing.classList.remove('is-active'); }
                         };
                         incoming.src = vgCarouselPhotos[photoIndex];
                         activeLayer = nextLayer;
-                        photoIndex = (photoIndex + 1) % vgCarouselPhotos.length;
+                        photoIndex++;
                     }
 
                     showNext();
-                    setInterval(showNext, 3000);
+                    timer = setInterval(showNext, vgPhotoIntervalMs);
                 }
 
-                $heroVideo.addEventListener('ended', function () {
+                // Plays the video exactly once and hands off to onEnded — used
+                // for every replay after the initial double-play. Includes its
+                // own short-lived safety timeout in case this particular play
+                // silently stalls, so one bad play can't wedge the sequence.
+                function vgPlayVideoOnce(onEnded) {
+                    vgCarouselLayers[0].classList.remove('is-active');
+                    vgCarouselLayers[1].classList.remove('is-active');
+                    $heroVideo.style.display = '';
+                    $heroVideo.currentTime = 0;
+
+                    var done = false;
+                    function finish() {
+                        if (done) { return; }
+                        done = true;
+                        $heroVideo.removeEventListener('ended', onVideoEnded);
+                        clearTimeout(stall);
+                        onEnded();
+                    }
+                    function onVideoEnded() { finish(); }
+
+                    $heroVideo.addEventListener('ended', onVideoEnded);
+                    var stall = setTimeout(finish, 15000);
+                    vgTryPlayHero();
+                }
+
+                // After the initial two plays, alternate forever: photos
+                // (one full pass) -> video (one play) -> photos -> video ...
+                function vgAlternateForever() {
+                    vgPlayPhotosOnce(function () {
+                        vgPlayVideoOnce(vgAlternateForever);
+                    });
+                }
+
+                var vgHeroPlayCount = 0;
+                var vgSequenceStarted = false;
+                function vgStartSequence() {
+                    if (vgSequenceStarted) { return; }
+                    vgSequenceStarted = true;
+                    vgAlternateForever();
+                }
+
+                $heroVideo.addEventListener('ended', function initialEndedHandler() {
                     vgHeroPlayCount++;
                     if (vgHeroPlayCount < 2) {
                         $heroVideo.currentTime = 0;
                         vgTryPlayHero();
                     } else {
-                        vgStartHeroCarousel();
+                        $heroVideo.removeEventListener('ended', initialEndedHandler);
+                        vgStartSequence();
                     }
                 });
 
                 // Safety net: if autoplay never actually starts (blocked,
                 // unsupported format, still-loading on a slow connection),
                 // 'ended' would never fire and the hero would stay frozen
-                // on the poster forever. Fall back to the photo carousel
-                // after a generous timeout regardless.
-                $heroVideo.addEventListener('error', vgStartHeroCarousel);
-                setTimeout(vgStartHeroCarousel, 30000);
+                // on the poster forever. Fall back into the photos/video
+                // sequence after a generous timeout regardless.
+                $heroVideo.addEventListener('error', vgStartSequence);
+                setTimeout(vgStartSequence, 30000);
             }
 
             $('.venobox').venobox();
