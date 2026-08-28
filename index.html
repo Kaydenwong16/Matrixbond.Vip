@@ -329,10 +329,27 @@ body { -webkit-font-smoothing: antialiased; }
   object-fit: cover;
   display: block;
   opacity: 0;
+  filter: brightness(1.2);
   transition: opacity 1.8s ease-in-out;
 }
 .slider-section.style1 .hero-slider .slider-item img.vg-hero-carousel.is-active {
   opacity: 1;
+}
+/* Shanghai photo runs darker than the others in the carousel — boost it
+   further than the shared brightness(1.2) above. Matched by `src`
+   (the two layers swap `src` via JS, not a per-city class), and the
+   browser re-evaluates the attribute selector live as `src` changes. */
+.slider-section.style1 .hero-slider .slider-item img.vg-hero-carousel[src*="shanghai-1.jpg"] {
+  filter: brightness(1.3);
+}
+/* Toronto photo also runs darker than the others — same treatment. */
+.slider-section.style1 .hero-slider .slider-item img.vg-hero-carousel[src*="toronto-1.jpg"] {
+  filter: brightness(1.35);
+}
+/* Vancouver photo runs brighter than the others already — only needs a
+   smaller boost than the shared brightness(1.2) above. */
+.slider-section.style1 .hero-slider .slider-item img.vg-hero-carousel[src*="vancouver-1.jpg"] {
+  filter: brightness(1.1);
 }
 .slider-section.style1 .hero-slider .slider-item > .container {
   position: relative;
