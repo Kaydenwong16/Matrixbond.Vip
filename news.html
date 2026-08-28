@@ -354,7 +354,22 @@ body { -webkit-font-smoothing: antialiased; }
   background-repeat: no-repeat !important;
 }
 .breadcrumb-area .title h1 {
-  color: #ff7426 !important;
+  color: #fff !important;
+}
+/* Darker layer sitting behind the title (below the words, above the
+   photo) so the white text stays readable over the busy news image. */
+.breadcrumb-area::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+.breadcrumb-area .title,
+.breadcrumb-area .breadcrumb-items {
+  position: relative;
+  z-index: 1;
 }
 </style>
 <style id="vg-news-hero-height-match">
