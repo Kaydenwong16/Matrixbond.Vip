@@ -762,7 +762,7 @@ body { -webkit-font-smoothing: antialiased; }
 
                 // After the video has played through twice, switch the hero
                 // over to a photo carousel (Singapore/Hong Kong/Toronto/
-                // Shanghai/Vancouver), cross-fading to a new city every 1.5s.
+                // Shanghai/Vancouver), cross-fading to a new city every 3s.
                 // The <video> no longer has the `loop` attribute (which would
                 // otherwise suppress the 'ended' event entirely) — looping is
                 // done manually here so plays can be counted.
@@ -817,7 +817,7 @@ body { -webkit-font-smoothing: antialiased; }
                     }
 
                     showNext();
-                    setInterval(showNext, 1500);
+                    setInterval(showNext, 3000);
                 }
 
                 $heroVideo.addEventListener('ended', function () {
