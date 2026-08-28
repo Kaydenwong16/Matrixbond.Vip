@@ -256,6 +256,15 @@ body { -webkit-font-smoothing: antialiased; }
 .slider-section.style1 .hero-slider .slider-item .button-set {
   margin-top: 16px !important;
 }
+/* Semi-transparent black backdrop directly behind the text block
+   (on top of the whole-photo overlay above) for extra guaranteed
+   contrast under the white text, regardless of what's in the photo. */
+.slider-section.style1 .hero-slider .slider-item .text-wrapper {
+  background: rgba(0, 0, 0, 0.35) !important;
+  padding: 24px 28px !important;
+  border-radius: 12px !important;
+  display: inline-block !important;
+}
 /* All hero text in white (the theme's default accent color for the
    subtitle and the "Investments"/"Bond Market" title spans is orange,
    var(--main-color) — override to white here, scoped to the hero only). */
@@ -301,17 +310,22 @@ body { -webkit-font-smoothing: antialiased; }
   position: relative;
   z-index: 1;
 }
-/* Uniform semi-transparent black overlay across the whole photo so the
-   white text stays readable regardless of what's behind it — the text
-   block now spans the full width at the bottom of the hero rather than
-   just sitting on the left. Sits above the Ken-Burns photo/video layer
-   but below the text container. */
+/* Darken the left side (where the title/subtitle/buttons sit) so white
+   text stays readable over bright photo content, while leaving the
+   right side of the image untouched. Sits above the Ken-Burns photo
+   layer but below the text container. */
 .slider-section.style1 .hero-slider .slider-item::after {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.68) 0%,
+    rgba(0, 0, 0, 0.45) 30%,
+    rgba(0, 0, 0, 0.15) 55%,
+    rgba(0, 0, 0, 0) 75%
+  );
   pointer-events: none;
 }
 /* Hero title at 2/3 of the theme's default size, at every breakpoint
