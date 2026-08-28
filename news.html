@@ -343,6 +343,31 @@ body { -webkit-font-smoothing: antialiased; }
   }
 }
 </style>
+<style id="vg-news-hero-bg">
+/* Page-specific hero image for News (does not affect the theme-wide
+   .breadcrumb-area background used on other pages). Uses "cover" so
+   the photo fills the hero section with no letterboxing. */
+.breadcrumb-area {
+  background-image: url('wp-content/uploads/2024/12/panda-bond-news-article-1.png') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+.breadcrumb-area .title h1 {
+  color: #ff7426 !important;
+}
+</style>
+<style id="vg-news-hero-height-match">
+/* The English title wraps to 2 lines (vs. 1 line in Chinese), which made
+   the hero taller than the Chinese version. Tighten the title's vertical
+   padding on desktop, for English only, so both language heroes render
+   at the same overall height. */
+@media (min-width: 768px) {
+  html:not([lang="zh-CN"]) .breadcrumb-area .title {
+    padding: 95px 0 86px;
+  }
+}
+</style>
 <style id="vg-archive-menu">
 .wp-block-archives-list, .widget-area, aside#secondary { overflow: visible !important; }
 .wp-block-archives-list .vg-archive-parent { position: relative; }
