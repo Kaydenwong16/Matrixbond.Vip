@@ -269,6 +269,19 @@ body { -webkit-font-smoothing: antialiased; }
   animation: vg-hero-kenburns 22s ease-in-out infinite alternate;
   will-change: transform;
 }
+/* Hero video: covers the ::before photo/Ken-Burns layer once it starts
+   playing (paints in DOM order, so it sits above ::before and below the
+   ::after darkening overlay and the text container below). The photo
+   stays underneath as the poster frame and as a fallback if the video
+   can't play (autoplay blocked, format unsupported, still loading). */
+.slider-section.style1 .hero-slider .slider-item video.vg-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .slider-section.style1 .hero-slider .slider-item > .container {
   position: relative;
   z-index: 1;
@@ -632,6 +645,9 @@ body { -webkit-font-smoothing: antialiased; }
     <div class="slider-section style1">
         <div class="hero-slider owl-carousel">
                         <div class="slider-item" style="background-image: url('wp-content/uploads/2024/12/home-hero.jpg'); background-size: cover; background-repeat: no-repeat;">
+                <video class="vg-hero-video" autoplay muted loop playsinline preload="auto" poster="wp-content/uploads/2024/12/home-hero.jpg">
+                    <source src="wp-content/uploads/2024/12/home-hero-video.mp4" type="video/mp4">
+                </video>
                 <div class="container">
                     <div class="text-wrapper slide-up">
                                                     <h5 class="subtitle" data-i18n="index.hero.subtitle">Panda Bond Futures and Options</h5>
@@ -656,12 +672,14 @@ body { -webkit-font-smoothing: antialiased; }
             "use strict";
             $(".hero-slider").owlCarousel({
                 items:1,
-                nav:true,
-                navText:["<i class='bi bi-arrow-left'></i>","<i class='bi bi-arrow-right'></i>"],
+                nav:false,
                 dots:false,
-                loop:true,
-                autoplay:true,
-                autoplayTimeout:5000,
+                // Single real slide: loop:true would make Owl Carousel clone it for
+                // seamless wrap-around, which — now that the slide holds a <video> —
+                // would silently double the video element (and its network/decode
+                // cost) for no visible benefit. Off since there's nothing to loop to.
+                loop:false,
+                autoplay:false,
                 animateOut: 'fadeOut',
             });
             
