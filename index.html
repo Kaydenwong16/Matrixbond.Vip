@@ -327,10 +327,6 @@ body { -webkit-font-smoothing: antialiased; }
 .slider-section.style1 .hero-slider .slider-item img.vg-hero-carousel.is-active {
   opacity: 1;
 }
-/* Buttons hidden per current design. */
-.slider-section.style1 .hero-slider .slider-item .button-set {
-  display: none !important;
-}
 .slider-section.style1 .hero-slider .slider-item > .container {
   position: relative;
   z-index: 1;
@@ -433,13 +429,6 @@ body { -webkit-font-smoothing: antialiased; }
   .slider-section.style1 .hero-slider .slider-item .container {
     padding-bottom: 10px !important;
     padding-left: 24px !important;
-  }
-  /* Buttons hidden per current design (see the unconditional
-     display:none above) — this mobile rule would otherwise win on
-     small screens and re-show them, since it's more specific by
-     media scope alone doesn't beat source order + equal specificity. */
-  .slider-section.style1 .hero-slider .slider-item .button-set {
-    display: none !important;
   }
   .slider-section.style1 .hero-slider .slider-item .button-set a {
     white-space: nowrap !important;
@@ -716,7 +705,8 @@ body { -webkit-font-smoothing: antialiased; }
                 <video class="vg-hero-video" autoplay muted playsinline webkit-playsinline x5-playsinline x5-video-player-type="h5" x5-video-player-fullscreen="false" preload="auto" poster="wp-content/uploads/2024/12/home-hero.jpg">
                     <source src="wp-content/uploads/2024/12/home-hero-video.mp4" type="video/mp4">
                 </video>
-                <img class="vg-hero-carousel" alt="" />
+                <img class="vg-hero-carousel vg-hero-carousel-a" alt="" />
+                <img class="vg-hero-carousel vg-hero-carousel-b" alt="" />
                 <div class="container">
                     <div class="text-wrapper slide-up">
                                                     <h5 class="subtitle" data-i18n="index.hero.subtitle">Panda Bond Futures and Options</h5>
@@ -776,7 +766,6 @@ body { -webkit-font-smoothing: antialiased; }
                 // The <video> no longer has the `loop` attribute (which would
                 // otherwise suppress the 'ended' event entirely) — looping is
                 // done manually here so plays can be counted.
-                var vgHeroPlayCount = 0;
                 var vgCarouselPhotos = [
                     'wp-content/uploads/2024/12/singapore-1.jpg',
                     'wp-content/uploads/2024/12/hong-kong-1.jpg',
@@ -784,16 +773,49 @@ body { -webkit-font-smoothing: antialiased; }
                     'wp-content/uploads/2024/12/shanghai-1.jpg',
                     'wp-content/uploads/2024/12/vancouver-1.jpg'
                 ];
-                var $carouselImg = $('.vg-hero-carousel');
+
+                // Fetch every photo into the browser cache well ahead of time
+                // (video plays ~20s before the carousel even starts), so each
+                // cross-fade swap below is instant instead of waiting on a
+                // fresh network request.
+                vgCarouselPhotos.forEach(function (src) {
+                    var preload = new Image();
+                    preload.src = src;
+                });
+
+                var vgCarouselStarted = false;
+                var vgHeroPlayCount = 0;
 
                 function vgStartHeroCarousel() {
+                    if (vgCarouselStarted) { return; }
+                    vgCarouselStarted = true;
                     $heroVideo.pause();
                     $heroVideo.style.display = 'none';
-                    var i = 0;
+
+                    // Two stacked <img> layers ping-ponging opacity via CSS
+                    // transition gives a real cross-fade between photos —
+                    // reusing a single <img> and only swapping its `src`
+                    // would just hard-cut with no fade.
+                    var layers = [
+                        document.querySelector('.vg-hero-carousel-a'),
+                        document.querySelector('.vg-hero-carousel-b')
+                    ];
+                    var activeLayer = -1;
+                    var photoIndex = 0;
+
                     function showNext() {
-                        $carouselImg.attr('src', vgCarouselPhotos[i]).addClass('is-active');
-                        i = (i + 1) % vgCarouselPhotos.length;
+                        var nextLayer = activeLayer === 0 ? 1 : 0;
+                        var incoming = layers[nextLayer];
+                        var outgoing = activeLayer === -1 ? null : layers[activeLayer];
+                        incoming.onload = function () {
+                            incoming.classList.add('is-active');
+                            if (outgoing) { outgoing.classList.remove('is-active'); }
+                        };
+                        incoming.src = vgCarouselPhotos[photoIndex];
+                        activeLayer = nextLayer;
+                        photoIndex = (photoIndex + 1) % vgCarouselPhotos.length;
                     }
+
                     showNext();
                     setInterval(showNext, 1500);
                 }
@@ -807,6 +829,14 @@ body { -webkit-font-smoothing: antialiased; }
                         vgStartHeroCarousel();
                     }
                 });
+
+                // Safety net: if autoplay never actually starts (blocked,
+                // unsupported format, still-loading on a slow connection),
+                // 'ended' would never fire and the hero would stay frozen
+                // on the poster forever. Fall back to the photo carousel
+                // after a generous timeout regardless.
+                $heroVideo.addEventListener('error', vgStartHeroCarousel);
+                setTimeout(vgStartHeroCarousel, 30000);
             }
 
             $('.venobox').venobox();
@@ -1332,23 +1362,5 @@ var elementorFrontendConfig = {"environmentMode":{"edit":false,"wpPreview":false
 
 
 
-<script>
-window.addEventListener('load', function(){
-  setTimeout(function(){
-    var bs = document.querySelector('.button-set');
-    var a1 = document.querySelector('.button-set a.button');
-    var out = document.createElement('div');
-    out.style.cssText='position:fixed;top:0;left:0;background:yellow;color:black;z-index:99999;font-size:11px;padding:6px;white-space:pre;';
-    function info(name, el){
-      if(!el) return name+': NULL\n';
-      var cs = getComputedStyle(el);
-      var r = el.getBoundingClientRect();
-      return name+': disp='+cs.display+' opac='+cs.opacity+' vis='+cs.visibility+' h='+r.height+' w='+r.width+' top='+r.top+'\n';
-    }
-    out.textContent = info('button-set', bs) + info('button a', a1);
-    document.body.appendChild(out);
-  }, 1000);
-});
-</script>
 </body>
 </html>
