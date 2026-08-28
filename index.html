@@ -242,13 +242,19 @@ body { -webkit-font-smoothing: antialiased; }
   min-height: 525px !important;
 }
 /* Anchor the whole hero text block (subtitle/title/description/buttons)
-   to the bottom of the photo, on every screen size — theme default is
-   vertically centered (align-items: center), overridden here. */
+   to the bottom of the photo, on every screen size. Pinned with absolute
+   positioning (bottom: 0) rather than relying on the parent's flex
+   align-items alone, so it's guaranteed flush against the bottom edge
+   of the photo regardless of how tall the hero box ends up being. */
 .slider-section.style1 .hero-slider .slider-item {
   align-items: flex-end !important;
 }
 .slider-section.style1 .hero-slider .slider-item > .container {
-  padding-bottom: 16px !important;
+  position: absolute !important;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-bottom: 12px !important;
 }
 /* Tighten the gap above the buttons (theme default is 58px) so the
    subtitle/title/description sit close above them instead of floating
@@ -331,6 +337,47 @@ body { -webkit-font-smoothing: antialiased; }
 .slider-section.style1 .hero-slider .slider-item > .container {
   position: relative;
   z-index: 1;
+}
+/* City-photo picker dots: a vertical stack on the right edge of the
+   hero photo (clear of the text block, which lives bottom-left) that
+   lets a visitor jump straight to a given city photo. Only ever
+   reflects the photo carousel — cleared while the video is playing. */
+.slider-section.style1 .hero-slider .slider-item .vg-hero-dots {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  z-index: 2;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.slider-section.style1 .hero-slider .slider-item .vg-hero-dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.slider-section.style1 .hero-slider .slider-item .vg-hero-dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+.slider-section.style1 .hero-slider .slider-item .vg-hero-dot.is-active {
+  background: #fff;
+  transform: scale(1.2);
+}
+@media (max-width: 767px) {
+  .slider-section.style1 .hero-slider .slider-item .vg-hero-dots {
+    right: 10px;
+    gap: 8px;
+  }
+  .slider-section.style1 .hero-slider .slider-item .vg-hero-dot {
+    width: 8px;
+    height: 8px;
+  }
 }
 /* Darken the left side (where the title/subtitle/buttons sit) so white
    text stays readable over bright photo content, while leaving the
@@ -708,6 +755,13 @@ body { -webkit-font-smoothing: antialiased; }
                 </video>
                 <img class="vg-hero-carousel vg-hero-carousel-a" alt="" />
                 <img class="vg-hero-carousel vg-hero-carousel-b" alt="" />
+                <div class="vg-hero-dots" role="tablist" aria-label="Choose a city photo">
+                    <button type="button" class="vg-hero-dot" data-index="0" aria-label="Singapore"></button>
+                    <button type="button" class="vg-hero-dot" data-index="1" aria-label="Hong Kong"></button>
+                    <button type="button" class="vg-hero-dot" data-index="2" aria-label="Toronto"></button>
+                    <button type="button" class="vg-hero-dot" data-index="3" aria-label="Shanghai"></button>
+                    <button type="button" class="vg-hero-dot" data-index="4" aria-label="Vancouver"></button>
+                </div>
                 <div class="container">
                     <div class="text-wrapper slide-up">
                                                     <h5 class="subtitle" data-i18n="index.hero.subtitle">Panda Bond Futures and Options</h5>
@@ -790,24 +844,47 @@ body { -webkit-font-smoothing: antialiased; }
                     document.querySelector('.vg-hero-carousel-a'),
                     document.querySelector('.vg-hero-carousel-b')
                 ];
+                var vgDots = document.querySelectorAll('.vg-hero-dot');
+
+                // Bumped every time a dot click overrides whatever phase is
+                // currently in flight. Each in-progress photo/video phase
+                // captures the generation it started with and checks it at
+                // every async step (interval tick, video 'ended'/timeout) —
+                // if it no longer matches, that phase quietly stops instead
+                // of fighting with the phase the click just kicked off.
+                var vgGen = 0;
+
+                function vgSetActiveDot(index) {
+                    vgDots.forEach(function (dot) {
+                        dot.classList.toggle('is-active', Number(dot.getAttribute('data-index')) === index);
+                    });
+                }
 
                 // Two stacked <img> layers ping-ponging opacity via CSS
                 // transition gives a real cross-fade between photos —
                 // reusing a single <img> and only swapping its `src` would
-                // just hard-cut with no fade.
-                function vgPlayPhotosOnce(onDone) {
+                // just hard-cut with no fade. Starts at `startIndex` (a dot
+                // click jumps straight there) and shows one full pass of
+                // all photos from that point, wrapping around.
+                function vgPlayPhotosFrom(startIndex, onDone, gen) {
                     $heroVideo.pause();
                     $heroVideo.style.display = 'none';
                     var activeLayer = -1;
-                    var photoIndex = 0;
+                    var photoIndex = startIndex;
+                    var shown = 0;
                     var timer;
 
                     function showNext() {
-                        if (photoIndex >= vgCarouselPhotos.length) {
+                        if (gen !== vgGen) {
+                            clearInterval(timer);
+                            return;
+                        }
+                        if (shown >= vgCarouselPhotos.length) {
                             clearInterval(timer);
                             onDone();
                             return;
                         }
+                        var idx = photoIndex % vgCarouselPhotos.length;
                         var nextLayer = activeLayer === 0 ? 1 : 0;
                         var incoming = vgCarouselLayers[nextLayer];
                         var outgoing = activeLayer === -1 ? null : vgCarouselLayers[activeLayer];
@@ -815,9 +892,11 @@ body { -webkit-font-smoothing: antialiased; }
                             incoming.classList.add('is-active');
                             if (outgoing) { outgoing.classList.remove('is-active'); }
                         };
-                        incoming.src = vgCarouselPhotos[photoIndex];
+                        incoming.src = vgCarouselPhotos[idx];
+                        vgSetActiveDot(idx);
                         activeLayer = nextLayer;
                         photoIndex++;
+                        shown++;
                     }
 
                     showNext();
@@ -828,9 +907,10 @@ body { -webkit-font-smoothing: antialiased; }
                 // for every replay after the initial double-play. Includes its
                 // own short-lived safety timeout in case this particular play
                 // silently stalls, so one bad play can't wedge the sequence.
-                function vgPlayVideoOnce(onEnded) {
+                function vgPlayVideoOnce(onEnded, gen) {
                     vgCarouselLayers[0].classList.remove('is-active');
                     vgCarouselLayers[1].classList.remove('is-active');
+                    vgSetActiveDot(-1);
                     $heroVideo.style.display = '';
                     $heroVideo.currentTime = 0;
 
@@ -840,7 +920,7 @@ body { -webkit-font-smoothing: antialiased; }
                         done = true;
                         $heroVideo.removeEventListener('ended', onVideoEnded);
                         clearTimeout(stall);
-                        onEnded();
+                        if (gen === vgGen) { onEnded(); }
                     }
                     function onVideoEnded() { finish(); }
 
@@ -851,10 +931,10 @@ body { -webkit-font-smoothing: antialiased; }
 
                 // After the initial two plays, alternate forever: photos
                 // (one full pass) -> video (one play) -> photos -> video ...
-                function vgAlternateForever() {
-                    vgPlayPhotosOnce(function () {
-                        vgPlayVideoOnce(vgAlternateForever);
-                    });
+                function vgAlternateForever(gen) {
+                    vgPlayPhotosFrom(0, function () {
+                        vgPlayVideoOnce(function () { vgAlternateForever(gen); }, gen);
+                    }, gen);
                 }
 
                 var vgHeroPlayCount = 0;
@@ -862,10 +942,30 @@ body { -webkit-font-smoothing: antialiased; }
                 function vgStartSequence() {
                     if (vgSequenceStarted) { return; }
                     vgSequenceStarted = true;
-                    vgAlternateForever();
+                    vgAlternateForever(vgGen);
                 }
 
+                // Dot click: jump straight to that city's photo, then keep
+                // alternating (remaining photos, then video, then photos...)
+                // as normal from there.
+                vgDots.forEach(function (dot) {
+                    dot.addEventListener('click', function () {
+                        vgSequenceStarted = true;
+                        vgGen++;
+                        var gen = vgGen;
+                        vgPlayPhotosFrom(Number(dot.getAttribute('data-index')), function () {
+                            vgPlayVideoOnce(function () { vgAlternateForever(gen); }, gen);
+                        }, gen);
+                    });
+                });
+
                 $heroVideo.addEventListener('ended', function initialEndedHandler() {
+                    if (vgSequenceStarted) {
+                        // A dot was clicked before the initial double-play
+                        // finished — that click already took over.
+                        $heroVideo.removeEventListener('ended', initialEndedHandler);
+                        return;
+                    }
                     vgHeroPlayCount++;
                     if (vgHeroPlayCount < 2) {
                         $heroVideo.currentTime = 0;
