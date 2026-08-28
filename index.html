@@ -332,7 +332,10 @@ body { -webkit-font-smoothing: antialiased; }
 }
 @media (max-width: 767px) {
   .slider-section.style1 .hero-slider .slider-item {
-    min-height: 336px !important;
+    /* Taller than the base 336px so the bottom-anchored text block
+       (see align-items: flex-end below) sits further down the photo
+       instead of hugging just past its middle. */
+    min-height: 400px !important;
   }
   /* Eyebrow subtitle uses 4px letter-spacing tuned for an 85px desktop
      title — far too wide for a mobile viewport, so it was overflowing/
