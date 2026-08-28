@@ -241,6 +241,15 @@ body { -webkit-font-smoothing: antialiased; }
 .slider-section.style1 .hero-slider .slider-item {
   min-height: 525px !important;
 }
+/* Anchor the whole hero text block (subtitle/title/description/buttons)
+   to the bottom of the photo, on every screen size — theme default is
+   vertically centered (align-items: center), overridden here. */
+.slider-section.style1 .hero-slider .slider-item {
+  align-items: flex-end !important;
+}
+.slider-section.style1 .hero-slider .slider-item > .container {
+  padding-bottom: 40px !important;
+}
 /* All hero text in white (the theme's default accent color for the
    subtitle and the "Investments"/"Bond Market" title spans is orange,
    var(--main-color) — override to white here, scoped to the hero only). */
