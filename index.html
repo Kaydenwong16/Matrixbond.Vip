@@ -250,6 +250,12 @@ body { -webkit-font-smoothing: antialiased; }
 .slider-section.style1 .hero-slider .slider-item > .container {
   padding-bottom: 40px !important;
 }
+/* Tighten the gap above the buttons (theme default is 58px) so the
+   subtitle/title/description sit close above them instead of floating
+   with a big gap in between. */
+.slider-section.style1 .hero-slider .slider-item .button-set {
+  margin-top: 16px !important;
+}
 /* All hero text in white (the theme's default accent color for the
    subtitle and the "Investments"/"Bond Market" title spans is orange,
    var(--main-color) — override to white here, scoped to the hero only). */
