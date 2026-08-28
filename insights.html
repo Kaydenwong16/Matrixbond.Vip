@@ -325,11 +325,25 @@ body { -webkit-font-smoothing: antialiased; }
 }
 </style>
 <style id="vg-page-title-mobile-zh">
-/* Match this page's hero/breadcrumb title to the landing page's
-   30px mobile hero title size (English and Chinese). */
+/* Match this page's hero/breadcrumb title to the landing page's hero
+   title size (English and Chinese): 2/3 of the theme default at every
+   breakpoint. */
+.breadcrumb-area .title h1 {
+  font-size: 57px !important;
+}
+@media (max-width: 1366px) {
+  .breadcrumb-area .title h1 {
+    font-size: 47px !important;
+  }
+}
+@media (max-width: 991px) {
+  .breadcrumb-area .title h1 {
+    font-size: 40px !important;
+  }
+}
 @media (max-width: 767px) {
   .breadcrumb-area .title h1 {
-    font-size: 30px !important;
+    font-size: 20px !important;
   }
 }
 </style>

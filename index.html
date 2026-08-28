@@ -325,6 +325,15 @@ body { -webkit-font-smoothing: antialiased; }
   .slider-section.style1 .hero-slider .slider-item .text-wrapper {
     overflow: visible !important;
   }
+  /* English title's last phrase ("in China's Bond Market") has an
+     inline white-space:nowrap that's a desktop-only design choice
+     (keeps that phrase together on wide screens). On narrow mobile
+     screens that phrase alone can be wider than the viewport, so let
+     it wrap like every other line — matching how the Chinese title
+     already wraps via its own manual line-break. */
+  .slider-section.style1 .hero-slider .slider-item .title span {
+    white-space: normal !important;
+  }
 }
 /* Mobile hero text sizing (English and Chinese) */
 @media (max-width: 767px) {
