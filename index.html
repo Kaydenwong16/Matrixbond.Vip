@@ -241,6 +241,15 @@ body { -webkit-font-smoothing: antialiased; }
 .slider-section.style1 .hero-slider .slider-item {
   min-height: 525px !important;
 }
+/* All hero text in white (the theme's default accent color for the
+   subtitle and the "Investments"/"Bond Market" title spans is orange,
+   var(--main-color) — override to white here, scoped to the hero only). */
+.slider-section.style1 .hero-slider .slider-item .subtitle,
+.slider-section.style1 .hero-slider .slider-item .title,
+.slider-section.style1 .hero-slider .slider-item .title span,
+.slider-section.style1 .hero-slider .slider-item .description {
+  color: #fff !important;
+}
 /* ── Dynamic hero: slow Ken-Burns zoom on the background photo ──
    The image lives on a ::before layer (inherits the inline
    background-image) so the zoom never moves the text/buttons on
