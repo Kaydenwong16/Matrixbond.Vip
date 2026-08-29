@@ -387,4 +387,20 @@
     });
     if (currentLang === 'zh') applyLang('zh');
   });
+
+  /* ── Mobile menu: tap outside to close ──────────────────────────
+     The theme only wires .menu-toggle to open/close the dropdown
+     (theme-script.js: $('.menu-toggle').click ⇒ $('.menu-content')
+     .slideToggle()) — tapping anywhere else on the page while it's
+     open does nothing. Close it the same way a second tap on the
+     toggle would, by re-clicking .menu-toggle, so it reuses the exact
+     same slideToggle animation instead of a separate show/hide path. */
+  document.addEventListener('click', function (e) {
+    var menuContent = document.querySelector('.mobile-menu .menu-content');
+    var menuToggle = document.querySelector('.mobile-menu .menu-toggle');
+    if (!menuContent || !menuToggle) { return; }
+    if (menuContent.contains(e.target) || menuToggle.contains(e.target)) { return; }
+    if (window.getComputedStyle(menuContent).display === 'none') { return; }
+    menuToggle.click();
+  });
 })();
