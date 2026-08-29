@@ -401,24 +401,6 @@ body { -webkit-font-smoothing: antialiased; }
   }
 }
 </style>
-<style id="vg-national-bank-thumb-crop">
-/* Same treatment as national-bank-panda-bonds.html's article .blog-thumb
-   (55263dd): this listing's thumbnail is a plain <img> (no .blog-list/
-   .blog-details wrapper here for the theme's own background-image
-   .blog-thumb rules to match, so it was rendering uncropped at its
-   native 1200x720). object-fit/object-position are the <img>
-   equivalent of background-size/background-position — same shortened
-   aspect-ratio (1200:432, 2/5 of the height cropped) anchored to the
-   top, so the top of the photo shows in full and all the crop comes
-   off the bottom. */
-.blog-thumb .post-thumbnail img {
-  width: 100% !important;
-  height: auto !important;
-  aspect-ratio: 1200 / 432 !important;
-  object-fit: cover !important;
-  object-position: center top !important;
-}
-</style>
 <style id="vg-archive-menu">
 .wp-block-archives-list, .widget-area, aside#secondary { overflow: visible !important; }
 .wp-block-archives-list .vg-archive-parent { position: relative; }
