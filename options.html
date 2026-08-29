@@ -362,6 +362,21 @@ body { -webkit-font-smoothing: antialiased; }
   }
 }
 </style>
+<style id="vg-options-hero-bg-zh">
+/* Chinese-only hero photo for Options (English keeps the theme's
+   default background — not asked to change). The photo has the title
+   text baked in ("期权 OPTIONS"), so contain (not cover) keeps the
+   whole thing visible instead of risking it being cropped, with a
+   background-color fallback matching the photo's own dark navy tone
+   for any letterbox gap. */
+html[lang="zh-CN"] .breadcrumb-area {
+  background-image: url('wp-content/uploads/2024/12/Option Chinese.jpeg') !important;
+  background-size: contain !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-color: #0a1628 !important;
+}
+</style>
 <style id="vg-options-section-title-size">
 /* Section title ("Matrix Bond Management Options" above the Overview
    text) — shrunk from the theme's default 50px. */
