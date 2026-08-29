@@ -371,25 +371,12 @@ body { -webkit-font-smoothing: antialiased; }
    needed. */
 .breadcrumb-area {
   background-image: url('wp-content/uploads/2024/12/Futures English.jpeg') !important;
-  /* contain (not cover) so the whole photo is always shown in full —
-     cover was cropping these ultra-wide (3.27:1) banners, which have
-     title text on the far left and chart/objects extending to the
-     right edge, easy to cut off. background-color matches the photo's
-     own dark navy background so any letterbox gap blends in instead
-     of showing a bare gap. */
-  background-size: contain !important;
+  background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
-  background-color: #0a1628 !important;
 }
 html[lang="zh-CN"] .breadcrumb-area {
   background-image: url('wp-content/uploads/2024/12/Futures Chinese.jpeg') !important;
-}
-/* The photo itself already carries the title text (baked in, both
-   languages), so the separate white h1 title text on top of it is
-   redundant — hidden here. Breadcrumb nav (Home / Futures) stays. */
-.breadcrumb-area .title {
-  display: none !important;
 }
 </style>
 <style id="vg-futures-section-title-size">
