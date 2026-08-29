@@ -338,15 +338,16 @@ body { -webkit-font-smoothing: antialiased; }
 </style>
 <style id="vg-national-bank-thumb-zoom">
 /* Article thumbnail: the theme's default background-size: cover on the
-   fixed 480px-tall .blog-thumb box was scaling the 1200x720 photo up
-   to fill the box, cropping off part of it. Dropped the fixed height
-   and gave the box the photo's true aspect ratio (1200:720) instead,
-   so it always matches exactly — full photo visible, no cropping, no
-   empty space, at any width. Matches how the same photo now displays
-   uncropped on the news page. */
+   fixed 480px-tall .blog-thumb box was scaling the photo up to fill
+   the box, cropping off part of it. Dropped the fixed height and gave
+   the box the photo's true aspect ratio instead, so it always matches
+   exactly — full photo visible, no cropping, no empty space, at any
+   width. Matches how the same photo now displays uncropped on the
+   news page. Photo was swapped to an updated version at 1143x594
+   (previously 1200x720) — ratio here follows the current file. */
 .blog-details .post .blog-thumb {
   height: auto !important;
-  aspect-ratio: 1200 / 720 !important;
+  aspect-ratio: 1143 / 594 !important;
   background-size: cover !important;
 }
 </style>
