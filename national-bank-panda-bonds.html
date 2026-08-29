@@ -336,6 +336,18 @@ body { -webkit-font-smoothing: antialiased; }
   }
 }
 </style>
+<style id="vg-national-bank-thumb-zoom">
+/* Article thumbnail: the theme's default background-size: cover on the
+   fixed 480px-tall .blog-thumb box was scaling the 1200x720 photo up
+   to fill the box, cropping off part of it. Switched to contain so the
+   whole photo is always visible instead, zoomed out to fit within the
+   box (letterboxed against the card's white background rather than
+   cropped). */
+.blog-details .post .blog-thumb {
+  background-size: contain !important;
+  background-color: #fff !important;
+}
+</style>
 <style id="vg-archive-menu">
 .wp-block-archives-list, .widget-area, aside#secondary { overflow: visible !important; }
 .wp-block-archives-list .vg-archive-parent { position: relative; }
