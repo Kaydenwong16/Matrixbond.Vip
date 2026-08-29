@@ -282,15 +282,16 @@ body { -webkit-font-smoothing: antialiased; }
 }
 /* Semi-transparent black backdrop, on top of the whole-photo overlay
    above, for extra guaranteed contrast under the white text — hugging
-   each line (subtitle/title/description) individually rather than one
-   big rectangle behind the whole text block, so there's no empty
-   backdrop showing past the shorter lines. width: fit-content shrinks
-   each block-level element down to its own content instead of
-   stretching to the widest line in the group; each stays display:
-   block so it still stacks on its own row like before. Buttons already
-   carry their own solid/bordered background, so they're left alone. */
+   the subtitle and description individually rather than one big
+   rectangle behind the whole text block, so there's no empty backdrop
+   showing past the shorter lines. width: fit-content shrinks each
+   block-level element down to its own content instead of stretching
+   to the widest line in the group; each stays display: block so it
+   still stacks on its own row like before. (Title has its own rule
+   below — it wraps across lines of different widths, so it needs a
+   different technique.) Buttons already carry their own solid/bordered
+   background, so they're left alone. */
 .slider-section.style1 .hero-slider .slider-item .subtitle,
-.slider-section.style1 .hero-slider .slider-item .title,
 .slider-section.style1 .hero-slider .slider-item .description {
   display: block !important;
   width: -webkit-fit-content !important;
@@ -301,11 +302,28 @@ body { -webkit-font-smoothing: antialiased; }
 .slider-section.style1 .hero-slider .slider-item .subtitle {
   padding: 4px 12px !important;
 }
-.slider-section.style1 .hero-slider .slider-item .title {
-  padding: 6px 14px !important;
-}
 .slider-section.style1 .hero-slider .slider-item .description {
   padding: 4px 12px !important;
+  margin-top: 10px !important;
+}
+/* The title wraps across 2 lines of noticeably different widths on
+   desktop; display: block + width: fit-content (used above) would size
+   its background to the WIDER of the two lines, leaving backdrop
+   overhanging past the shorter one. Fix: make the title itself an
+   inline box (still starts on its own row — it follows the subtitle,
+   a block element, which forces the line break) and use
+   box-decoration-break: clone so the background/padding/radius are
+   applied separately to each wrapped line instead of one shared box.
+   (margin-bottom from the theme's base .title rule no longer applies
+   now that this is inline — the .description margin-top above
+   restores that gap instead.) */
+.slider-section.style1 .hero-slider .slider-item .title {
+  display: inline !important;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  background: rgba(0, 0, 0, 0.35) !important;
+  border-radius: 6px !important;
+  padding: 4px 14px !important;
 }
 /* All hero text in white (the theme's default accent color for the
    subtitle and the "Investments"/"Bond Market" title spans is orange,
@@ -542,9 +560,11 @@ body { -webkit-font-smoothing: antialiased; }
 }
 /* Chinese hero title: break "中国债券市场" onto its own row on mobile
    only — hide the break on desktop so the title keeps its original
-   single-line flow there. */
+   single-line flow there. Same treatment for the description's manual
+   break below ("and Global Financial Strategies" onto its own line). */
 @media (min-width: 768px) {
-  .slider-section.style1 .hero-slider .slider-item .title .vg-mobile-br {
+  .slider-section.style1 .hero-slider .slider-item .title .vg-mobile-br,
+  .slider-section.style1 .hero-slider .slider-item .description .vg-mobile-br {
     display: none;
   }
 }
@@ -821,7 +841,7 @@ body { -webkit-font-smoothing: antialiased; }
 
                                                     <h1 class="title" data-i18n="index.hero.title">Smarter <span> Investments</span> <span style="white-space:nowrap">in <br class="vg-mobile-br">China's Bond Market</span></h1>
 
-                                                    <p class="description" data-i18n="index.hero.desc">Pioneers in Panda Bond Derivatives and Global Financial Strategies</p>
+                                                    <p class="description" data-i18n="index.hero.desc">Pioneers in Panda Bond Derivatives <br class="vg-mobile-br">and Global Financial Strategies</p>
 
                         <div class="button-set">
                                                             <a class="button" href="futures.html" data-i18n="index.hero.btn1">Learn More</a>
