@@ -368,10 +368,10 @@ body { -webkit-font-smoothing: antialiased; }
 .breadcrumb-area {
   background-image: url('wp-content/uploads/2024/12/Meeting 2.jpeg') !important;
   background-size: cover !important;
-  /* Anchored to the top instead of center — cover was cropping off
-     the top of the photo (ceiling/screen), shifting the visible
-     window down so the top is visible instead. */
-  background-position: center top !important;
+  /* Anchored near (not fully at) the top — cover was cropping off the
+     top of the photo (ceiling/screen); pure "top" showed the very top
+     edge, dialed back slightly to 20% so it eases down from there. */
+  background-position: center 20% !important;
   background-repeat: no-repeat !important;
 }
 .breadcrumb-area .title h1 {
