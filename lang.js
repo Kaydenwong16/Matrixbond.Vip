@@ -34,7 +34,7 @@
     'nav.insights':         '洞察',
     'nav.news':             '新闻',
     'nav.contact':          '联系我们',
-    'nav.faqs':             '常见问题',
+    'nav.faqs':             '知识中心',
     'nav.contact-info':     '联系信息',
 
     /* ── Footer ──────────────────────────────────────────────── */
@@ -109,8 +109,8 @@
     'contact.map.hongkong':  '香港',
 
     /* ── FAQs page ───────────────────────────────────────────── */
-    'faqs.page-title': '常见问题',
-    'faqs.breadcrumb': '常见问题',
+    'faqs.page-title': '知识中心',
+    'faqs.breadcrumb': '知识中心',
 
     'faqs.q1': '1. 什么是熊猫债券？',
     'faqs.a1': '熊猫债券是由外国实体在中国国内市场发行的以人民币（CNY）计价的债券。这些债券为外国发行人提供进入中国资本市场的渠道，同时为国内投资者提供投资组合多样化的机会。熊猫债券通常由主权政府、跨国公司或金融机构发行，并受中国法规和金融法律约束。',
@@ -311,7 +311,7 @@
     'options.html':  'Matrix Bond 期权 — Matrix Bond 管理公司控股',
     'insights.html': '洞察 — Matrix Bond 管理公司控股',
     'archives.html':                  '归档 — Matrix Bond 管理公司控股',
-    'faqs.html':                      '常见问题 — Matrix Bond 管理公司控股',
+    'faqs.html':                      '知识中心 — Matrix Bond 管理公司控股',
     'panda-bonds-surge.html':         '熊猫债券激增：增长背后的原因？ — Matrix Bond 管理公司控股',
     'national-bank-panda-bonds.html': '加拿大国民银行在中国大陆发行熊猫债券 — Matrix Bond 管理公司控股',
   };
