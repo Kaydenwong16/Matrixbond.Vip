@@ -408,7 +408,18 @@ body { -webkit-font-smoothing: antialiased; }
 <style id="vg-contact-hero-title-color">
 /* Hero title color for the Contact page. */
 .breadcrumb-area .title h1 {
-  color: #ff6900 !important;
+  color: #fff !important;
+}
+/* Semi-transparent black backdrop behind the title for contrast
+   against the hero photo — sized to the text itself (fit-content)
+   rather than a full-width bar. */
+.breadcrumb-area .title h1 {
+  display: inline-block !important;
+  width: -webkit-fit-content !important;
+  width: fit-content !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+  border-radius: 6px !important;
+  padding: 4px 14px !important;
 }
 </style>
 <style id="vg-contact-hero-bg">
@@ -438,6 +449,11 @@ body { -webkit-font-smoothing: antialiased; }
   flex-shrink: 0 !important;
   margin-top: 3px !important;
   color: var(--main-color, #c9a84c) !important;
+}
+.vg-address-item .vg-flag {
+  flex-shrink: 0 !important;
+  font-size: 1.25rem !important;
+  line-height: 1.6 !important;
 }
 .vg-address-item p {
   margin: 0 !important;
@@ -623,21 +639,21 @@ body { -webkit-font-smoothing: antialiased; }
 							<div class="info">
 					<h3 class="title contact-info-desktop" data-i18n="nav.contact-info">Contact Info</h3>					<div class="info-box contact-info-desktop vg-address-list">
 						<div class="vg-address-item">
-							<i class="bi bi-geo-alt"></i>
+							<span class="vg-flag" aria-hidden="true">🇨🇦</span>
 							<p data-i18n="contact.address.vancouver">422 Richards Street,<br>Vancouver, BC, Canada V6B 2Z4</p>
 						</div>
 						<div class="vg-address-item">
-							<i class="bi bi-geo-alt"></i>
+							<span class="vg-flag" aria-hidden="true">🇸🇬</span>
 							<p data-i18n="contact.address.singapore">5 Upper Aljunied Link,<br>Quartz Industrial Building, Singapore 367903</p>
 						</div>
 						<div class="vg-address-item">
-							<i class="bi bi-geo-alt"></i>
+							<span class="vg-flag" aria-hidden="true">🇭🇰</span>
 							<p data-i18n="contact.address.hongkong">Apec Plaza, 49 Hoi Yuen Road,<br>Kwun Tong, Kowloon, Hong Kong</p>
 						</div>
 					</div>
 					<div class="info-box contact-info-desktop">
 						<i class="bi bi-envelope"></i>
-						<a href="mailto:info@matrixbond.vip">info@matrixbond.vip						</a>
+						<a href="mailto:info@matrixbond.ca">info@matrixbond.ca						</a>
 					</div>
 					<div class="contact-info-mobile">
 						<a href="https://qiye.aliyun.com/?lang=en" id="vg-mobile-mail-link" target="_blank" rel="noopener"><img src="Mail%20icon%20%E6%8A%A0%E5%9B%BE.png" alt="Email" style="width:40px;height:auto;"></a>
@@ -680,15 +696,15 @@ body { -webkit-font-smoothing: antialiased; }
 								
 				<div class="wrapper vg-address-list">
 					<div class="vg-address-item">
-						<i aria-hidden="true" class="bi bi-geo-alt"></i>
+						<span class="vg-flag" aria-hidden="true">🇨🇦</span>
 						<p data-i18n="contact.address.vancouver">422 Richards Street,<br>Vancouver, BC, Canada V6B 2Z4</p>
 					</div>
 					<div class="vg-address-item">
-						<i aria-hidden="true" class="bi bi-geo-alt"></i>
+						<span class="vg-flag" aria-hidden="true">🇸🇬</span>
 						<p data-i18n="contact.address.singapore">5 Upper Aljunied Link,<br>Quartz Industrial Building, Singapore 367903</p>
 					</div>
 					<div class="vg-address-item">
-						<i aria-hidden="true" class="bi bi-geo-alt"></i>
+						<span class="vg-flag" aria-hidden="true">🇭🇰</span>
 						<p data-i18n="contact.address.hongkong">Apec Plaza, 49 Hoi Yuen Road,<br>Kwun Tong, Kowloon, Hong Kong</p>
 					</div>
 				</div>
@@ -710,7 +726,7 @@ body { -webkit-font-smoothing: antialiased; }
 						<i aria-hidden="true" class="bi bi-envelope"></i>					</div>
 					
 					<div class="content">
-													<p data-i18n="contact.email-text">Mail To: <br>info@matrixbond.vip</p>
+													<p data-i18n="contact.email-text">Mail To: <br>info@matrixbond.ca</p>
 											</div>
 				</div>
 			</div>

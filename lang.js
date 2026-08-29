@@ -101,7 +101,7 @@
     'contact.address.singapore': '新加坡上加连尼路5号<br>石英工业大厦，邮编367903',
     'contact.address.hongkong': '香港九龙观塘开源道49号<br>创佳中心',
     'contact.email-title':  '电子邮件地址',
-    'contact.email-text':   '发送邮件至：<br>info@matrixbond.vip',
+    'contact.email-text':   '发送邮件至：<br>info@matrixbond.ca',
     'contact.info-title':   '联系信息',
     'contact.global-title': '全球布局',
     'contact.map.vancouver': '温哥华',

@@ -569,6 +569,27 @@ body { -webkit-font-smoothing: antialiased; }
   }
 }
 </style>
+<style id="vg-about-photo-delay">
+/* About section (the photo + "Lead the Way in Panda Bond Derivatives"
+   text, directly below the hero) fades/slides in 1s after page load
+   instead of appearing immediately with the rest of the page. Runs on
+   load rather than on-scroll-into-view, so the delay is guaranteed
+   regardless of viewport size. */
+.elementor-element-097f1d0 {
+  opacity: 0;
+  animation: vg-about-photo-in 0.8s ease-out 1s forwards;
+}
+@keyframes vg-about-photo-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .elementor-element-097f1d0 {
+    animation: none;
+    opacity: 1;
+  }
+}
+</style>
 <style id="vg-brand-grid-mobile">
 /* Show all partner logos as a static 3-column grid (same as partners page) */
 .brand.style2 { text-align: center; }
@@ -794,7 +815,7 @@ body { -webkit-font-smoothing: antialiased; }
 						2610 Apec Plaza, 49 Hoi Yuen Road, Kwun Tong, KL, HK					</div>
 					<div class="info-box contact-info-desktop">
 						<i class="bi bi-envelope"></i>
-						<a href="mailto:info@matrixbond.vip">info@matrixbond.vip						</a>
+						<a href="mailto:info@matrixbond.ca">info@matrixbond.ca						</a>
 					</div>
 					<div class="contact-info-mobile">
 						<a href="https://qiye.aliyun.com/?lang=en" id="vg-mobile-mail-link" target="_blank" rel="noopener"><img src="Mail%20icon%20%E6%8A%A0%E5%9B%BE.png" alt="Email" style="width:40px;height:auto;"></a>
