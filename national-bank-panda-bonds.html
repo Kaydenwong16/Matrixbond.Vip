@@ -361,6 +361,20 @@ body { -webkit-font-smoothing: antialiased; }
   padding-top: 20px !important;
 }
 </style>
+<style id="vg-national-bank-entry-title-size">
+/* "National Bank of Canada Issued Panda Bonds in Mainland China" below
+   the thumbnail repeats the breadcrumb title already shown in the hero
+   above — shrunk from the theme's default h2 size (36px) since it's
+   secondary here. */
+.blog-details .post .blog-content .entry-title {
+  font-size: 22px !important;
+}
+@media (max-width: 767px) {
+  .blog-details .post .blog-content .entry-title {
+    font-size: 18px !important;
+  }
+}
+</style>
 <style id="vg-archive-menu">
 .wp-block-archives-list, .widget-area, aside#secondary { overflow: visible !important; }
 .wp-block-archives-list .vg-archive-parent { position: relative; }
