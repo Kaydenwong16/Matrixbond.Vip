@@ -387,6 +387,17 @@ html[lang="zh-CN"] .breadcrumb-area {
   text-align: right !important;
   padding: 220px 0 15px !important;
 }
+/* Semi-transparent black backdrop behind the title for contrast
+   against the hero photo — sized to the text itself (fit-content)
+   rather than a full-width bar. */
+.breadcrumb-area .title h1 {
+  display: inline-block !important;
+  width: -webkit-fit-content !important;
+  width: fit-content !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+  border-radius: 6px !important;
+  padding: 4px 14px !important;
+}
 </style>
 <style id="vg-options-section-title-size">
 /* Section title ("MBM Options" above the Overview
