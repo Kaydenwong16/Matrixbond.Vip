@@ -368,7 +368,10 @@ body { -webkit-font-smoothing: antialiased; }
 .breadcrumb-area {
   background-image: url('wp-content/uploads/2024/12/Meeting 2.jpeg') !important;
   background-size: cover !important;
-  background-position: center center !important;
+  /* Anchored to the top instead of center — cover was cropping off
+     the top of the photo (ceiling/screen), shifting the visible
+     window down so the top is visible instead. */
+  background-position: center top !important;
   background-repeat: no-repeat !important;
 }
 .breadcrumb-area .title h1 {
