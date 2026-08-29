@@ -362,6 +362,23 @@ body { -webkit-font-smoothing: antialiased; }
   }
 }
 </style>
+<style id="vg-futures-hero-bg">
+/* Page-specific hero image for Futures — language-specific, since both
+   photos have the title text ("FUTURES" / its Chinese equivalent)
+   baked into the image itself. lang.js sets
+   document.documentElement.lang to "zh-CN"/"en-US" on toggle, so this
+   CSS attribute selector switches live with the language, no extra JS
+   needed. */
+.breadcrumb-area {
+  background-image: url('wp-content/uploads/2024/12/Futures English.jpeg') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+html[lang="zh-CN"] .breadcrumb-area {
+  background-image: url('wp-content/uploads/2024/12/Futures Chinese.jpeg') !important;
+}
+</style>
 <style id="vg-futures-section-title-size">
 /* Section title (page body, above the Overview text) — shrunk from
    the theme's default 50px, matching the same fix on options.html. */
