@@ -394,10 +394,32 @@ body { -webkit-font-smoothing: antialiased; }
    Chinese-only nowrap that used to keep it on 1 line was removed), so
    apply the same tightened title padding to both instead of English
    only — otherwise Chinese keeps the old, taller default padding and
-   its hero photo ends up a different height than English's. */
+   its hero photo ends up a different height than English's.
+   padding-top raised ~106px (roughly a third of the title block's own
+   ~318px height: 95 top + 86 bottom + ~137 for the 2-line text) to
+   push the title down within the hero — there wasn't enough bottom
+   padding to redistribute without going negative, so the hero box
+   grows taller by the same amount as a side effect. */
 @media (min-width: 768px) {
   .breadcrumb-area .title {
-    padding: 95px 0 86px;
+    padding: 201px 0 86px;
+  }
+}
+</style>
+<style id="vg-news-hero-crop-desktop">
+/* Desktop: match this hero's overall box height to the Contact page's
+   (which uses the theme's unmodified default title padding — 134px/
+   125px around a single-line title — and is left untouched). News'
+   title is taller (2-line, plus the deeper 201px top padding from the
+   shift above), so its box is fixed to that same target height and
+   clipped — cropping off whatever extra content falls below it,
+   instead of letting the box grow to fit. ~400px is estimated from
+   Contact's padding + line-height, not measured live — nudge this
+   value if it doesn't land exactly on Contact's rendered height. */
+@media (min-width: 768px) {
+  .breadcrumb-area {
+    height: 400px !important;
+    overflow: hidden !important;
   }
 }
 </style>
