@@ -345,10 +345,13 @@ body { -webkit-font-smoothing: antialiased; }
    photo got a lot shorter than the box, leaving big white bars above
    and below. Real fix: drop the fixed height and give the box the
    photo's own aspect ratio instead, so it always matches exactly —
-   full photo visible, no crop, no empty space, at any width. */
+   at any width, cover then crops evenly off the top and bottom
+   instead of stretching or leaving gaps. Ratio set a bit shorter than
+   the photo's true 1200:720 (1200:432 rather than 1200:720) so that
+   even crop removes exactly the top and bottom 1/5 of the photo. */
 .blog-details .post .blog-thumb {
   height: auto !important;
-  aspect-ratio: 1200 / 720 !important;
+  aspect-ratio: 1200 / 432 !important;
   background-size: cover !important;
 }
 </style>
