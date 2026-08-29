@@ -378,6 +378,12 @@ body { -webkit-font-smoothing: antialiased; }
 html[lang="zh-CN"] .breadcrumb-area {
   background-image: url('wp-content/uploads/2024/12/Futures Chinese.jpeg') !important;
 }
+/* The photo itself already carries the title text (baked in, both
+   languages), so the separate white h1 title text on top of it is
+   redundant — hidden here. Breadcrumb nav (Home / Futures) stays. */
+.breadcrumb-area .title {
+  display: none !important;
+}
 </style>
 <style id="vg-futures-section-title-size">
 /* Section title (page body, above the Overview text) — shrunk from
