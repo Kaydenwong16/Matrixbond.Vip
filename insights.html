@@ -359,13 +359,29 @@ body { -webkit-font-smoothing: antialiased; }
 }
 </style>
 <style id="vg-insights-hero-bg">
-/* Page-specific hero image for Insights (does not affect the
-   theme-wide .breadcrumb-area background used on other pages). */
+/* Page-specific hero for Insights (does not affect the theme-wide
+   .breadcrumb-area background used on other pages). The photo stays
+   as a CSS background fallback (shown if the video fails to load);
+   the <video> below sits on top of it and covers the box exactly like
+   the photo did, with the text container raised above both. */
 .breadcrumb-area {
+  position: relative;
   background-image: url('wp-content/uploads/2024/12/Meeting Currency 1 small.jpeg') !important;
   background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
+}
+.breadcrumb-area .vg-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.breadcrumb-area > .container {
+  position: relative;
+  z-index: 1;
 }
 .breadcrumb-area .title h1 {
   color: #fff !important;
@@ -508,6 +524,9 @@ body { -webkit-font-smoothing: antialiased; }
 	
 
 	<div class="breadcrumb-area">
+		<video class="vg-hero-video" autoplay muted loop playsinline webkit-playsinline poster="wp-content/uploads/2024/12/Meeting Currency 1 small.jpeg">
+			<source src="wp-content/uploads/2024/12/Meeting Video 1.mp4" type="video/mp4">
+		</video>
 		<div class="container">
 			<div class="text-wrapper">
 				<div class="title">
