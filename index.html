@@ -268,6 +268,15 @@ body { -webkit-font-smoothing: antialiased; }
   align-items: center !important;
   flex-wrap: nowrap !important;
 }
+/* The theme's own responsive CSS (widget-responsive.css, ≤991px) adds
+   margin-top: 15px to button2 ("Our Clients") — meant for when buttons
+   stack on top of each other, but it fights the flex row above and
+   pushes button2 visibly lower than "Learn More" instead of lining up.
+   Cancel it (our extra .style1 in the selector out-specifies the
+   theme's rule, so this wins at every breakpoint). */
+.slider-section.style1 .hero-slider .slider-item .button-set a.button2 {
+  margin-top: 0 !important;
+}
 /* Semi-transparent black backdrop directly behind the text block
    (on top of the whole-photo overlay above) for extra guaranteed
    contrast under the white text, regardless of what's in the photo. */
@@ -492,8 +501,14 @@ body { -webkit-font-smoothing: antialiased; }
     justify-content: flex-start !important;
   }
   .slider-section.style1 .hero-slider .slider-item .container {
-    padding-bottom: 10px !important;
+    padding-bottom: 0 !important;
     padding-left: 24px !important;
+  }
+  /* Drop the backdrop box's own bottom padding too (base rule is 24px
+     all around) so the buttons sit right at the edge of the photo
+     instead of floating above it inside empty backdrop space. */
+  .slider-section.style1 .hero-slider .slider-item .text-wrapper {
+    padding-bottom: 10px !important;
   }
   .slider-section.style1 .hero-slider .slider-item .button-set a {
     white-space: nowrap !important;
