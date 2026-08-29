@@ -277,14 +277,35 @@ body { -webkit-font-smoothing: antialiased; }
 .slider-section.style1 .hero-slider .slider-item .button-set a.button2 {
   margin-top: 0 !important;
 }
-/* Semi-transparent black backdrop directly behind the text block
-   (on top of the whole-photo overlay above) for extra guaranteed
-   contrast under the white text, regardless of what's in the photo. */
 .slider-section.style1 .hero-slider .slider-item .text-wrapper {
-  background: rgba(0, 0, 0, 0.35) !important;
-  padding: 24px 28px !important;
-  border-radius: 12px !important;
   display: inline-block !important;
+}
+/* Semi-transparent black backdrop, on top of the whole-photo overlay
+   above, for extra guaranteed contrast under the white text — hugging
+   each line (subtitle/title/description) individually rather than one
+   big rectangle behind the whole text block, so there's no empty
+   backdrop showing past the shorter lines. width: fit-content shrinks
+   each block-level element down to its own content instead of
+   stretching to the widest line in the group; each stays display:
+   block so it still stacks on its own row like before. Buttons already
+   carry their own solid/bordered background, so they're left alone. */
+.slider-section.style1 .hero-slider .slider-item .subtitle,
+.slider-section.style1 .hero-slider .slider-item .title,
+.slider-section.style1 .hero-slider .slider-item .description {
+  display: block !important;
+  width: -webkit-fit-content !important;
+  width: fit-content !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+  border-radius: 6px !important;
+}
+.slider-section.style1 .hero-slider .slider-item .subtitle {
+  padding: 4px 12px !important;
+}
+.slider-section.style1 .hero-slider .slider-item .title {
+  padding: 6px 14px !important;
+}
+.slider-section.style1 .hero-slider .slider-item .description {
+  padding: 4px 12px !important;
 }
 /* All hero text in white (the theme's default accent color for the
    subtitle and the "Investments"/"Bond Market" title spans is orange,
