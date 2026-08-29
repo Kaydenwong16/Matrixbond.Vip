@@ -24,7 +24,7 @@
     /* ── Navigation (shared across all pages) ─────────────────── */
     'nav.home':             '首页',
     'nav.about':            '关于我们',
-    'nav.clients-partners': '客户与合作伙伴',
+    'nav.clients-partners': '客户与<br class="vg-nav-break">合作伙伴',
     'nav.our-clients':      '我们的客户',
     'nav.our-partners':     '我们的合作伙伴',
     'nav.products':         '产品',

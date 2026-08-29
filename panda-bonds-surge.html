@@ -304,12 +304,23 @@ body { -webkit-font-smoothing: antialiased; }
 </style>
 <style id="vg-nav-2line">
 @media (min-width: 1025px) {
-  .menu-item-6135 > a > .vg-nav-2line, .menu-item-6145 > a > .vg-nav-2line {
+  .menu-item-6135 > a > .vg-nav-2line, .menu-item-6145 > a > .vg-nav-2line, .menu-item-6156 > a > .vg-nav-2line {
     display: inline-block;
     max-width: 76px;
     line-height: 1.2;
     white-space: normal;
     text-align: center;
+  }
+}
+/* Desktop-only manual line break for nav items with a specific split
+   point (Knowledge / Hub, 客户与 / 合作伙伴) — hidden on mobile, where
+   the full-width dropdown item doesn't need it. */
+.vg-nav-break {
+  display: none;
+}
+@media (min-width: 1025px) {
+  .vg-nav-break {
+    display: inline;
   }
 }
 </style>
@@ -396,7 +407,7 @@ body { -webkit-font-smoothing: antialiased; }
 </ul>
 </li>
 <li id="menu-item-6155" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6155"><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
-<li id="menu-item-6156" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6156"><a href="faqs.html" data-i18n="nav.faqs">Knowledge Hub</a></li>
+<li id="menu-item-6156" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6156"><a href="faqs.html"><span class="vg-nav-2line" data-i18n="nav.faqs">Knowledge<br class="vg-nav-break">Hub</span></a></li>
 </ul></div>                    </div>
                 </nav>
                                     <div class="menu-element">
@@ -444,7 +455,7 @@ body { -webkit-font-smoothing: antialiased; }
 </ul>
 </li>
 <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6155"><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
-<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6156"><a href="faqs.html" data-i18n="nav.faqs">Knowledge Hub</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6156"><a href="faqs.html"><span class="vg-nav-2line" data-i18n="nav.faqs">Knowledge<br class="vg-nav-break">Hub</span></a></li>
 </ul></div>
 			
 			
