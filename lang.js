@@ -222,7 +222,7 @@
 
     /* ── News page ───────────────────────────────────────────── */
     'news.page-title': '加拿大国民银行在中国大陆发行熊猫债券',
-    'news.hero-title': '加拿大国民银行在<br class="vg-mobile-br">中国大陆发行熊猫债券',
+    'news.hero-title': '加拿大国民银行在中国<br class="vg-mobile-br">大陆发行熊猫债券',
     'news.breadcrumb': '新闻',
 
     /* ── Insights page ───────────────────────────────────────── */
