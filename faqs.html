@@ -356,6 +356,12 @@ body { -webkit-font-smoothing: antialiased; }
   font-size: 30px !important;
   margin-bottom: 20px !important;
 }
+/* The empty tab-indicator bar (.tabs, no visible label text) sits
+   directly under the heading with its own light gray border-bottom —
+   reads as a stray divider line between the heading and the FAQ list. */
+.faq-tabs.style1 .tabs {
+  border-bottom: none !important;
+}
 </style>
 </head>
 
