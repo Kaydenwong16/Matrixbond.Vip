@@ -403,4 +403,24 @@
     if (window.getComputedStyle(menuContent).display === 'none') { return; }
     menuToggle.click();
   });
+
+  /* ── Mobile menu: tap the parent item itself to open its submenu ──
+     theme-script.js only wires the toggle to the tiny chevron icon
+     ($('.menu-item-has-children a i').click ⇒ slideToggle) — tapping
+     the link's text (Products, News & Insights, Clients & Partners)
+     missed that small target entirely, so it looked like tapping did
+     nothing (worse for Clients & Partners, whose href="#" has no page
+     of its own to fall back to). Desktop is untouched — its dropdown
+     already opens via CSS :hover/:focus-within, no JS needed there. */
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.mobile-menu .menu-item-has-children > a').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        if (e.target.closest('i')) { return; } // theme-script.js already handles the icon itself
+        var subMenu = a.nextElementSibling;
+        if (!subMenu || !subMenu.classList.contains('sub-menu')) { return; }
+        e.preventDefault();
+        subMenu.style.display = (subMenu.style.display === 'block') ? 'none' : 'block';
+      });
+    });
+  });
 })();
