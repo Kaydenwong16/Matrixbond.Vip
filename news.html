@@ -313,16 +313,12 @@ body { -webkit-font-smoothing: antialiased; }
 .vg-mail-icon-link { display: inline-flex !important; align-items: center !important; margin-left: 6px !important; vertical-align: middle !important; flex-shrink: 0 !important; line-height: 1 !important; }
 .vg-mail-icon { height: 28px !important; width: auto !important; display: block !important; }
 </style>
-<style id="vg-news-zh-title">
-/* Desktop only: this page's Chinese title is a full 18-character
-   headline, so forcing nowrap on mobile overflowed the viewport. */
-@media (min-width: 768px) {
-  [lang="zh-CN"] .breadcrumb-area .title h1 { white-space: nowrap; }
-  /* Hide the manual mobile line-break on desktop, where nowrap above
-     keeps the title on one line instead. */
-  .breadcrumb-area .title h1 .vg-mobile-br { display: none; }
-}
-</style>
+<!-- vg-news-zh-title: removed. The manual <br class="vg-mobile-br"> in
+     this page's hero title (English and Chinese) used to be hidden on
+     desktop, relying on nowrap to force the Chinese title onto one
+     full-width line there instead. It now shows the same 2-line break
+     at every size, so both the desktop-only hide and the nowrap that
+     depended on it were dropped. -->
 <style id="vg-nav-2line">
 @media (min-width: 1025px) {
   .menu-item-6135 > a > .vg-nav-2line, .menu-item-6145 > a > .vg-nav-2line {
@@ -359,13 +355,20 @@ body { -webkit-font-smoothing: antialiased; }
 </style>
 <style id="vg-news-hero-bg">
 /* Page-specific hero image for News (does not affect the theme-wide
-   .breadcrumb-area background used on other pages). Uses "cover" so
-   the photo fills the hero section with no letterboxing. */
+   .breadcrumb-area background used on other pages).
+   background-size: cover was scaling the (fairly landscape, 1.78:1)
+   photo up to match the hero box's much wider/shorter aspect ratio,
+   cropping off most of its vertical content in the process. Switched
+   to 100% 100% — stretched to fill the box exactly in both directions
+   (full photo visible top-to-bottom, no cropping, no letterbox gaps),
+   at the cost of a mild horizontal stretch distortion on very
+   wide/short viewport ratios instead. */
 .breadcrumb-area {
   background-image: url('wp-content/uploads/2024/12/panda-bond-news-article-1.jpeg') !important;
-  background-size: cover !important;
+  background-size: 100% 100% !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
+  background-color: #14181f !important;
 }
 .breadcrumb-area .title h1 {
   color: #fff !important;
@@ -387,12 +390,13 @@ body { -webkit-font-smoothing: antialiased; }
 }
 </style>
 <style id="vg-news-hero-height-match">
-/* The English title wraps to 2 lines (vs. 1 line in Chinese), which made
-   the hero taller than the Chinese version. Tighten the title's vertical
-   padding on desktop, for English only, so both language heroes render
-   at the same overall height. */
+/* Both languages now wrap their hero title to 2 lines on desktop (the
+   Chinese-only nowrap that used to keep it on 1 line was removed), so
+   apply the same tightened title padding to both instead of English
+   only — otherwise Chinese keeps the old, taller default padding and
+   its hero photo ends up a different height than English's. */
 @media (min-width: 768px) {
-  html:not([lang="zh-CN"]) .breadcrumb-area .title {
+  .breadcrumb-area .title {
     padding: 95px 0 86px;
   }
 }
