@@ -278,6 +278,23 @@ body.vg-locked > *:not(#vg-security-gate) { visibility: hidden !important; point
   25%      { transform: translateX(-10px); }
   75%      { transform: translateX(10px); }
 }
+/* Mobile: the gate had no responsive adjustments at all — its fixed
+   52px/44px padding plus a 6-char code input at 26px font / 10px
+   letter-spacing didn't fit comfortably in the 90%-wide box on narrow
+   phones (~320-375px), causing the input to look cramped/overflow. */
+@media (max-width: 480px) {
+  #vg-security-gate .gate-box {
+    padding: 32px 22px;
+  }
+  #vg-security-gate .gate-title {
+    font-size: 18px;
+  }
+  #vg-security-gate input {
+    font-size: 20px;
+    letter-spacing: 6px;
+    padding: 14px 10px;
+  }
+}
 </style>
 
 <div id="vg-security-gate">
