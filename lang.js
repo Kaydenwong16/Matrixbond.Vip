@@ -256,7 +256,7 @@
     /* ── Archives page ───────────────────────────────────────── */
     'archives.page-title': '熊猫债档案',
     'archives.breadcrumb': '熊猫债档案',
-    'archives.subtitle':   '所有文章',
+    'archives.subtitle':   '熊猫债发行地点',
     'archives.coming-soon': '即将推出 - 归档的文章将在此显示。',
     'archive.canada': '加拿大',
     'archive.vancouver': '温哥华',
@@ -268,6 +268,7 @@
     'archive.png': '巴布亚新几内亚',
     'archive.burnaby': '本拿比',
     'archive.more': '更多',
+    'archives.map-title': '档案地点地图',
 
     /* ── Panda Bonds Surge article ─────────────────────────────── */
     'article.panda-surge.views':   '298 次浏览',

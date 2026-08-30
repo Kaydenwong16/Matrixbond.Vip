@@ -340,6 +340,86 @@ body { -webkit-font-smoothing: antialiased; }
 .wp-block-archives-list .vg-archive-submenu li { display: block; white-space: nowrap; }
 .wp-block-archives-list .vg-archive-submenu li a { display: block; padding: 6px 16px; }
 </style>
+<style id="vg-archives-map">
+/* Global map of archive document locations — same pattern as the
+   Contact page's "Our Global Presence" map (world-map.svg + floating
+   pin markers positioned by lon/lat -> percentage). Markers here match
+   the countries/cities named in the Archives submenu above. */
+.vg-global-map {
+  padding: 50px 40px 60px;
+  text-align: center;
+}
+.vg-global-map-title {
+  font-family: 'Cinzel', 'Trajan Pro', 'Times New Roman', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0a1f5c;
+  letter-spacing: 0.04em;
+  margin: 0 0 30px;
+}
+.vg-global-map-frame {
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.vg-global-map-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  opacity: 0.75;
+}
+.vg-map-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.vg-map-dot {
+  position: relative;
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff7426;
+  box-shadow: 0 0 0 rgba(255, 116, 38, 0.6);
+  animation: vg-map-blink 2s infinite;
+}
+.vg-map-dot::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff7426;
+  transform: translate(-50%, -50%);
+  animation: vg-map-ping 2s infinite;
+}
+.vg-map-label {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #0a1f5c;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+@keyframes vg-map-blink {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 116, 38, 0.55); }
+  50% { box-shadow: 0 0 0 6px rgba(255, 116, 38, 0); }
+}
+@keyframes vg-map-ping {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(2.8); opacity: 0; }
+}
+@media (max-width: 767px) {
+  .vg-global-map { padding: 35px 16px 45px; }
+  .vg-map-label { font-size: 0.68rem; }
+}
+</style>
 </head>
 <body class="archive">
 	<div id="page" class="site">
@@ -470,7 +550,7 @@ body { -webkit-font-smoothing: antialiased; }
 
 					<main id="primary" class="site-main">
 
-						<h2 class="archive-title" data-i18n="archives.subtitle">All Blog Posts</h2>
+						<h2 class="archive-title" data-i18n="archives.subtitle">Panda Bond Issuance Locations</h2>
 						<div class="posts-list">
 							<p data-i18n="archives.coming-soon">Coming soon - Archive posts will be displayed here.</p>
 						</div>
@@ -495,6 +575,38 @@ body { -webkit-font-smoothing: antialiased; }
 		</div>
 	</div>
 
+	<div class="container">
+		<div class="vg-global-map">
+			<h3 class="vg-global-map-title" data-i18n="archives.map-title">Archive Locations</h3>
+			<div class="vg-global-map-frame">
+				<img src="world-map.svg" alt="World map showing the locations of Matrix Bond Management's archived Panda Bond documents" class="vg-global-map-img">
+				<div class="vg-map-marker" style="left:15.8%;top:22.6%;">
+					<span class="vg-map-dot"></span>
+					<span class="vg-map-label" data-i18n="archive.vancouver">Vancouver</span>
+				</div>
+				<div class="vg-map-marker" style="left:17%;top:23.6%;">
+					<span class="vg-map-dot"></span>
+					<span class="vg-map-label" data-i18n="archive.burnaby">Burnaby</span>
+				</div>
+				<div class="vg-map-marker" style="left:70.3%;top:31.3%;">
+					<span class="vg-map-dot"></span>
+					<span class="vg-map-label" data-i18n="archive.pakistan">Pakistan</span>
+				</div>
+				<div class="vg-map-marker" style="left:69.9%;top:21.6%;">
+					<span class="vg-map-dot"></span>
+					<span class="vg-map-label" data-i18n="archive.kazakhstan">Kazakhstan</span>
+				</div>
+				<div class="vg-map-marker" style="left:79.7%;top:53.5%;">
+					<span class="vg-map-dot"></span>
+					<span class="vg-map-label" data-i18n="archive.indonesia">Indonesia</span>
+				</div>
+				<div class="vg-map-marker" style="left:90.9%;top:55.3%;">
+					<span class="vg-map-dot"></span>
+					<span class="vg-map-label" data-i18n="archive.png">PNG</span>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<footer id="colophon" class="site-footer">
 		<div class="copyright">
