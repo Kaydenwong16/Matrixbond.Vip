@@ -341,10 +341,13 @@ body { -webkit-font-smoothing: antialiased; }
 .wp-block-archives-list .vg-archive-submenu li a { display: block; padding: 6px 16px; }
 </style>
 <style id="vg-archives-map">
-/* Global map of archive document locations — same pattern as the
-   Contact page's "Our Global Presence" map (world-map.svg + floating
-   pin markers positioned by lon/lat -> percentage). Markers here match
-   the countries/cities named in the Archives submenu above. */
+/* Spinning globe of archive document locations, replacing the flat
+   pinned map. Pure CSS/no library: world-map.svg is used as a
+   horizontally-scrolling texture clipped to a circle, with a
+   radial-gradient shading layer faked on top to read as a lit sphere
+   rather than a flat scrolling strip. A flat rotating texture can't
+   keep pins geographically accurate as it spins, so the locations are
+   listed as a static legend below instead of floating markers. */
 .vg-global-map {
   padding: 50px 40px 60px;
   text-align: center;
@@ -357,67 +360,85 @@ body { -webkit-font-smoothing: antialiased; }
   letter-spacing: 0.04em;
   margin: 0 0 30px;
 }
-.vg-global-map-frame {
+.vg-globe {
+  --tile-w: 503.5px; /* diameter(280px) * map aspect ratio (4378.13/2434.94) — exact width of one texture repeat at this diameter, so the loop below is seamless */
   position: relative;
-  max-width: 1000px;
+  width: 280px;
+  height: 280px;
+  margin: 0 auto 34px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #0a1f5c;
+  box-shadow: 0 18px 40px rgba(10, 31, 92, 0.35);
+}
+.vg-globe-texture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300%;
+  height: 100%;
+  background-image: url('world-map.svg');
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  opacity: 0.92;
+  filter: saturate(1.05) brightness(0.92);
+  animation: vg-globe-spin 16s linear infinite;
+}
+@keyframes vg-globe-spin {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-1 * var(--tile-w))); }
+}
+.vg-globe::after {
+  /* Shading overlay, static (not part of the spin) — light from the
+     upper-left, darkened rim, to sell the sphere illusion. */
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 42%),
+    radial-gradient(circle at 68% 78%, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0) 62%),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.45) 100%);
+  pointer-events: none;
+}
+.vg-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 26px;
+  max-width: 700px;
   margin: 0 auto;
 }
-.vg-global-map-img {
-  width: 100%;
-  height: auto;
-  display: block;
-  opacity: 0.75;
-}
-.vg-map-marker {
-  position: absolute;
-  transform: translate(-50%, -50%);
+.vg-legend-item {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0a1f5c;
 }
-.vg-map-dot {
-  position: relative;
-  display: block;
-  width: 12px;
-  height: 12px;
+.vg-legend-dot {
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: #ff7426;
   box-shadow: 0 0 0 rgba(255, 116, 38, 0.6);
   animation: vg-map-blink 2s infinite;
-}
-.vg-map-dot::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #ff7426;
-  transform: translate(-50%, -50%);
-  animation: vg-map-ping 2s infinite;
-}
-.vg-map-label {
-  margin-top: 6px;
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #0a1f5c;
-  white-space: nowrap;
-  background: rgba(255, 255, 255, 0.85);
-  padding: 1px 6px;
-  border-radius: 4px;
+  flex-shrink: 0;
 }
 @keyframes vg-map-blink {
   0%, 100% { box-shadow: 0 0 0 0 rgba(255, 116, 38, 0.55); }
-  50% { box-shadow: 0 0 0 6px rgba(255, 116, 38, 0); }
-}
-@keyframes vg-map-ping {
-  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
-  100% { transform: translate(-50%, -50%) scale(2.8); opacity: 0; }
+  50% { box-shadow: 0 0 0 5px rgba(255, 116, 38, 0); }
 }
 @media (max-width: 767px) {
   .vg-global-map { padding: 35px 16px 45px; }
-  .vg-map-label { font-size: 0.68rem; }
+  .vg-globe {
+    --tile-w: 323.7px; /* diameter(180px) * same aspect ratio */
+    width: 180px;
+    height: 180px;
+    margin-bottom: 26px;
+  }
+  .vg-legend-item { font-size: 0.8rem; }
 }
 </style>
 </head>
@@ -578,32 +599,16 @@ body { -webkit-font-smoothing: antialiased; }
 	<div class="container">
 		<div class="vg-global-map">
 			<h3 class="vg-global-map-title" data-i18n="archives.map-title">Archive Locations</h3>
-			<div class="vg-global-map-frame">
-				<img src="world-map.svg" alt="World map showing the locations of Matrix Bond Management's archived Panda Bond documents" class="vg-global-map-img">
-				<div class="vg-map-marker" style="left:15.8%;top:22.6%;">
-					<span class="vg-map-dot"></span>
-					<span class="vg-map-label" data-i18n="archive.vancouver">Vancouver</span>
-				</div>
-				<div class="vg-map-marker" style="left:17%;top:23.6%;">
-					<span class="vg-map-dot"></span>
-					<span class="vg-map-label" data-i18n="archive.burnaby">Burnaby</span>
-				</div>
-				<div class="vg-map-marker" style="left:70.3%;top:31.3%;">
-					<span class="vg-map-dot"></span>
-					<span class="vg-map-label" data-i18n="archive.pakistan">Pakistan</span>
-				</div>
-				<div class="vg-map-marker" style="left:69.9%;top:21.6%;">
-					<span class="vg-map-dot"></span>
-					<span class="vg-map-label" data-i18n="archive.kazakhstan">Kazakhstan</span>
-				</div>
-				<div class="vg-map-marker" style="left:79.7%;top:53.5%;">
-					<span class="vg-map-dot"></span>
-					<span class="vg-map-label" data-i18n="archive.indonesia">Indonesia</span>
-				</div>
-				<div class="vg-map-marker" style="left:90.9%;top:55.3%;">
-					<span class="vg-map-dot"></span>
-					<span class="vg-map-label" data-i18n="archive.png">PNG</span>
-				</div>
+			<div class="vg-globe" role="img" aria-label="Spinning globe representing Matrix Bond Management's global Panda Bond archive locations">
+				<div class="vg-globe-texture"></div>
+			</div>
+			<div class="vg-map-legend">
+				<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.vancouver">Vancouver</span></div>
+				<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.burnaby">Burnaby</span></div>
+				<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.pakistan">Pakistan</span></div>
+				<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.kazakhstan">Kazakhstan</span></div>
+				<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.indonesia">Indonesia</span></div>
+				<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.png">PNG</span></div>
 			</div>
 		</div>
 	</div>
