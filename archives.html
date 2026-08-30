@@ -349,7 +349,10 @@ body { -webkit-font-smoothing: antialiased; }
    keep pins geographically accurate as it spins, so the locations are
    listed as a static legend below instead of floating markers. */
 .vg-global-map {
-  padding: 50px 40px 60px;
+  /* Now sits inside the main content column (left of the sidebar)
+     rather than as its own full-width section, so no side padding —
+     the column already has its own gutter. */
+  padding: 30px 0 10px;
   text-align: center;
 }
 .vg-global-map-title {
@@ -371,22 +374,44 @@ body { -webkit-font-smoothing: antialiased; }
   background: #0a1f5c;
   box-shadow: 0 18px 40px rgba(10, 31, 92, 0.35);
 }
-.vg-globe-texture {
+.vg-globe-spin-layer {
+  /* Carries the spin transform/animation — pins live in here too (as
+     siblings of the texture, not children of it) so they travel with
+     the rotation without inheriting the texture's own dimming filter
+     below. */
   position: absolute;
   top: 0;
   left: 0;
   width: 300%;
   height: 100%;
+  animation: vg-globe-spin 16s linear infinite;
+}
+.vg-globe-texture {
+  position: absolute;
+  inset: 0;
   background-image: url('world-map.svg');
   background-repeat: repeat-x;
   background-size: auto 100%;
   opacity: 0.92;
   filter: saturate(1.05) brightness(0.92);
-  animation: vg-globe-spin 16s linear infinite;
 }
 @keyframes vg-globe-spin {
   from { transform: translateX(0); }
   to   { transform: translateX(calc(-1 * var(--tile-w))); }
+}
+.vg-globe-pin {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  margin: -4.5px 0 0 -4.5px;
+  border-radius: 50%;
+  background: #ff7426;
+  box-shadow: 0 0 7px 1.5px rgba(255, 116, 38, 0.85);
+  animation: vg-pin-float 3s ease-in-out infinite;
+}
+@keyframes vg-pin-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 .vg-globe::after {
   /* Shading overlay, static (not part of the spin) — light from the
@@ -431,7 +456,7 @@ body { -webkit-font-smoothing: antialiased; }
   50% { box-shadow: 0 0 0 5px rgba(255, 116, 38, 0); }
 }
 @media (max-width: 767px) {
-  .vg-global-map { padding: 35px 16px 45px; }
+  .vg-global-map { padding: 22px 0 10px; }
   .vg-globe {
     --tile-w: 323.7px; /* diameter(180px) * same aspect ratio */
     width: 180px;
@@ -576,6 +601,41 @@ body { -webkit-font-smoothing: antialiased; }
 							<p data-i18n="archives.coming-soon">Further locations to follow</p>
 						</div>
 
+						<div class="vg-global-map">
+							<h3 class="vg-global-map-title" data-i18n="archives.map-title">Archive Locations</h3>
+							<div class="vg-globe" role="img" aria-label="Spinning globe representing Matrix Bond Management's global Panda Bond archive locations">
+								<div class="vg-globe-spin-layer">
+									<div class="vg-globe-texture"></div>
+									<div class="vg-globe-pin" style="left:5.27%;top:22.6%;animation-delay:0s;" title="Vancouver"></div>
+									<div class="vg-globe-pin" style="left:38.6%;top:22.6%;animation-delay:0s;" title="Vancouver"></div>
+									<div class="vg-globe-pin" style="left:71.93%;top:22.6%;animation-delay:0s;" title="Vancouver"></div>
+									<div class="vg-globe-pin" style="left:5.28%;top:22.64%;animation-delay:0.4s;" title="Burnaby"></div>
+									<div class="vg-globe-pin" style="left:38.61%;top:22.64%;animation-delay:0.4s;" title="Burnaby"></div>
+									<div class="vg-globe-pin" style="left:71.95%;top:22.64%;animation-delay:0.4s;" title="Burnaby"></div>
+									<div class="vg-globe-pin" style="left:23.43%;top:31.3%;animation-delay:0.8s;" title="Pakistan"></div>
+									<div class="vg-globe-pin" style="left:56.77%;top:31.3%;animation-delay:0.8s;" title="Pakistan"></div>
+									<div class="vg-globe-pin" style="left:90.1%;top:31.3%;animation-delay:0.8s;" title="Pakistan"></div>
+									<div class="vg-globe-pin" style="left:23.3%;top:21.6%;animation-delay:1.2s;" title="Kazakhstan"></div>
+									<div class="vg-globe-pin" style="left:56.63%;top:21.6%;animation-delay:1.2s;" title="Kazakhstan"></div>
+									<div class="vg-globe-pin" style="left:89.97%;top:21.6%;animation-delay:1.2s;" title="Kazakhstan"></div>
+									<div class="vg-globe-pin" style="left:26.57%;top:53.5%;animation-delay:1.6s;" title="Indonesia"></div>
+									<div class="vg-globe-pin" style="left:59.9%;top:53.5%;animation-delay:1.6s;" title="Indonesia"></div>
+									<div class="vg-globe-pin" style="left:93.23%;top:53.5%;animation-delay:1.6s;" title="Indonesia"></div>
+									<div class="vg-globe-pin" style="left:30.3%;top:55.3%;animation-delay:2s;" title="PNG"></div>
+									<div class="vg-globe-pin" style="left:63.63%;top:55.3%;animation-delay:2s;" title="PNG"></div>
+									<div class="vg-globe-pin" style="left:96.97%;top:55.3%;animation-delay:2s;" title="PNG"></div>
+								</div>
+							</div>
+							<div class="vg-map-legend">
+								<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.vancouver">Vancouver</span></div>
+								<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.burnaby">Burnaby</span></div>
+								<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.pakistan">Pakistan</span></div>
+								<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.kazakhstan">Kazakhstan</span></div>
+								<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.indonesia">Indonesia</span></div>
+								<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.png">PNG</span></div>
+							</div>
+						</div>
+
 					</main><!-- #primary -->
 
 				</div>
@@ -596,22 +656,6 @@ body { -webkit-font-smoothing: antialiased; }
 		</div>
 	</div>
 
-	<div class="container">
-		<div class="vg-global-map">
-			<h3 class="vg-global-map-title" data-i18n="archives.map-title">Archive Locations</h3>
-			<div class="vg-globe" role="img" aria-label="Spinning globe representing Matrix Bond Management's global Panda Bond archive locations">
-				<div class="vg-globe-texture"></div>
-			</div>
-			<div class="vg-map-legend">
-				<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.vancouver">Vancouver</span></div>
-				<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.burnaby">Burnaby</span></div>
-				<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.pakistan">Pakistan</span></div>
-				<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.kazakhstan">Kazakhstan</span></div>
-				<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.indonesia">Indonesia</span></div>
-				<div class="vg-legend-item"><span class="vg-legend-dot"></span><span data-i18n="archive.png">PNG</span></div>
-			</div>
-		</div>
-	</div>
 
 	<footer id="colophon" class="site-footer">
 		<div class="copyright">
