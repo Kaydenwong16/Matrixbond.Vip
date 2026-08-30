@@ -365,21 +365,36 @@ body { -webkit-font-smoothing: antialiased; }
 }
 </style>
 <style id="vg-news-hero-bg">
-/* Page-specific hero image for News (does not affect the theme-wide
-   .breadcrumb-area background used on other pages).
-   background-size: cover was scaling the (fairly landscape, 1.78:1)
-   photo up to match the hero box's much wider/shorter aspect ratio,
-   cropping off most of its vertical content in the process. Switched
-   to 100% 100% — stretched to fill the box exactly in both directions
-   (full photo visible top-to-bottom, no cropping, no letterbox gaps),
-   at the cost of a mild horizontal stretch distortion on very
-   wide/short viewport ratios instead. */
+/* Page-specific hero for News (does not affect the theme-wide
+   .breadcrumb-area background used on other pages). Two photos
+   cross-fade via the .vg-news-hero-photo <img> layers below (see the
+   loop script after the hero markup) instead of one static
+   background-image. object-fit: fill matches the old
+   background-size: 100% 100% — cover was cropping the (fairly
+   landscape, 1.78:1) photos against this much wider/shorter hero box;
+   fill stretches to cover it exactly in both directions with no
+   cropping and no letterbox gaps, at the cost of a mild horizontal
+   stretch on very wide/short viewport ratios instead. */
 .breadcrumb-area {
-  background-image: url('wp-content/uploads/2024/12/panda-bond-news-article-1.jpeg') !important;
-  background-size: 100% 100% !important;
-  background-position: center center !important;
-  background-repeat: no-repeat !important;
   background-color: #14181f !important;
+  /* z-index (not just position: relative, already set by the theme)
+     so this establishes its own stacking context — otherwise the
+     photo layers' negative z-index below isn't guaranteed to stay
+     contained here and could paint behind unrelated page content. */
+  z-index: 0;
+}
+.breadcrumb-area .vg-news-hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+.breadcrumb-area .vg-news-hero-photo.is-active {
+  opacity: 1;
 }
 .breadcrumb-area .title h1 {
   color: #fff !important;
@@ -543,6 +558,8 @@ body { -webkit-font-smoothing: antialiased; }
 	
 
 	<div class="breadcrumb-area">
+		<img class="vg-news-hero-photo is-active" src="wp-content/uploads/2024/12/panda-bond-news-article-1.jpeg" alt="">
+		<img class="vg-news-hero-photo" src="wp-content/uploads/2024/12/panda-bond-news-article 2.jpeg" alt="">
 		<div class="container">
 			<div class="text-wrapper">
 				<div class="title">
@@ -553,6 +570,20 @@ body { -webkit-font-smoothing: antialiased; }
 			</div>
 		</div>
 	</div>
+	<script>
+	// Loop the news hero between its two photos, cross-fading via the
+	// .is-active opacity transition (see vg-news-hero-bg CSS above).
+	(function () {
+		var layers = document.querySelectorAll('.breadcrumb-area .vg-news-hero-photo');
+		if (layers.length < 2) { return; }
+		var active = 0;
+		setInterval(function () {
+			layers[active].classList.remove('is-active');
+			active = (active + 1) % layers.length;
+			layers[active].classList.add('is-active');
+		}, 5000);
+	})();
+	</script>
 
 	<div class="archive-page">
 		<div class="container">
