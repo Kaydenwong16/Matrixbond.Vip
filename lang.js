@@ -257,7 +257,7 @@
     'archives.page-title': '熊猫债档案',
     'archives.breadcrumb': '熊猫债档案',
     'archives.subtitle':   '熊猫债发行地点',
-    'archives.coming-soon': '即将推出 - 归档的文章将在此显示。',
+    'archives.coming-soon': '更多地点即将推出',
     'archive.canada': '加拿大',
     'archive.vancouver': '温哥华',
     'archive.pakistan': '巴基斯坦',
