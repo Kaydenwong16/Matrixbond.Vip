@@ -391,11 +391,10 @@ body { -webkit-font-smoothing: antialiased; }
   position: relative;
   z-index: 1;
 }
-/* Move the title toward the bottom of the hero — theme default splits
-   the space above/below it roughly evenly (134px/125px), same
-   treatment as the Contact/Knowledge Hub/Clients/Partners pages. */
+/* Reverted back to vertically centered — theme default (134px/125px,
+   roughly even top/bottom) already centers it, so no override needed
+   here anymore. */
 .breadcrumb-area .title {
-  padding: 220px 0 20px !important;
   text-align: center !important;
 }
 .breadcrumb-area .title h1 {
