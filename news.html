@@ -376,6 +376,13 @@ body { -webkit-font-smoothing: antialiased; }
    cropping and no letterbox gaps, at the cost of a mild horizontal
    stretch on very wide/short viewport ratios instead. */
 .breadcrumb-area {
+  /* Removing the direct background-image override (replaced by the
+     <img> layers below) let the theme's own default .breadcrumb-area
+     background-image (breadcrumb-bg.jpg, a generic stock photo)
+     show through during load, before the <img> layers finish
+     fetching/decoding — killed explicitly so only the dark fallback
+     color shows in that gap instead. */
+  background-image: none !important;
   background-color: #14181f !important;
   /* z-index (not just position: relative, already set by the theme)
      so this establishes its own stacking context — otherwise the
