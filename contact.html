@@ -432,6 +432,13 @@ body { -webkit-font-smoothing: antialiased; }
   border-radius: 6px !important;
   padding: 4px 14px !important;
 }
+/* Move the title toward the bottom of the hero — theme default splits
+   the space above/below it roughly evenly (134px/125px); swapped so
+   most of that space sits above the title, pushing the text down
+   near the breadcrumb row instead of the vertical middle. */
+.breadcrumb-area .title {
+  padding: 220px 0 20px !important;
+}
 </style>
 <style id="vg-contact-hero-bg">
 /* Page-specific hero image for Contact (does not affect the theme-wide
