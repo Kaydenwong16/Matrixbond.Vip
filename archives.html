@@ -306,13 +306,22 @@ body { -webkit-font-smoothing: antialiased; }
 }
 </style>
 <style id="vg-archives-hero-bg">
-/* This page never got a custom hero photo — remove the theme's
-   generic default (breadcrumb-bg.jpg, an unrelated stock image) and
-   fall back to a solid color instead. #222429 matches the theme's own
-   --title-color variable, keeping the white title text legible. */
+/* Page-specific hero image for Panda Bond Archives (does not affect
+   the theme-wide .breadcrumb-area background used on other pages). */
 .breadcrumb-area {
-  background-image: none !important;
-  background-color: #222429 !important;
+  background-image: url('wp-content/uploads/2024/12/Archive 1.jpeg') !important;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+}
+.breadcrumb-area .title h1 {
+  color: #fff !important;
+  display: inline-block !important;
+  width: -webkit-fit-content !important;
+  width: fit-content !important;
+  background: rgba(0, 0, 0, 0.35) !important;
+  border-radius: 6px !important;
+  padding: 4px 14px !important;
 }
 </style>
 <style id="vg-archive-menu">

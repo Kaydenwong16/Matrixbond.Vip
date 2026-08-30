@@ -348,13 +348,48 @@ body { -webkit-font-smoothing: antialiased; }
 }
 </style>
 <style id="vg-surge-hero-bg">
-/* This page never got a custom hero photo — remove the theme's
-   generic default (breadcrumb-bg.jpg, an unrelated stock image) and
-   fall back to a solid color instead. #222429 matches the theme's own
-   --title-color variable, keeping the white title text legible. */
+/* Same hero-photo setup as the News page (vg-news-hero-bg): two
+   photos cross-fade via the .vg-news-hero-photo <img> layers below
+   (see the loop script after the hero markup) instead of a static
+   background-image. object-fit: fill stretches to cover the box
+   exactly in both directions with no cropping and no letterbox gaps,
+   at the cost of a mild horizontal stretch on very wide/short
+   viewport ratios. background-image: none kills the theme's default
+   breadcrumb-bg.jpg so it can't flash through before the <img> layers
+   finish loading. */
 .breadcrumb-area {
   background-image: none !important;
-  background-color: #222429 !important;
+  background-color: #14181f !important;
+  z-index: 0;
+}
+.breadcrumb-area .vg-news-hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+}
+.breadcrumb-area .vg-news-hero-photo.is-active {
+  opacity: 1;
+}
+.breadcrumb-area .title h1 {
+  color: #fff !important;
+}
+.breadcrumb-area::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(0, 0, 0, 0.45);
+  pointer-events: none;
+}
+.breadcrumb-area .title,
+.breadcrumb-area .breadcrumb-items {
+  position: relative;
+  z-index: 1;
 }
 </style>
 <style id="vg-archive-menu">
@@ -492,6 +527,8 @@ body { -webkit-font-smoothing: antialiased; }
     </div>
 
 	<div class="breadcrumb-area">
+		<img class="vg-news-hero-photo is-active" src="wp-content/uploads/2024/12/panda-bond-news-article-1.jpeg" alt="">
+		<img class="vg-news-hero-photo" src="wp-content/uploads/2024/12/panda-bond-news-article 2.jpeg" alt="">
 		<div class="container">
 			<div class="title">
 				<h1 data-i18n="panda-surge.details-title">Panda Bonds Surge Details</h1>
@@ -500,6 +537,21 @@ body { -webkit-font-smoothing: antialiased; }
 				<ul><li><a href="index.html" data-i18n="nav.home">Home</a></li><li>/</li><li data-i18n="insights.page-title">Panda Bonds Surge: What’s Behind the Growth?</li></ul>			</div>
 		</div>
 	</div>
+	<script>
+	// Loop the hero between its two photos, cross-fading via the
+	// .is-active opacity transition (see vg-surge-hero-bg CSS above).
+	(function () {
+		var layers = document.querySelectorAll('.breadcrumb-area .vg-news-hero-photo');
+		if (layers.length < 2) { return; }
+		var active = 0;
+		setInterval(function () {
+			layers[active].classList.remove('is-active');
+			active = (active + 1) % layers.length;
+			layers[active].classList.add('is-active');
+		}, 3000);
+	})();
+	</script>
+
 	
 	<div class="blog-details">
 		<div class="container">
