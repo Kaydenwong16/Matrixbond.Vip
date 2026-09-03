@@ -398,6 +398,34 @@ body { -webkit-font-smoothing: antialiased; }
 .faq-tabs.style1 .tabs {
   border-bottom: none !important;
 }
+/* "Panda Bond Publication" heading placed above the photo in the FAQ
+   section's right column. */
+.vg-publication-heading {
+  margin-bottom: 20px;
+}
+.vg-publication-heading .vg-publication-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #12233c;
+  margin: 0 0 8px;
+}
+.vg-publication-heading .vg-publication-subtitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--main-color);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+/* Photo height reduced by half via a wider aspect-ratio crop (was the
+   image's natural 500x690 portrait ratio; now 500x345 — half the
+   height at the same rendered width), cropped with object-fit so the
+   photo doesn't stretch/squish. */
+.faq-tabs.style1 .content .content-item .image img {
+  width: 100%;
+  aspect-ratio: 500 / 345;
+  object-fit: cover;
+}
 </style>
 </head>
 
@@ -606,6 +634,10 @@ Four common types of Panda Bond derivatives include:<br><br>
                                                                     </ul>
 						    </div>
 						    <div class="col-md-6">
+						        <div class="vg-publication-heading">
+						            <h3 class="vg-publication-title" data-i18n="faqs.publication-title">Panda Bond Publication</h3>
+						            <p class="vg-publication-subtitle" data-i18n="faqs.publication-subtitle">Hand Books, Reform and Development</p>
+						        </div>
 						        <div class="image">
 						            <img decoding="async" src="wp-content/uploads/2024/07/work-process-img.jpg">
 						        </div>
