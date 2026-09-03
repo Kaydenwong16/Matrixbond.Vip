@@ -116,7 +116,7 @@
     'faqs.manuals-title': '熊猫债手册',
     'faqs.publication-subtitle': '出版物',
     'faqs.publication-placeholder': '即将推出',
-    'faqs.manuals-placeholder': '即将推出',
+    'faqs.manuals-placeholder': '2024年版',
     'faqs.green-title': '如何发行绿色熊猫债券',
     'faqs.green-placeholder': '即将推出',
 
