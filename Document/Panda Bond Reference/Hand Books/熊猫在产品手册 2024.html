@@ -35,11 +35,28 @@
     #vg-return-btn { bottom: 18px; right: 14px; font-size: 14px; padding: 12px 18px; gap: 8px; }
     #vg-return-btn .vg-btn-icon { font-size: 18px; }
   }
+
+  /* Page-level watermark, on top of the iframe. This is in addition
+     to the logo watermark already baked into the PDF pages
+     themselves; pointer-events:none so it never blocks clicks/scroll
+     into the PDF viewer underneath. */
+  .vg-watermark {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background-image: url('../../../Matrix Logo MBM rem bckgd.png');
+    background-repeat: repeat;
+    background-position: center;
+    background-size: 180px auto;
+    opacity: 0.06;
+  }
 </style>
 </head>
 <body oncontextmenu="return false;">
 
 <iframe src="熊猫在产品手册 2024.pdf#toolbar=0&navpanes=0" title="熊猫债手册"></iframe>
+<div class="vg-watermark"></div>
 
 <a id="vg-return-btn" href="../../../faqs.html">
   <span class="vg-btn-icon">🏠</span>
