@@ -114,7 +114,7 @@
 
     'faqs.publication-title': '熊猫债出版物',
     'faqs.manuals-title': '熊猫债手册',
-    'faqs.publication-subtitle': '手册、改革与发展',
+    'faqs.publication-subtitle': '出版物',
     'faqs.publication-placeholder': '即将推出',
     'faqs.manuals-placeholder': '即将推出',
 
