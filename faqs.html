@@ -398,24 +398,38 @@ body { -webkit-font-smoothing: antialiased; }
 .faq-tabs.style1 .tabs {
   border-bottom: none !important;
 }
-/* "Panda Bond Publication" heading placed above the photo in the FAQ
-   section's right column. */
+/* "Panda Bond Publication" / "Panda Bond Manuals" headings placed
+   above the photo in the FAQ section's right column, with a rotated
+   book-spine-style vertical subheading label running alongside them. */
 .vg-publication-heading {
+  display: flex;
+  align-items: center;
+  gap: 18px;
   margin-bottom: 20px;
 }
+.vg-publication-heading .vg-publication-titles {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .vg-publication-heading .vg-publication-title {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 700;
   color: #12233c;
-  margin: 0 0 8px;
+  margin: 0;
 }
 .vg-publication-heading .vg-publication-subtitle {
-  font-size: 15px;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 14px;
   font-weight: 600;
   color: var(--main-color);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   margin: 0;
+  padding-right: 12px;
+  border-right: 2px solid var(--main-color);
+  white-space: nowrap;
 }
 /* Photo height reduced by half via a wider aspect-ratio crop (was the
    image's natural 500x690 portrait ratio; now 500x345 — half the
@@ -635,8 +649,11 @@ Four common types of Panda Bond derivatives include:<br><br>
 						    </div>
 						    <div class="col-md-6">
 						        <div class="vg-publication-heading">
-						            <h3 class="vg-publication-title" data-i18n="faqs.publication-title">Panda Bond Publication</h3>
 						            <p class="vg-publication-subtitle" data-i18n="faqs.publication-subtitle">Hand Books, Reform and Development</p>
+						            <div class="vg-publication-titles">
+						                <h3 class="vg-publication-title" data-i18n="faqs.publication-title">Panda Bond Publication</h3>
+						                <h3 class="vg-publication-title" data-i18n="faqs.manuals-title">Panda Bond Manuals</h3>
+						            </div>
 						        </div>
 						        <div class="image">
 						            <img decoding="async" src="wp-content/uploads/2024/07/work-process-img.jpg">

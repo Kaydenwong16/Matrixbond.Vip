@@ -113,6 +113,7 @@
     'faqs.breadcrumb': '资源中心',
 
     'faqs.publication-title': '熊猫债出版物',
+    'faqs.manuals-title': '熊猫债手册',
     'faqs.publication-subtitle': '手册、改革与发展',
 
     'faqs.q1': '1. 什么是熊猫债券？',
