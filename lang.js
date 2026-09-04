@@ -114,7 +114,7 @@
 
     'faqs.publication-title': 'NAFII 报告',
     'faqs.manuals-title': '熊猫债手册',
-    'faqs.publication-subtitle': '出版物',
+    'faqs.publication-subtitle': '出版报刊',
     'faqs.publication-placeholder': '2026年报告',
     'faqs.publication-placeholder-2025': '2025年报告',
     'faqs.manuals-placeholder': '2024年版',
