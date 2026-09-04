@@ -113,7 +113,7 @@
     'faqs.breadcrumb': '资源中心',
 
     'faqs.publication-title': 'NAFII 报告',
-    'faqs.manuals-title': '熊猫债手册',
+    'faqs.manuals-title': '熊猫债产品手册',
     'faqs.publication-subtitle': '出版报刊',
     'faqs.publication-placeholder': '2026年报告',
     'faqs.publication-placeholder-2025': '2025年报告',
