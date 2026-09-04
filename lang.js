@@ -118,7 +118,7 @@
     'faqs.publication-placeholder': '2026年报告',
     'faqs.publication-placeholder-2025': '2025年报告',
     'faqs.manuals-placeholder': '2024年版',
-    'faqs.green-title': '手册',
+    'faqs.green-title': '发行手册',
     'faqs.green-placeholder': '如何发行绿色熊猫债券',
 
     'faqs.q1': '1. 什么是熊猫债券？',
