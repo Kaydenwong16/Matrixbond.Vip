@@ -117,8 +117,8 @@
     'faqs.publication-subtitle': '出版物',
     'faqs.publication-placeholder': '即将推出',
     'faqs.manuals-placeholder': '2024年版',
-    'faqs.green-title': '如何发行绿色熊猫债券',
-    'faqs.green-placeholder': '即将推出',
+    'faqs.green-title': '手册',
+    'faqs.green-placeholder': '如何发行绿色熊猫债券',
 
     'faqs.q1': '1. 什么是熊猫债券？',
     'faqs.a1': '熊猫债券是由外国实体在中国国内市场发行的以人民币（CNY）计价的债券。这些债券为外国发行人提供进入中国资本市场的渠道，同时为国内投资者提供投资组合多样化的机会。熊猫债券通常由主权政府、跨国公司或金融机构发行，并受中国法规和金融法律约束。',
