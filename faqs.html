@@ -434,6 +434,15 @@ body { -webkit-font-smoothing: antialiased; }
 }
 .vg-publication-widget .wp-block-archives-list .vg-archive-submenu li { display: block; white-space: nowrap; }
 .vg-publication-widget .wp-block-archives-list .vg-archive-submenu li a { display: block; padding: 6px 16px; }
+/* Hand Book is the rightmost category — its submenu ("How to Issue A
+   Green Panda Bond") is wide enough to overflow past the widget's
+   right edge when anchored with left:0 like the others. Anchor it to
+   the parent's right edge instead so it grows leftward and stays
+   fully visible. */
+.vg-publication-widget .wp-block-archives-list .vg-archive-parent:last-child > .vg-archive-submenu {
+  left: auto;
+  right: 0;
+}
 /* Photo height reduced by half via a wider aspect-ratio crop (was the
    image's natural 500x690 portrait ratio; now 500x345 — half the
    height at the same rendered width), cropped with object-fit so the
