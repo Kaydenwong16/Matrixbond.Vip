@@ -404,7 +404,13 @@ body { -webkit-font-smoothing: antialiased; }
    followed by a row of chevron-expandable categories that reveal a
    dropdown submenu of document links on hover/focus. */
 .vg-publication-widget {
-  margin-bottom: 20px;
+  /* Match the photo below it: that image sits in a container with
+     padding-left:35px (theme default) and no right padding, so its
+     rendered width is column-width minus 35px. Mirror that here with
+     margin-left instead of padding, so the widget's box (including
+     its background fill) lines up with the photo's left edge and
+     matches its width exactly. */
+  margin: 0 0 20px 35px;
   padding: 35px 40px;
   background-color: #eef1f4;
   overflow: visible;
