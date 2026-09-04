@@ -112,7 +112,7 @@
     'faqs.page-title': '资源中心',
     'faqs.breadcrumb': '资源中心',
 
-    'faqs.publication-title': '熊猫债出版物',
+    'faqs.publication-title': 'NAFII 报告',
     'faqs.manuals-title': '熊猫债手册',
     'faqs.publication-subtitle': '出版物',
     'faqs.publication-placeholder': '即将推出',
